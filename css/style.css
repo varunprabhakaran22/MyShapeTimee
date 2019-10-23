@@ -38,16 +38,14 @@
     display: none;
 }
 
-.category{
+.category, .goal{
     display: flex;
     justify-content: space-around;
     margin: 0;
     padding: 0;
-    /* background-color: var(--primary-color); */
     align-content:space-between;
-    height: 100vh;
+    height: auto;
     width: 98vw;
-    background-color: aqua;
 }
 
 .desired-weight, .original-weight{
