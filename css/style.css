@@ -14,20 +14,44 @@
      align-items: center;
      display: flex;
      height: 100vh;
+     width: 98vw;
 }
 
-
+/* .user-profile{
+    /* width: 100vw; */
+} */
 .profile{
     margin: 5% 0;
+    font-size: 38px;
 }
-
+.name, .age, .height, .weight{
+    border:1px solid;
+    margin: 4px 0;
+    height: 30px;
+    padding: 4px;
+    width: 100%;
+}
+.save-button{
+    margin-top: 10px;
+}
 @media screen and (max-width: 768px) {
     .main{
         height: auto;
+        width: 100vw;
         display: flex;
         align-items: unset;
         justify-content: flex-start;
     }
+    .profile{
+        font-size: 30px;
+        margin: 10px 0;
+    }
+    .name, .age, .height, .weight{
+        margin-top: 10px;
+        height: 30px;
+        width: 100%;
+    }
+    
     /* .flex{
         display: block;
     }
