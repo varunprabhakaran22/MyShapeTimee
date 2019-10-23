@@ -4,6 +4,9 @@ let originalWeight
 
 init();
 
+$(document).ready(function () {
+    $(".program-selection").hide();
+})
 
 function init(){
     document.getElementsByClassName("save-button")[0].addEventListener("click", function(){

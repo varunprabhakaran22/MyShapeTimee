@@ -5,8 +5,8 @@
     --primary-sont-size:14px;
 }
 
-.main
-{
+.main{
+
      margin: 0;
      padding: 0;
      /* background-color: var(--primary-color); */
@@ -35,7 +35,10 @@
 }
 
 .program-selection{
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
 .category, .goal{
@@ -45,12 +48,12 @@
     padding: 0;
     align-content:space-between;
     height: auto;
-    width: 98vw;
+    width: 44vw;
 }
 
-.desired-weight, .original-weight{
+/* .desired-weight, .original-weight{
     display: inline;
-}
+} */
 
 .basic, .intensive{
     display: inline;
