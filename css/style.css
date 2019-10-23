@@ -38,6 +38,26 @@
     display: none;
 }
 
+.category{
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+    /* background-color: var(--primary-color); */
+    align-content:space-between;
+    height: 100vh;
+    width: 98vw;
+    background-color: aqua;
+}
+
+.desired-weight, .original-weight{
+    display: inline;
+}
+
+.basic, .intensive{
+    display: inline;
+    justify-content: space-around;
+}
 @media screen and (max-width: 768px) {
     .main{
         height: auto;
