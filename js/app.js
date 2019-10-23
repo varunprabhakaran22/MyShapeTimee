@@ -1,13 +1,39 @@
+let name;
+let age;
+let Weight;
+let height;
+
+
 function process(){
 
-    let name=document.getElementsByClassName("name")[0].value;
-    let age=document.getElementsByClassName("age")[0].value;
-    let height=document.getElementsByClassName("height")[0].value;
-    let Weight=document.getElementsByClassName("Weight")[0].value;
+    name=document.getElementsByClassName("name");
+    age=document.getElementsByClassName("age");
+    height=document.getElementsByClassName("height");
+    Weight=document.getElementsByClassName("weight");
     
-    console.log(name);
-    console.log(age);
-    console.log(height);
-    console.log(Weight);
+    console.log(name[0].value);
+    console.log(age[0].value);
+    console.log(height[0].value);
+    console.log(Weight[0].value);
+
+
+       $.ajax({
+        url: 'http://localhost:8000/add',
+        type: 'POST',
+        dataType: 'json',
+        data: { 
+         'name': name[0].value, 
+         'age' : age[0].value,
+         'height' : height[0].value,
+         'Weight' : Weight[0].value
+        } ,
+        contentType: 'application/json; charset=utf-8',
+        success: function (response) {
+            alert(response.status);
+        },
+        error: function () {
+            alert("error");
+        }
+    }); 
 
 }
