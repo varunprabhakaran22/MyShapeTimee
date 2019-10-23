@@ -16,8 +16,29 @@
      height: 100vh;
 }
 
+
 .profile{
     margin: 5% 0;
+}
+
+@media screen and (max-width: 768px) {
+    .main{
+        height: auto;
+        display: flex;
+        align-items: unset;
+        justify-content: flex-start;
+    }
+    /* .flex{
+        display: block;
+    }
+    .container {
+        height: auto;
+    }
+    .inputBox{
+        width: 100%;
+        margin-bottom: 20px;
+    } */
+
 }
 
  
