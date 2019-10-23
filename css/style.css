@@ -1,0 +1,12 @@
+:root{
+    --primary-color:#000000;
+    --secondary-color:#ffffff;
+    --primary-font:arial;
+    --primary-sont-size:14px;
+}
+
+.main{
+    display: flex;
+    justify-content: flex-start;
+    margin: 5%; 
+}
