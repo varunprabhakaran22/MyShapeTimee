@@ -17,14 +17,11 @@
      width: 98vw;
 }
 
-/* .user-profile{
-    /* width: 100vw; */
-/* } */ 
-
 .profile{
     margin: 5% 0;
     font-size: 38px;
 }
+
 .name, .age, .height, .weight{
     border:1px solid;
     margin: 4px 0;
@@ -32,9 +29,15 @@
     padding: 4px;
     width: 100%;
 }
+
 .save-button{
     margin-top: 10px;
 }
+
+.program-selection{
+    display: none;
+}
+
 @media screen and (max-width: 768px) {
     .main{
         height: auto;
@@ -51,19 +54,7 @@
         margin-top: 10px;
         height: 30px;
         width: 100%;
-    }
-    
-    /* .flex{
-        display: block;
-    }
-    .container {
-        height: auto;
-    }
-    .inputBox{
-        width: 100%;
-        margin-bottom: 20px;
-    } */
-
+    }    
 }
 
  
