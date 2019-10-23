@@ -5,12 +5,19 @@
     --primary-sont-size:14px;
 }
 
-.main{
-    display: flex;
-    justify-content: center;
-    margin: 5%; 
+.main
+{
+     margin: 0;
+     padding: 0;
+     /* background-color: var(--primary-color); */
+     justify-content: center;
+     align-items: center;
+     display: flex;
+     height: 100vh;
 }
 
 .profile{
     margin: 5% 0;
 }
+
+ 
