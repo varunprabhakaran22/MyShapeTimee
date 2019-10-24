@@ -4,7 +4,7 @@ let Weight;
 let height;
 
 
-function process(){
+function uploadData(){
 
     name=document.getElementsByClassName("name");
     age=document.getElementsByClassName("age");
