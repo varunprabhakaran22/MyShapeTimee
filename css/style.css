@@ -74,6 +74,60 @@
     justify-content: space-around;
 }
 
+/* css properties for dashboard page  */
+
+.header{
+    display: flex;
+    padding-top: 2%;
+    height: 100px;
+}
+
+.activity{
+    flex: 2;
+    background-color: chartreuse;
+    padding: 0 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-page{
+    flex: 1;
+    background-color: brown;
+}
+
+.user-name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calender{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* display: flex; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media screen and (max-width: 768px) {
     .main{
         height: auto;
