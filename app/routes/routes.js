@@ -13,6 +13,23 @@ module.exports = (app, db) => {
         res.status(200).send('Bon Jour');
     });
 
+    app.post("/signup", (req, res) => {
+        console.log('/')
+        console.log(req.body);
+        const note = { name: req.body.name, password: req.body.password };
+        db.collection('UserCredentials').insertOne(note, (err, result) => {
+            if (err)
+                console.log(err + " this error has occured");
+            else
+                console.log(result);
+
+        });
+        res.status(200).send('Bon Jour');
+    });
+
+
+
+
     // app.get("/", (req, res) => {
 
     //     db.collection('QueSet').find({}).toArray(function (err, result) {
