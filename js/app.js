@@ -27,7 +27,6 @@ function process(){
          'height' : height[0].value,
          'Weight' : Weight[0].value
         } ,
-        contentType: 'application/json; charset=utf-8',
         success: function (response) {
             alert(response.status);
         },
