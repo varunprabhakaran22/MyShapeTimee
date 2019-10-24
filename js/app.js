@@ -53,17 +53,19 @@ function checkLogin()
     name=document.getElementsByClassName("name");
     password=document.getElementsByClassName("password");
 
+    console.log(name[0].value);
+    console.log(password[0].value);
+
     $.ajax({
         url: 'http://localhost:8000/',
-        type: 'GET',
+        type: 'POST',
         dataType: 'json',
         data: { 
          'name': name[0].value, 
          'password' : password[0].value,
         } ,
-        success: function (response) {
-            
-            console.log("success");
+        success: function (response) { 
+            alert(response.status);
         }
     }); 
 }

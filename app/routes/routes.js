@@ -27,16 +27,15 @@ module.exports = (app, db) => {
         res.status(200).send('Bon Jour');
     });
 
-    app.get("/", (req, res) => {
+    app.post("/", (req, res) => {
         const note = { name: req.body.name, password: req.body.password };
-        db.collection('UserCredentials').find({"name":'req.body.name',"password": 'req.body.password'}).toArray(function (err, result) {
+        console.log(req.body);
+        db.collection('UserCredentials').findOne({name:req.body.name,password:req.body.password}).toArray(function (err, result) {
             if (err)
                 console.log(err + " this error has occured");
-            else {
-                console.log(success);
-                 res.status(200).send(result);
-                
-            }
+            else
+                console.log(result);
+                console.log("success");
         });
     });
 }
