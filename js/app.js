@@ -50,13 +50,20 @@ function uploadSignUpData()
 
 function checkLogin()
 {
-    $.ajax({ 
-        url:'http://localhost:8000/'
-       }).done(function(dataNew) {
-        data=dataNew;
-        console.log(dataNew);
-    });
-    
-    
+    name=document.getElementsByClassName("name");
+    password=document.getElementsByClassName("password");
 
+    $.ajax({
+        url: 'http://localhost:8000/',
+        type: 'GET',
+        dataType: 'json',
+        data: { 
+         'name': name[0].value, 
+         'password' : password[0].value,
+        } ,
+        success: function (response) {
+            
+            console.log("success");
+        }
+    }); 
 }
