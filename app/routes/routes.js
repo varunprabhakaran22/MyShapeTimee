@@ -29,13 +29,16 @@ module.exports = (app, db) => {
 
     app.post("/", (req, res) => {
         const note = { name: req.body.name, password: req.body.password };
-        console.log(req.body);
-        db.collection('UserCredentials').findOne({name:req.body.name,password:req.body.password}).toArray(function (err, result) {
-            if (err)
-                console.log(err + " this error has occured");
+        //console.log(req.body);
+        let val=db.collection('UserCredentials').findOne({name:req.body.name,password:req.body.password})
+            if (!(val))
+            {
+                console.log(val + " this error has occured");
+                
+            }
             else
-                console.log(result);
-                console.log("success");
+            {
+                console.log("Error");
+            }
         });
-    });
 }
