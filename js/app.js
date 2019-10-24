@@ -29,9 +29,6 @@ function process(){
         } ,
         success: function (response) {
             alert(response.status);
-        },
-        error: function () {
-            alert("error");
         }
     }); 
 
