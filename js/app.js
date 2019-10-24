@@ -3,6 +3,7 @@ let age;
 let Weight;
 let height;
 let password;
+let data;
 
 function uploadData(){
 
@@ -10,8 +11,6 @@ function uploadData(){
     age=document.getElementsByClassName("age");
     height=document.getElementsByClassName("height");
     Weight=document.getElementsByClassName("weight");
-    
-
 
        $.ajax({
         url: 'http://localhost:8000/add',
@@ -30,7 +29,7 @@ function uploadData(){
 
 }
 
-function authLogin()
+function uploadSignUpData()
 {
     name=document.getElementsByClassName("name");
     password=document.getElementsByClassName("password");
@@ -47,7 +46,17 @@ function authLogin()
             alert(response.status);
         }
     }); 
+}
 
-
+function checkLogin()
+{
+    $.ajax({ 
+        url:'http://localhost:8000/'
+       }).done(function(dataNew) {
+        data=dataNew;
+        console.log(dataNew);
+    });
+    
+    
 
 }

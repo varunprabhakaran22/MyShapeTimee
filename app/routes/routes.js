@@ -30,16 +30,14 @@ module.exports = (app, db) => {
 
 
 
-    // app.get("/", (req, res) => {
+    app.get("/", (req, res) => {
 
-    //     db.collection('QueSet').find({}).toArray(function (err, result) {
-    //         if (err)
-    //             console.log(err + " this error has occured");
-    //         else {
-    //              res.status(200).send(result);
-    //         }
-    //     });
-    // });
-
-
-};
+        db.collection('UserCredentials').find({}).toArray(function (err, result) {
+            if (err)
+                console.log(err + " this error has occured");
+            else {
+                 res.status(200).send(result);
+            }
+        });
+    });
+}
