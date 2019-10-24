@@ -30,15 +30,15 @@ module.exports = (app, db) => {
     app.post("/", (req, res) => {
         const note = { name: req.body.name, password: req.body.password };
         //console.log(req.body);
-        let val=db.collection('UserCredentials').findOne({name:req.body.name,password:req.body.password})
-            if (!(val))
-            {
-                console.log(val + " this error has occured");
-                
-            }
-            else
-            {
-                console.log("Error");
-            }
+        if(db.collection('UserCredentials').find({name:req.body.name,password:req.body.password}))
+        {
+            console.log("success")
+        }
+        else
+        {
+            console.log("Error");
+        }
+  
+           
         });
 }
