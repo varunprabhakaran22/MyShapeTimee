@@ -16,7 +16,6 @@ function uploadData(){
     console.log(height[0].value);
     console.log(Weight[0].value);
 
-
        $.ajax({
         url: 'http://localhost:8000/add',
         type: 'POST',
