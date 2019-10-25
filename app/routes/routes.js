@@ -32,9 +32,15 @@ module.exports = (app, db) => {
         //console.log(req.body);
         db.collection('UserCredentials').findOne({name:req.body.name},(err,result) => {
             if (result==null)
-            console.log("Fail");
+            {
+               console.log("Fail");
+               res.status(400).send('err');
+            }
            else
-           console.log("success");
+           {
+              console.log("success");
+              res.status(200).send('result');
+           }
         });
       
            
