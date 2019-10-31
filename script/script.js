@@ -37,8 +37,8 @@ function init(){
             contentType:"application/json",
             url: "http://localhost:3000/api",
             success: (data) => {
-                console.log(userDetails);
-                // window.location.href='/src/html/dashboard.html'
+                console.log(data);
+                window.location.href='./asset/dashboard.html'
             },
             error: () => {
                 console.log("Error");
@@ -77,7 +77,7 @@ function desiredWeightGoal(){
                 contentType:"application/json",
                 url: "http://localhost:3000/api/desiredWeight",
                 success: (data) => {
-                    console.log(userDetails);
+                    console.log(data);
                     // window.location.href='/src/html/dashboard.html'
                 },
                 error: () => {
@@ -89,9 +89,9 @@ function desiredWeightGoal(){
                 }
             });
         }
-    else{
-        alert("Enter the value correctly")
-    }
+        else{
+            alert("Enter the value correctly")
+        }
     })
 }
 
