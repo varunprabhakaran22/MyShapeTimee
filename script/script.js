@@ -35,10 +35,10 @@ function init(){
             type: "POST",
             data: JSON.stringify(userDetails),
             contentType:"application/json",
-            url: "http://localhost:3000/api",
+            url: "http://localhost:3000/weight",
             success: (data) => {
                 console.log(data);
-                window.location.href='./asset/dashboard.html'
+                // window.location.href='./asset/dashboard.html'
             },
             error: () => {
                 console.log("Error");
@@ -69,16 +69,16 @@ function desiredWeightGoal(){
             a = desiredWeight;   
         }
 
-        if( ((a - b) > 0 ) && ((a -b) <=20 ) ){
+        if( ((a - b) > 0 ) && ((a -b) <= 20 ) ){
 
             $.ajax({
                 type: "POST",
                 data: JSON.stringify(userDetails),
                 contentType:"application/json",
-                url: "http://localhost:3000/api/desiredWeight",
+                url: "http://localhost:3000/weight/desiredWeight",
                 success: (data) => {
                     console.log(data);
-                    // window.location.href='/src/html/dashboard.html'
+                    window.location.href='./asset/dashboard.html'
                 },
                 error: () => {
                     console.log("Error");
