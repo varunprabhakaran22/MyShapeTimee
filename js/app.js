@@ -63,9 +63,10 @@ function checkLogin()
         data: { 
          'name': name[0].value, 
          'password' : password[0].value,
-        } ,
-        success: function (response) { 
-            alert(response.status);
         }
+        
+    
+        
     }); 
+    location.replace("/app/index.html");
 }

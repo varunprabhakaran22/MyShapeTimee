@@ -34,7 +34,7 @@ module.exports = (app, db) => {
             if (result==null)
             {
                console.log("Fail");
-               res.status(400).send('err');
+               //res.status(400).send('err');
             }
            else
            {
