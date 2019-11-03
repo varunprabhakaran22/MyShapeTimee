@@ -1,4 +1,5 @@
 module.exports = (app, db) => {
+    
     app.post("/add", (req, res) => {
         console.log('/')
         console.log(req.body);
@@ -45,4 +46,19 @@ module.exports = (app, db) => {
       
            
         });
+
+
+
+
+        app.get("/", (req, res) => {
+
+            db.collection('FoodData').find({}).toArray(function (err, result) {
+                if (err)
+                    console.log(err + " this error has occured");
+                else {
+                     res.status(200).send(result);
+                }
+            });
+        });
+    
 }

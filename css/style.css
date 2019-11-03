@@ -1,5 +1,25 @@
 .profile
 {
-    size:15px;
-    background: 100in;
+    text-align-last: center;
+    font-size: 50px;
+}
+.name,.password
+{
+    size: 20px;
+    margin: 20px;
+}
+.button
+{
+    size: 20px;
+    margin: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.main
+{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100vh;
 }
