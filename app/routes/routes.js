@@ -31,7 +31,7 @@ module.exports = (app, db) => {
     app.post("/", (req, res) => {
         const note = { name: req.body.name, password: req.body.password };
         //console.log(req.body);
-        db.collection('UserCredentials').findOne({name:req.body.name},(err,result) => {
+        db.collection('UserCredentials').findOne({name:req.body.name,password: req.body.password},(err,result) => {
             if (result==null)
             {
                console.log("Fail");
