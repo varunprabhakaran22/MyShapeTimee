@@ -68,7 +68,7 @@ function checkLogin()
     
         
     }); 
-    location.replace("/app/index.html");
+    
 }
 
 
@@ -78,6 +78,8 @@ $(document).ready(function(){
         url:'http://localhost:8000/'
        }).done(function(dataNew) {
         data=dataNew; 
+        console.log(data);
  });
+ console.log(data);
 
 })
