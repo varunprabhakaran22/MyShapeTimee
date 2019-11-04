@@ -43,8 +43,6 @@ module.exports = (app, db) => {
               res.status(200).send('result');
            }
         });
-      
-           
         });
 
 
