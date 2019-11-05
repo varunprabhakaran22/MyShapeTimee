@@ -80,6 +80,6 @@ $(document).ready(function(){
         data=dataNew; 
         console.log(data);
  });
- console.log(data);
+
 
 })
