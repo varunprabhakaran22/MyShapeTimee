@@ -15,13 +15,26 @@ function uploadData(){
     Weight=document.getElementsByClassName("weight");
     password=document.getElementsByClassName("password");
     Repassword=document.getElementsByClassName("Re-password");
-
     
     var atposition=email[0].value.indexOf("@");  
     var dotposition=email[0].value.lastIndexOf(".");  
-    
-    if (atposition<1 || dotposition<atposition+2 || dotposition+2>=email[0].value.length){
 
+    if((name[0].value=="" && email[0].value=="" && age[0].value=="" && height[0].value=="" && Weight[0].value==""
+    && password[0].value==""))
+    {
+        alert("Fill the data..");
+       
+    }
+    else if (atposition<1 || dotposition<atposition+2 || dotposition+2>=email[0].value.length){  
+
+        alert("Please enter a valid Email"); 
+    
+    }
+    else if(password==Repassword){
+        alert("Password does not matchs"); 
+
+    }
+    else{
         console.log(name[0].value);
         console.log(email[0].value);
         console.log(age[0].value);
@@ -41,19 +54,11 @@ function uploadData(){
          'password':password[0].value
         } ,
         success: function (response) {
-            alert(response.status);
-            if(response.status==200)
-            {
-                location.replace("login.html");
-            }
-            
+            console.log(response);
         }
        
     }); 
-    }
-    else{
-            alert("Fill form correct..")
-    }
+}
 
 }
 
