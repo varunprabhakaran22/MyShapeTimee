@@ -29,14 +29,13 @@ module.exports = (app, db) => {
         const note = { email: req.body.email, password: req.body.password };
         //console.log(req.body);
         db.collection('UserData').findOne({email: req.body.email, password: req.body.password}).then(function(result){
-            if(result==null){
+            if(!(result==null)){
                 
                 res.status(200).json({msg:"User Exist"});
             }
            else
            {
-        
-              res.status(400).json({msg:"User Does Not Exist"});
+              res.status(200).json({msg:"User Does Not Exist"});
            }
         });
     });

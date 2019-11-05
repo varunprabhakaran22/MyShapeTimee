@@ -66,9 +66,6 @@ function checkLogin()
 {
     email=document.getElementsByClassName("email");
     password=document.getElementsByClassName("password");
-
-    console.log(email[0].value);
-    console.log(password[0].value);
  
     var atposition=email[0].value.indexOf("@");  
     var dotposition=email[0].value.lastIndexOf(".");  
@@ -95,14 +92,15 @@ function checkLogin()
             }
             else if(data.msg=="User Does Not Exist")
             {
-                alert("User Does Not Exist")
+                location.replace("login.html");
+                alert("User Does Not Exist");
             }
-    }); 
-}
-        
-
-   
-    
+            else
+            {
+                alert("User Does Not Exist");
+            }
+         }); 
+    }  
 }
 
 
