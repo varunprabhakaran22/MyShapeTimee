@@ -20,8 +20,8 @@ function uploadData(){
     var atposition=email[0].value.indexOf("@");  
     var dotposition=email[0].value.lastIndexOf(".");  
     
-    if(password==Repassword && atposition<1 || dotposition<atposition+2 || dotposition+2>=name[0].value.length)
-    {
+    if (atposition<1 || dotposition<atposition+2 || dotposition+2>=email[0].value.length){
+
         console.log(name[0].value);
         console.log(email[0].value);
         console.log(age[0].value);
@@ -68,7 +68,7 @@ function checkLogin()
     var atposition=email[0].value.indexOf("@");  
     var dotposition=email[0].value.lastIndexOf(".");  
 
-    if (atposition<1 || dotposition<atposition+2 || dotposition+2>=name[0].value.length){  
+    if (atposition<1 || dotposition<atposition+2 || dotposition+2>=email[0].value.length){  
 
         alert("Please enter a valid e-mail address");  
       
