@@ -47,13 +47,14 @@ function uploadData(){
          'height' : height[0].value,
          'Weight' : Weight[0].value,
          'password':password[0].value
-        } ,
-        success: function (response) {
-            console.log(response);
         }
-       
-    }); 
-}
+         }).done(function(data){
+                if(data.msg=="success")
+                {
+                    location.replace("login.html");
+                }
+        }); 
+    }
 
 }
 

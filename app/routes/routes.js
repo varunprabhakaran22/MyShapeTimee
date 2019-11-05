@@ -8,10 +8,11 @@ module.exports = (app, db) => {
             if (err)
                 console.log(err + " this error has occured");
             else
-                console.log(result);
+               res.status(200).json({msg:"success"});
+            // console.log(result); 
 
         });
-         res.status(200).send('Bon Jour');
+         //res.status(200).send(result);
     });
 
     // app.post("/", (req, res) => {
