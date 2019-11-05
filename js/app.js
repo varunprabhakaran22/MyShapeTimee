@@ -53,7 +53,7 @@ function uploadData(){
                 {
                     location.replace("login.html");
                 }
-                else if(data.msg=="EEmail Id already present")
+                else if(data.msg=="Email Id already present")
                 {
                     alert("Email ID Already Present")
                 }
@@ -88,8 +88,17 @@ function checkLogin()
             'name': name[0].value, 
             'password' : password[0].value,
             }
-        });
-    }
+        }).done(function(data){
+            if(data.msg=="User Exist")
+            {
+                location.replace("Dashboard.html");
+            }
+            else if(data.msg=="User Does Not Exist")
+            {
+                alert("User Does Not Exist")
+            }
+    }); 
+}
         
 
    
