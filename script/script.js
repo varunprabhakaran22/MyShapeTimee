@@ -3,11 +3,14 @@ let age
 let height
 let originalWeight
 let desiredWeight
+let bmi
 
 
 
 init();
 getDay();
+
+
 
 function init(){
     
@@ -37,7 +40,9 @@ function init(){
             contentType:"application/json",
             url: "http://localhost:3000/weight",
             success: (data) => {
-                console.log(data);
+                bmi = data;
+                console.log(bmi);
+                
                 // window.location.href='./asset/dashboard.html'
             },
             error: () => {
