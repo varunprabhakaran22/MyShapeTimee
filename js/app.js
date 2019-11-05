@@ -85,7 +85,7 @@ function checkLogin()
             type: 'POST',
             dataType: 'json',
             data: { 
-            'name': name[0].value, 
+            'email': email[0].value, 
             'password' : password[0].value,
             }
         }).done(function(data){
