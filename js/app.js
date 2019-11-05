@@ -16,11 +16,18 @@ function uploadData(){
     password=document.getElementsByClassName("password");
     Repassword=document.getElementsByClassName("Re-password");
 
+    
     var atposition=email[0].value.indexOf("@");  
     var dotposition=email[0].value.lastIndexOf(".");  
 
-    if(password==Repassword && atposition<1 || dotposition<atposition+2 || dotposition+2>=name[0].value.length)
+    if(password==Repassword && atposition<1 || dotposition<atposition+2 || dotposition+2>=name[0].value.length && name[0].value!=null  && email[0].value!=null && age[0].value!=null && height[0].value!=null && Weight[0].value!=null && password[0].value!=null)
     {
+        console.log(name[0].value);
+        console.log(email[0].value);
+        console.log(age[0].value);
+        console.log(height[0].value);
+        console.log(Weight[0].value);
+        console.log(password[0].value);
        $.ajax({
         url: 'http://localhost:8000/add',
         type: 'POST',
@@ -35,8 +42,17 @@ function uploadData(){
         } ,
         success: function (response) {
             alert(response.status);
+            if(response.status==200)
+            {
+                location.replace("login.html");
+            }
+            
         }
+       
     }); 
+    }
+    else{
+            alert("Fill form correct..")
     }
 
 }

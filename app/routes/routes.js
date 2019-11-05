@@ -14,24 +14,22 @@ module.exports = (app, db) => {
         res.status(200).send('Bon Jour');
     });
 
-    app.post("/", (req, res) => {
-        const note = { name: req.body.name, password: req.body.password };
-        //console.log(req.body);
-        db.collection('UserCredentials').findOne({name:req.body.name,password: req.body.password},(err,result) => {
-            if (result==null)
-            {
-               console.log("Fail");
-               //res.status(400).send('err');
-            }
-           else
-           {
-              console.log("success");
-              res.status(200).send('result');
-           }
-        });
-    });
-
-
+    // app.post("/", (req, res) => {
+    //     const note = { email: req.body.email, password: req.body.password };
+    //     //console.log(req.body);
+    //     db.collection('UserData').findOne({name:req.body.name,password: req.body.password},(err,result) => {
+    //         if (result==null)
+    //         {
+    //            console.log("Fail");
+    //            //res.status(400).send('err');
+    //         }
+    //        else
+    //        {
+    //           console.log("success");
+    //           res.status(200).send('result');
+    //        }
+    //     });
+    // });
 
 
         app.get("/", (req, res) => {
