@@ -30,17 +30,12 @@ function uploadData(){
         alert("Please enter a valid Email"); 
     
     }
-    else if(password==Repassword){
-        alert("Password does not matchs"); 
+    else if(!(password[0].value === Repassword[0].value)){
 
+        alert("Password does not matchs"); 
     }
     else{
-        console.log(name[0].value);
-        console.log(email[0].value);
-        console.log(age[0].value);
-        console.log(height[0].value);
-        console.log(Weight[0].value);
-        console.log(password[0].value);
+       
        $.ajax({
         url: 'http://localhost:8000/add',
         type: 'POST',

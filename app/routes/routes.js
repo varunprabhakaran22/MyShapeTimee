@@ -11,7 +11,7 @@ module.exports = (app, db) => {
                 console.log(result);
 
         });
-        res.status(200).send('Bon Jour');
+         res.status(200).send('Bon Jour');
     });
 
     // app.post("/", (req, res) => {
