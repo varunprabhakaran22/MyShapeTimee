@@ -3,18 +3,22 @@
     text-align-last: center;
     font-size: 50px;
 }
-.name,.password
+.name,.password,.age,.height,.weight,.Re-password
 {
-    size: 20px;
-    margin: 20px;
+    size: 30px;
+    margin: 12px;
+    height: 20px;
 }
 .button
 {
-    size: 20px;
-    margin: 20px;
+    size: 30px;
+    margin: 8px;
     justify-content: center;
     align-items: center;
-    display: flex;
+    display: inline;
+    font-size: 16px;
+    border-radius: 10px;
+
 }
 .main
 {
