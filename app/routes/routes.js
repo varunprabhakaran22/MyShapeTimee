@@ -55,7 +55,7 @@ module.exports = (app, db) => {
                     console.log(err + " this error has occured");
                 else {
                      res.status(200).send(result);
-                     console.log(data);
+                     //console.log(data);
                 }
             });
         });
