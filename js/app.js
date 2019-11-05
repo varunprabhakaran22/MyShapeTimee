@@ -53,6 +53,10 @@ function uploadData(){
                 {
                     location.replace("login.html");
                 }
+                else if(data.msg=="EEmail Id already present")
+                {
+                    alert("Email ID Already Present")
+                }
         }); 
     }
 
