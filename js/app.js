@@ -43,14 +43,14 @@ function uploadData(){
 
 function checkLogin()
 {
-    name=document.getElementsByClassName("name");
+    email=document.getElementsByClassName("email");
     password=document.getElementsByClassName("password");
 
-    console.log(name[0].value);
+    console.log(email[0].value);
     console.log(password[0].value);
  
-    var atposition=name[0].value.indexOf("@");  
-    var dotposition=name[0].value.lastIndexOf(".");  
+    var atposition=email[0].value.indexOf("@");  
+    var dotposition=email[0].value.lastIndexOf(".");  
 
     if (atposition<1 || dotposition<atposition+2 || dotposition+2>=name[0].value.length){  
 
