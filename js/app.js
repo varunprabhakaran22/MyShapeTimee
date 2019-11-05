@@ -19,8 +19,8 @@ function uploadData(){
     
     var atposition=email[0].value.indexOf("@");  
     var dotposition=email[0].value.lastIndexOf(".");  
-
-    if(password==Repassword && atposition<1 || dotposition<atposition+2 || dotposition+2>=name[0].value.length && name[0].value!=null  && email[0].value!=null && age[0].value!=null && height[0].value!=null && Weight[0].value!=null && password[0].value!=null)
+    
+    if(password==Repassword && atposition<1 || dotposition<atposition+2 || dotposition+2>=name[0].value.length)
     {
         console.log(name[0].value);
         console.log(email[0].value);
