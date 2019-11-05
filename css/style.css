@@ -5,13 +5,12 @@
 }
 .name,.password,.age,.height,.weight,.Re-password
 {
-    size: 30px;
-    margin: 12px;
-    height: 20px;
+    size: 40px;
+    margin: 10px;
+    height: 30px;
 }
 .button
 {
-    size: 30px;
     margin: 8px;
     justify-content: center;
     align-items: center;
@@ -25,5 +24,19 @@
     justify-content: center;
     align-items: center;
     display: flex;
-    height: 100vh;
+        background-color: aqua;
+    height: 86vh;
+}
+.session
+{
+    padding: 30px;
+    border-style: solid;
+    background-color: white;
+
+}
+.navbar {
+    position: relative;
+    min-height: 7vh;
+    padding:0 !important;
+    margin-bottom: 0 !important;
 }
