@@ -1,5 +1,3 @@
-import { inherits } from "util";
-
 let name;
 let age;
 let Weight;
