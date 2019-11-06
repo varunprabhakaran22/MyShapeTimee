@@ -55,9 +55,7 @@ module.exports = (app, db) => {
               res.status(200).json({msg:"User Does Not Exist"});
            }
         });
-    });
-
-    
+    });    
  }
 function test()
 {
