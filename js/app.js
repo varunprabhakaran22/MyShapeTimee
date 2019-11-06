@@ -5,7 +5,7 @@ let height;
 let password;
 let data;
 let Repassword;
-let DesiredWeight;
+let desiredWeight;
 
 
 
@@ -16,19 +16,19 @@ function uploadData(){
     age=document.getElementsByClassName("age");
     height=document.getElementsByClassName("height");
     Weight=document.getElementsByClassName("weight");
-    DesiredWeight=document.getElementsByClassName("DesiredWeight");
+    desiredWeight=document.getElementsByClassName("desiredWeight");
     password=document.getElementsByClassName("password");
     Repassword=document.getElementsByClassName("Re-password");
     let atposition=email[0].value.indexOf("@");  
     let dotposition=email[0].value.lastIndexOf(".");  
 
-    if(Weight > DesiredWeight){
+    if(Weight > desiredWeight){
         a = Weight
-        b = DesiredWeight;
+        b = desiredWeight;
     }
     else{
         b = Weight
-        a = DesiredWeight;
+        a = desiredWeight;
     }      
 
     if((name[0].value=="" && email[0].value=="" && age[0].value=="" && height[0].value=="" && Weight[0].value==""
@@ -60,7 +60,7 @@ function uploadData(){
                 'age' : age[0].value,
                 'height' : height[0].value,
                 'Weight' : Weight[0].value,
-                'DesiredWeight' : DesiredWeight[0].value,
+                'desiredWeight' : desiredWeight[0].value,
                 'password':password[0].value
             }
         })
