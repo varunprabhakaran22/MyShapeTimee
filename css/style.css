@@ -9,7 +9,7 @@
     margin: 10px;
     height: 30px;
 }
-.button
+.button-login, .button-signup
 {
     margin: 8px;
     justify-content: center;
