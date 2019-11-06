@@ -1,10 +1,33 @@
+//fetch the menu/day from json file 
 class Menu{ 
     constructor(userData, menu , menuPerDay){
         this.menu = menu;
         this.menuPerDay = menuPerDay;
-        this.userData = userData
+        this.userData = userData;
+        this.userData.height = userData.height;
+        this.userData.weight = userData.Weight;
+        this.userData.age = userData.age;
     }
 
+    calculatingBmi(){
+        
+        //calculating the bmi 
+        let bmi = Math.round(this.userData.weight/((this.userData.height/100)*(this.userData.height/100)));
+        console.log("bmi is " + bmi);
+
+        //categorizing
+        if(bmi > 25){
+            console.log("over weight");
+            
+        }
+        if(bmi < 19){
+            console.log("under weight");
+            
+        }
+        if((bmi > 19)&&( bmi < 25)){
+            console.log(" do you want to");   
+        }
+    }
     calculateMenuPerDay() {
         console.log(this.menu)
         console.log(this.menuPerDay);
@@ -24,7 +47,7 @@ class Menu{
         }
         console.log(this.menuPerDay) 
     }
-    
+
 }
 const external = {Menu};
 module.exports = external;
