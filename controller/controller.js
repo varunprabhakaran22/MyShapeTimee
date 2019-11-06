@@ -9,9 +9,8 @@ class Menu{
         this.userData.age = userData.age;
     }
 
+    //calculating the bmi
     calculatingBmi(){
-        
-        //calculating the bmi 
         let bmi = Math.round(this.userData.weight/((this.userData.height/100)*(this.userData.height/100)));
         console.log("bmi is " + bmi);
 
@@ -28,6 +27,8 @@ class Menu{
             console.log(" do you want to");   
         }
     }
+
+    //calculating the menu
     calculateMenuPerDay() {
         console.log(this.menu)
         console.log(this.menuPerDay);
@@ -47,7 +48,8 @@ class Menu{
         }
         console.log(this.menuPerDay) 
     }
-
 }
+
+//exporting the class Menu to route.js file
 const external = {Menu};
 module.exports = external;
