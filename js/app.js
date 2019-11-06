@@ -122,14 +122,3 @@ function checkLogin()
     }  
 }
 
-
-// $(document).ready(function(){
-//     $.ajax({ 
-//         url:'http://localhost:8000/'
-//        }).done(function(dataNew) {
-//         data=dataNew; 
-//         console.log(data);
-//  });
-
-
-// })
