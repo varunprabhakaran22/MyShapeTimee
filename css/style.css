@@ -1,150 +1,42 @@
-:root{
-    --primary-color:#000000;
-    --secondary-color:#ffffff;
-    --primary-font:arial;
-    --primary-sont-size:14px;
+.profile
+{
+    text-align-last: center;
+    font-size: 50px;
 }
-
-.main{
-
-     margin: 0;
-     padding: 0;
-     /* background-color: var(--primary-color); */
-     justify-content: center;
-     align-items: center;
-     display: flex;
-     height: 100vh;
-     width: 98vw;
-}
-
-.profile{
-    margin: 5% 0;
-    font-size: 38px;
-}
-
-.name, .age, .height, .weight{
-    border:1px solid;
-    margin: 4px 0;
+.name,.password,.age,.height,.weight,.Re-password,.email,.DesiredWeight
+{
+    size: 40px;
+    margin: 10px;
     height: 30px;
-    padding: 4px;
-    width: 100%;
 }
-
-.save-button{
-    margin-top: 10px;
-}
-
-.program-selection{
-    display: flex;
-    align-items: center;
+.button
+{
+    margin: 8px;
     justify-content: center;
-    height: 100vh;
-}
-
-.goal-heading, .plan{
-    text-align: center;
-    font-size: 40px;
-    padding: 5%;
-}
-
-.original-weight, .desired-weight, .basic, .intensive{
-    width: 175px;
-}
-
-.category, .goal{
-    display: flex;
-    justify-content: space-around;
-    margin: 0;
-    padding: 0;
-    align-content:space-between;
-    height: auto;
-    width: 44vw;
-}
-
-.goal{
-    padding-bottom: 5%;
-}
-
-/* .desired-weight, .original-weight{
+    align-items: center;
     display: inline;
-} */
+    font-size: 16px;
+    border-radius: 10px;
 
-.basic, .intensive{
-    display: inline;
-    justify-content: space-around;
 }
-
-/* css properties for dashboard page  */
-
-.header{
-    display: flex;
-    padding-top: 2%;
-    height: 100px;
-}
-
-.activity{
-    flex: 2;
-    background-color: chartreuse;
-    padding: 0 2%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.profile-page{
-    flex: 1;
-    background-color: blue;
-}
-
-.user-name{
-    display: flex;
+.main
+{
     justify-content: center;
     align-items: center;
-}
-
-.calender{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    /* display: flex; */
+        background-color: aqua;
+    height: 86vh;
 }
+.session
+{
+    padding: 30px;
+    border-style: solid;
+    background-color: white;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media screen and (max-width: 768px) {
-    .main{
-        height: auto;
-        width: 100vw;
-        display: flex;
-        align-items: unset;
-        justify-content: flex-start;
-    }
-    .profile{
-        font-size: 30px;
-        margin: 10px 0;
-    }
-    .name, .age, .height, .weight{
-        margin-top: 10px;
-        height: 30px;
-        width: 100%;
-    }    
 }
-
- 
+.navbar {
+    position: relative;
+    min-height: 7vh;
+    padding:0 !important;
+    margin-bottom: 0 !important;
+}
