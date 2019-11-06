@@ -51,8 +51,6 @@ class Menu{
 
     //calculating the menu
     calculateMenuPerDay() {
-        console.log(this.menu)
-        console.log(this.menuPerDay);
         let previousRandom = []
         let max = 4;
         for(let i = 0; i <= max; i++){
