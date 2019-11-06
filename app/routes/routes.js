@@ -39,6 +39,33 @@ let menu = {
 		}
 	],
 	
+	"snacks" :[{
+			"Name": "Egg",
+			"Protein": 5,
+			"Calorie": 78
+		},
+		{
+			"Name": "Apple",
+			"Protein": 5,
+			"Calorie": 150
+		},
+		{
+			"Name": "Turkey with cheese ",
+			"Protein": 5,
+			"Calorie": 140
+		},
+		{
+			"Name": "Cereal",
+			"Protein": 5,
+			"Calorie": 180
+		},
+		{
+			"Name": "Nuts",
+			"Protein": 7,
+			"Calorie": 607
+		}
+	],
+
 	"lunch" :[{
 			"Name": "Chicken Breast",
 			"Protein": 20,
@@ -75,7 +102,9 @@ let menu = {
 			"Name": "Beans",
 			"Protein": 8,
 			"Calorie": 347
-		},	
+		},
+		
+		
 		{
 			"Name": "Avacados",
 			"Protein": 2.5,
@@ -92,7 +121,6 @@ let menu = {
 			"Protein": 3.5,
 			"Calorie": 90
 		}
-		
 	]
 }
 
@@ -141,9 +169,9 @@ module.exports = (app, db) => {
                         let userMenu = new Menu(userData, menu , menuPerDay);
                         userMenu.calculatingBmi();
                         userMenu.calculatingCaloriesPerDay()
-						userMenu.calculateMenuPerDay(); 
+						userMenu.calculateMenuPerDay();
 						res.status(200);    
-                    }
+                    } 
                 });
             }
            else

@@ -57,15 +57,27 @@ class Menu{
             previousRandom.push(i)
         }
         for(let i=0;i<2;i++){
+            console.log(previousRandom);
+            
             let currentRandom = Math.floor( Math.random() * previousRandom.length );
             console.log(currentRandom);
             previousRandom.splice(currentRandom , 1);
             console.log(previousRandom);
             this.menuPerDay.breakfast.push(this.menu.breakfast[currentRandom])
+            this.menuPerDay.snacks.push(this.menu.snacks[currentRandom])
             this.menuPerDay.lunch.push(this.menu.lunch[currentRandom])
             this.menuPerDay.dinner.push(this.menu.dinner[currentRandom])
+
         }
-        console.log(this.menuPerDay) 
+
+        console.log(this.menuPerDay)
+
+        // calculating the calories from menu
+        let breakfastCalories = 0;
+        for(let i=0; i<2; i++){
+            breakfastCalories = breakfastCalories + this.menuPerDay.breakfast[i].Calorie;
+        }
+        console.log(breakfastCalories);
     }
 }
 
