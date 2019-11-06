@@ -1,7 +1,8 @@
 class Menu{ 
-    constructor(menu , menuPerDay){
+    constructor(userData, menu , menuPerDay){
         this.menu = menu;
         this.menuPerDay = menuPerDay;
+        this.userData = userData
     }
 
     calculateMenuPerDay() {
@@ -23,6 +24,7 @@ class Menu{
         }
         console.log(this.menuPerDay) 
     }
+    
 }
 const external = {Menu};
 module.exports = external;

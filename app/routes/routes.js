@@ -141,8 +141,8 @@ module.exports = (app, db) => {
                         res.status(200).json({msg:"User Exist"});
                         console.log("am coming");
                         
-                        let singleMenu = new Menu(menu , menuPerDay)
-                        singleMenu.calculateMenuPerDay();
+                        let userMenu = new Menu(userData, menu , menuPerDay)
+                        userMenu.calculateMenuPerDay();
                     }
                 });
             }
