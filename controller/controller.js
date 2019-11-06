@@ -6,7 +6,7 @@ class Menu{
         this.userData = userData;
         this.userData.height = userData.height;
         this.userData.weight = userData.Weight;
-        this.userData.desiredWeight = userData.DesiredWeight
+        this.userData.desiredWeight = userData.desiredWeight
         this.userData.age = userData.age;
     }
 
@@ -35,6 +35,8 @@ class Menu{
         if(this.userData.Weight > this.userData.desiredWeight ){
             let bmr = ( 655.1 + ( 9.563 * this.userData.Weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
             let caloriesPerDay = ( bmr * 1.1 );
+            console.log(" desired weight " + this.userData.desiredWeight +" weight :" + this.userData.Weight);
+            
             console.log("Weight loss " + caloriesPerDay);
 	    }    
         // weight gain 
@@ -42,7 +44,8 @@ class Menu{
         {
             let bmr = ( 655.1 + ( 9.563 * this.userData.Weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
             let caloriesPerDay = ( bmr * 1.4 );
-            console.log("Weight loss " + caloriesPerDay);     
+            console.log(" desired weight " +this.userData.desiredWeight +" weight :" + this.userData.Weight );
+            console.log("Weight gain " + caloriesPerDay);     
         }
     }
 
