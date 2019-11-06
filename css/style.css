@@ -1,0 +1,42 @@
+.profile
+{
+    text-align-last: center;
+    font-size: 50px;
+}
+.name,.password,.age,.height,.weight,.Re-password,.email,.DesiredWeight
+{
+    size: 40px;
+    margin: 10px;
+    height: 30px;
+}
+.button
+{
+    margin: 8px;
+    justify-content: center;
+    align-items: center;
+    display: inline;
+    font-size: 16px;
+    border-radius: 10px;
+
+}
+.main
+{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+        background-color: aqua;
+    height: 86vh;
+}
+.session
+{
+    padding: 30px;
+    border-style: solid;
+    background-color: white;
+
+}
+.navbar {
+    position: relative;
+    min-height: 7vh;
+    padding:0 !important;
+    margin-bottom: 0 !important;
+}
