@@ -6,6 +6,7 @@ class Menu{
         this.userData = userData;
         this.userData.height = userData.height;
         this.userData.weight = userData.Weight;
+        this.userData.desiredWeight = userData.DesiredWeight
         this.userData.age = userData.age;
     }
 
@@ -24,7 +25,24 @@ class Menu{
             
         }
         if((bmi > 19)&&( bmi < 25)){
-            console.log(" do you want to");   
+            console.log("Normal weight ");   
+        }
+    }
+
+    //calculating the calories needed per day 
+    calculatingCaloriesPerDay(){
+        //weight loss
+        if(this.userData.Weight > this.userData.desiredWeight ){
+            let bmr = ( 655.1 + ( 9.563 * this.userData.Weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
+            let caloriesPerDay = ( bmr * 1.1 );
+            console.log("Weight loss " + caloriesPerDay);
+	    }    
+        // weight gain 
+        else
+        {
+            let bmr = ( 655.1 + ( 9.563 * this.userData.Weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
+            let caloriesPerDay = ( bmr * 1.4 );
+            console.log("Weight loss " + caloriesPerDay);     
         }
     }
 

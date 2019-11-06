@@ -140,10 +140,10 @@ module.exports = (app, db) => {
                         userData=result;
                         res.status(200).json({msg:"User Exist"});
                         console.log("am coming");
-                        
                         let userMenu = new Menu(userData, menu , menuPerDay);
                         userMenu.calculatingBmi();
-                        userMenu.calculateMenuPerDay();
+                        userMenu.calculatingCaloriesPerDay()
+                        userMenu.calculateMenuPerDay();     
                     }
                 });
             }
