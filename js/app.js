@@ -5,19 +5,31 @@ let height;
 let password;
 let data;
 let Repassword;
+let DesiredWeight;
 
 function uploadData(){
-
+    
     name=document.getElementsByClassName("name");
     email=document.getElementsByClassName("email");
     age=document.getElementsByClassName("age");
     height=document.getElementsByClassName("height");
     Weight=document.getElementsByClassName("weight");
+    DesiredWeight=document.getElementsByClassName("DesiredWeight");
     password=document.getElementsByClassName("password");
     Repassword=document.getElementsByClassName("Re-password");
     
     var atposition=email[0].value.indexOf("@");  
     var dotposition=email[0].value.lastIndexOf(".");  
+
+    if(Weight > DesiredWeight){
+        a = Weight
+        b = DesiredWeight;
+    }
+    else{
+        b = Weight
+        a = DesiredWeight;
+    }      
+   
 
     if((name[0].value=="" && email[0].value=="" && age[0].value=="" && height[0].value=="" && Weight[0].value==""
     && password[0].value==""))
@@ -34,6 +46,11 @@ function uploadData(){
 
         alert("Password does not matchs"); 
     }
+    else if ( ((a - b) < 0 ) && ((a -b) >= 20 ) ){
+
+        alert("Enter valid Desired Weight.."); 
+
+    }
     else{
        
        $.ajax({
@@ -46,6 +63,7 @@ function uploadData(){
          'age' : age[0].value,
          'height' : height[0].value,
          'Weight' : Weight[0].value,
+         'DesiredWeight' : DesiredWeight[0].value,
          'password':password[0].value
         }
          }).done(function(data){
@@ -89,6 +107,7 @@ function checkLogin()
             if(data.msg=="User Exist")
             {
                 location.replace("Dashboard.html");
+                //console.log(data);
             }
             else if(data.msg=="User Does Not Exist")
             {
@@ -104,13 +123,13 @@ function checkLogin()
 }
 
 
-$(document).ready(function(){
-    $.ajax({ 
-        url:'http://localhost:8000/'
-       }).done(function(dataNew) {
-        data=dataNew; 
-        console.log(data);
- });
+// $(document).ready(function(){
+//     $.ajax({ 
+//         url:'http://localhost:8000/'
+//        }).done(function(dataNew) {
+//         data=dataNew; 
+//         console.log(data);
+//  });
 
 
-})
+// })
