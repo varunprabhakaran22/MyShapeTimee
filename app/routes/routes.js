@@ -1,12 +1,13 @@
 let userData;
 
 
-module.exports = (app, db) => {
-    
+module.exports = (app, db) => {    
     app.post("/add", (req, res) => {
         console.log(req.body);
-        const note = { name: req.body.name, email:req.body.email, age: req.body.age, height: req.body.height,Weight: req.body.Weight,DesiredWeight : req.body.DesiredWeight,password:req.body.password };
-    
+        const note = { name: req.body.name, email:req.body.email, age: req.body.age,
+                     height: req.body.height,Weight: req.body.Weight,DesiredWeight : req.body.DesiredWeight,
+                     password:req.body.password
+        };
         db.collection('UserData').findOne({email: req.body.email}).then(function(result){
             if(!(result==null)){
                 res.status(200).json({msg:"Email Id already present"});
@@ -24,8 +25,8 @@ module.exports = (app, db) => {
                          res.status(200).json({msg:"success"});
                     }
                 });
-             }
-       });
+            }
+        });
     });
 
     app.post("/", (req, res) => {
@@ -37,8 +38,7 @@ module.exports = (app, db) => {
                 db.collection('UserData').findOne(note, (err, result) => {
                     if (err)
                     {
-                        console.log(err + " this error has occured");
-                        
+                        console.log(err + " this error has occured");   
                     }
                     else
                     {
@@ -48,7 +48,6 @@ module.exports = (app, db) => {
                         test();
                     }
                 });
-            
             }
            else
            {
