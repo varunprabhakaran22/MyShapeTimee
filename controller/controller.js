@@ -74,10 +74,20 @@ class Menu{
 
         // calculating the calories from menu
         let breakfastCalories = 0;
+        let snacksCalories = 0;
+        let lunchCalories = 0;
+        let dinnerCalories = 0;
+        
         for(let i=0; i<2; i++){
             breakfastCalories = breakfastCalories + this.menuPerDay.breakfast[i].Calorie;
+            snacksCalorie = snacksCalorie + this.menuPerDay.snacks[i].Calorie;
+            lunchCalories = lunchCalories + this.menuPerDay.lunch[i].Calorie;
+            dinnerCalories = dinnerCalories + this.menuPerDay.dinner[i].Calorie;
         }
         console.log(breakfastCalories);
+        console.log("snacks" + snacksCalorie);
+        console.log("lunch" + lunchCalories);
+        console.log("dinner" + dinnerCalories);
     }
 }
 
