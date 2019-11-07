@@ -164,7 +164,9 @@ module.exports = (app, db) => {
                     }
                     else
                     {
-                        userData=result;
+						userData=result;
+						console.log(userData);
+						console.log(userData.desiredWeight);
                         res.status(200).json({msg:"User Exist"});
                         let userMenu = new Menu(userData, menu , menuPerDay);
                         userMenu.calculatingBmi();
