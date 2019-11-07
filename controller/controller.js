@@ -60,9 +60,8 @@ class Menu{
             console.log(previousRandom);
             
             let currentRandom = Math.floor( Math.random() * previousRandom.length );
-            console.log(currentRandom);
+            currentRandom = previousRandom[currentRandom];
             previousRandom.splice(currentRandom , 1);
-            console.log(previousRandom);
             this.menuPerDay.breakfast.push(this.menu.breakfast[currentRandom])
             this.menuPerDay.snacks.push(this.menu.snacks[currentRandom])
             this.menuPerDay.lunch.push(this.menu.lunch[currentRandom])
@@ -80,12 +79,12 @@ class Menu{
         
         for(let i=0; i<2; i++){
             breakfastCalories = breakfastCalories + this.menuPerDay.breakfast[i].Calorie;
-            snacksCalorie = snacksCalorie + this.menuPerDay.snacks[i].Calorie;
+            snacksCalories = snacksCalories + this.menuPerDay.snacks[i].Calorie;
             lunchCalories = lunchCalories + this.menuPerDay.lunch[i].Calorie;
             dinnerCalories = dinnerCalories + this.menuPerDay.dinner[i].Calorie;
         }
         console.log(breakfastCalories);
-        console.log("snacks" + snacksCalorie);
+        console.log("snacks" + snacksCalories);
         console.log("lunch" + lunchCalories);
         console.log("dinner" + dinnerCalories);
     }
