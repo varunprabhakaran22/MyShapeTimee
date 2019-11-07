@@ -3,7 +3,7 @@
     text-align-last: center;
     font-size: 50px;
 }
-.name,.password,.age,.height,.weight,.Re-password,.email,.DesiredWeight
+.name,.password,.age,.height,.weight,.Re-password,.email,.desiredWeight
 {
     size: 40px;
     margin: 10px;
@@ -24,7 +24,7 @@
     justify-content: center;
     align-items: center;
     display: flex;
-        background-color: aqua;
+    background-color: aqua;
     height: 86vh;
 }
 .session
