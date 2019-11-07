@@ -30,7 +30,7 @@ class Menu{
 
     //calculating the calories needed per day 
     calculatingCaloriesPerDay(){
-        //weight loss
+        //calories need for weight loss
         if(this.userData.Weight > this.userData.desiredWeight ){
             let bmr = ( 655.1 + ( 9.563 * this.userData.Weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
             let caloriesPerDay = ( bmr * 1.1 );
@@ -38,7 +38,7 @@ class Menu{
             console.log("Weight loss " + caloriesPerDay);
 
 	    }    
-        // weight gain 
+        //calories need for weight gain 
         else
         {
             let bmr = ( 655.1 + ( 9.563 * this.userData.Weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
@@ -55,6 +55,8 @@ class Menu{
         for(let i = 0; i <= max; i++){
             previousRandom.push(i)
         }
+
+        //picking only two dish using for loop 
         for(let i=0;i<2;i++){
             let currentRandom = Math.floor( Math.random() * previousRandom.length );
             currentRandom = previousRandom[currentRandom];
@@ -83,16 +85,25 @@ class Menu{
         totalCalorie = breakfastCalories + snacksCalories + lunchCalories + dinnerCalories;
 
         if(cal > totalCalorie){
-            
+            difference = cal - totalCalorie;
+            this.calculatingTheRequiredCalories( difference );
         }
 
-        console.log(breakfastCalories);
+        console.log(" breakfast calories " + breakfastCalories);
         console.log("snacks" + snacksCalories);
         console.log("lunch" + lunchCalories);
         console.log("dinner" + dinnerCalories);
         console.log("total calories " + totalCalorie);
     }
+
+    calculatingTheRequiredCalories(difference){
+        this.difference = difference;
+        console.log(" heyyyy " + this.difference);
+        
+    }
 }
+
+
 //exporting the class Menu to route.js file
 const external = {Menu};
 module.exports = external;
