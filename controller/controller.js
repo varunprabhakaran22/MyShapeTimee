@@ -14,7 +14,6 @@ class Menu{
     calculatingBmi(){
         let bmi = Math.round(this.userData.weight/((this.userData.height/100)*(this.userData.height/100)));
         console.log("bmi is " + bmi);
-
         //categorizing
         if(bmi > 25){
             console.log("over weight");
@@ -57,8 +56,6 @@ class Menu{
             previousRandom.push(i)
         }
         for(let i=0;i<2;i++){
-            console.log(previousRandom);
-            
             let currentRandom = Math.floor( Math.random() * previousRandom.length );
             currentRandom = previousRandom[currentRandom];
             previousRandom.splice(currentRandom , 1);
@@ -66,11 +63,9 @@ class Menu{
             this.menuPerDay.snacks.push(this.menu.snacks[currentRandom])
             this.menuPerDay.lunch.push(this.menu.lunch[currentRandom])
             this.menuPerDay.dinner.push(this.menu.dinner[currentRandom])
-
         }
 
         console.log(this.menuPerDay)
-
         // calculating the calories from menu
         let breakfastCalories = 0;
         let snacksCalories = 0;
@@ -89,7 +84,6 @@ class Menu{
         console.log("dinner" + dinnerCalories);
     }
 }
-
 //exporting the class Menu to route.js file
 const external = {Menu};
 module.exports = external;
