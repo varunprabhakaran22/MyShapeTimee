@@ -35,8 +35,8 @@ class Menu{
             let bmr = ( 655.1 + ( 9.563 * this.userData.Weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
             let caloriesPerDay = ( bmr * 1.1 );
             console.log(" desired weight " + this.userData.desiredWeight +" weight :" + this.userData.Weight);
-            
             console.log("Weight loss " + caloriesPerDay);
+
 	    }    
         // weight gain 
         else
@@ -64,24 +64,33 @@ class Menu{
             this.menuPerDay.lunch.push(this.menu.lunch[currentRandom])
             this.menuPerDay.dinner.push(this.menu.dinner[currentRandom])
         }
-
         console.log(this.menuPerDay)
+
         // calculating the calories from menu
+        let totalCalorie = 0;
         let breakfastCalories = 0;
         let snacksCalories = 0;
         let lunchCalories = 0;
         let dinnerCalories = 0;
-        
+        let cal = 1750;
+        let difference = 0;
         for(let i=0; i<2; i++){
             breakfastCalories = breakfastCalories + this.menuPerDay.breakfast[i].Calorie;
             snacksCalories = snacksCalories + this.menuPerDay.snacks[i].Calorie;
             lunchCalories = lunchCalories + this.menuPerDay.lunch[i].Calorie;
             dinnerCalories = dinnerCalories + this.menuPerDay.dinner[i].Calorie;
         }
+        totalCalorie = breakfastCalories + snacksCalories + lunchCalories + dinnerCalories;
+
+        if(cal > totalCalorie){
+            
+        }
+
         console.log(breakfastCalories);
         console.log("snacks" + snacksCalories);
         console.log("lunch" + lunchCalories);
         console.log("dinner" + dinnerCalories);
+        console.log("total calories " + totalCalorie);
     }
 }
 //exporting the class Menu to route.js file
