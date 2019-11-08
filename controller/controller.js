@@ -14,7 +14,6 @@ class Menu{
     calculatingBmi(){
         let bmi = Math.round(this.userData.weight/((this.userData.height/100)*(this.userData.height/100)));
         console.log("bmi is " + bmi);
-
         //categorizing
         if(bmi > 25){
             console.log("over weight");
@@ -31,15 +30,15 @@ class Menu{
 
     //calculating the calories needed per day 
     calculatingCaloriesPerDay(){
-        //weight loss
+        //calories need for weight loss
         if(this.userData.Weight > this.userData.desiredWeight ){
             let bmr = ( 655.1 + ( 9.563 * this.userData.Weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
             let caloriesPerDay = ( bmr * 1.1 );
             console.log(" desired weight " + this.userData.desiredWeight +" weight :" + this.userData.Weight);
-            
             console.log("Weight loss " + caloriesPerDay);
+
 	    }    
-        // weight gain 
+        //calories need for weight gain 
         else
         {
             let bmr = ( 655.1 + ( 9.563 * this.userData.Weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
@@ -56,30 +55,58 @@ class Menu{
         for(let i = 0; i <= max; i++){
             previousRandom.push(i)
         }
+
+        //picking only two dish using for loop 
         for(let i=0;i<2;i++){
-            console.log(previousRandom);
-            
             let currentRandom = Math.floor( Math.random() * previousRandom.length );
-            console.log(currentRandom);
+            currentRandom = previousRandom[currentRandom];
             previousRandom.splice(currentRandom , 1);
-            console.log(previousRandom);
             this.menuPerDay.breakfast.push(this.menu.breakfast[currentRandom])
             this.menuPerDay.snacks.push(this.menu.snacks[currentRandom])
             this.menuPerDay.lunch.push(this.menu.lunch[currentRandom])
             this.menuPerDay.dinner.push(this.menu.dinner[currentRandom])
-
         }
-
         console.log(this.menuPerDay)
 
         // calculating the calories from menu
+        let cal = 1750;
+        let difference=0;
+        let totalCalorie = 0;
         let breakfastCalories = 0;
+        let snacksCalories = 0;
+        let lunchCalories = 0;
+        let dinnerCalories = 0;
         for(let i=0; i<2; i++){
             breakfastCalories = breakfastCalories + this.menuPerDay.breakfast[i].Calorie;
+            snacksCalories = snacksCalories + this.menuPerDay.snacks[i].Calorie;
+            lunchCalories = lunchCalories + this.menuPerDay.lunch[i].Calorie;
+            dinnerCalories = dinnerCalories + this.menuPerDay.dinner[i].Calorie;
         }
-        console.log(breakfastCalories);
+        totalCalorie = breakfastCalories + snacksCalories + lunchCalories + dinnerCalories;
+        difference = cal - totalCalorie;
+        this.calculatingTheRequiredCalories( difference, totalCalorie , cal);
+    
+
+        console.log(" breakfast calories " + breakfastCalories);
+        console.log("snacks" + snacksCalories);
+        console.log("lunch" + lunchCalories);
+        console.log("dinner" + dinnerCalories);
+        console.log("total calories " + totalCalorie);
+    }
+
+    calculatingTheRequiredCalories(difference, totalCalorie, cal){
+        this.difference = difference;
+        let quantityOfEgg = 0;
+        this.cal = cal
+        if(this.cal > totalCalorie){
+            quantityOfEgg++;
+            totalCalorie = totalCalorie + this.menuPerDay.snacks[i].Calorie;
+            console.log(totalCalorie);
+            
+        }
     }
 }
+
 
 //exporting the class Menu to route.js file
 const external = {Menu};
