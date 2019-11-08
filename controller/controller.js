@@ -96,8 +96,9 @@ class Menu{
         let cal = 1750;
         let difference = 0;
         this.difference = difference;
+        let quantityOfEgg = 0;
         if(cal > totalCalorie){
-            
+            quantityOfEgg++
         }
     }
 }
