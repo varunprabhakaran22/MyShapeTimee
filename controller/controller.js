@@ -84,25 +84,24 @@ class Menu{
         }
         totalCalorie = breakfastCalories + snacksCalories + lunchCalories + dinnerCalories;
         difference = cal - totalCalorie;
-        this.calculatingTheRequiredCalories( difference, totalCalorie , cal);
-    
-
         console.log(" breakfast calories " + breakfastCalories);
         console.log("snacks" + snacksCalories);
         console.log("lunch" + lunchCalories);
         console.log("dinner" + dinnerCalories);
         console.log("total calories " + totalCalorie);
+        this.calculatingTheRequiredCalories( difference, totalCalorie , cal);
     }
 
     calculatingTheRequiredCalories(difference, totalCalorie, cal){
         this.difference = difference;
-        let quantityOfEgg = 0;
+        this.totalCalorie = totalCalorie
         this.cal = cal
-        if(this.cal > totalCalorie){
+        let quantityOfEgg = 0;
+        if(this.cal > this.totalCalorie){
             quantityOfEgg++;
-            totalCalorie = totalCalorie + this.menuPerDay.snacks[i].Calorie;
-            console.log(totalCalorie);
-            
+            totalCalorie = totalCalorie + this.menuPerDay.snacks[0].Calorie;
+            console.log(quantityOfEgg);
+            console.log("Updated total calories " + totalCalorie);
         }
     }
 }
