@@ -7,8 +7,6 @@ let data;
 let Repassword;
 let desiredWeight;
 
-
-
 // getting the user profile data from client using ajax call 
 function uploadData(){
     name=document.getElementsByClassName("name");
@@ -111,5 +109,7 @@ function checkLogin(){
                 alert("User Does Not Exist");
             }
         }); 
+
+
     }  
 }
