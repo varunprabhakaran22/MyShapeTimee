@@ -74,8 +74,6 @@ class Menu{
         let snacksCalories = 0;
         let lunchCalories = 0;
         let dinnerCalories = 0;
-        let cal = 1750;
-        let difference = 0;
         for(let i=0; i<2; i++){
             breakfastCalories = breakfastCalories + this.menuPerDay.breakfast[i].Calorie;
             snacksCalories = snacksCalories + this.menuPerDay.snacks[i].Calorie;
@@ -83,11 +81,9 @@ class Menu{
             dinnerCalories = dinnerCalories + this.menuPerDay.dinner[i].Calorie;
         }
         totalCalorie = breakfastCalories + snacksCalories + lunchCalories + dinnerCalories;
-
-        if(cal > totalCalorie){
-            difference = cal - totalCalorie;
-            this.calculatingTheRequiredCalories( difference );
-        }
+        difference = cal - totalCalorie;
+        this.calculatingTheRequiredCalories( difference, totalCalorie );
+    
 
         console.log(" breakfast calories " + breakfastCalories);
         console.log("snacks" + snacksCalories);
@@ -96,10 +92,13 @@ class Menu{
         console.log("total calories " + totalCalorie);
     }
 
-    calculatingTheRequiredCalories(difference){
+    calculatingTheRequiredCalories(difference, totalCalorie){
+        let cal = 1750;
+        let difference = 0;
         this.difference = difference;
-        console.log(" heyyyy " + this.difference);
-        
+        if(cal > totalCalorie){
+            
+        }
     }
 }
 
