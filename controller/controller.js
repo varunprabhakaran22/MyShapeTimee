@@ -34,18 +34,18 @@ class Menu{
         //calories need for weight loss
         if(this.userData.Weight > this.userData.desiredWeight ){
             let bmr = ( 655.1 + ( 9.563 * this.userData.Weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
-            let caloriesPerDay = ( bmr * 1.1 );
+            this.caloriesPerDay = ( bmr * 1.1 );
             console.log(" desired weight " + this.userData.desiredWeight +" weight :" + this.userData.Weight);
-            console.log("Weight loss " + caloriesPerDay);
+            console.log("Weight loss " + this.caloriesPerDay);
 
 	    }    
         //calories need for weight gain 
         else
         {
             let bmr = ( 655.1 + ( 9.563 * this.userData.Weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
-            let caloriesPerDay = ( bmr * 1.4 );
+            this.caloriesPerDay = ( bmr * 1.4 );
             console.log(" desired weight " +this.userData.desiredWeight +" weight :" + this.userData.Weight );
-            console.log("Weight gain " + caloriesPerDay);     
+            console.log("Weight gain " + this.caloriesPerDay);     
         }
     }
 
@@ -70,7 +70,7 @@ class Menu{
         console.log(this.menuPerDay)
 
         // calculating the calories from menu
-        let cal = 2750;
+        // let cal = 2750;
         let difference=0;
         let totalCalorie = 0;
         let breakfastCalories = 0;
@@ -84,23 +84,24 @@ class Menu{
             dinnerCalories = dinnerCalories + this.menuPerDay.dinner[i].Calorie;
         }
         totalCalorie = breakfastCalories + snacksCalories + lunchCalories + dinnerCalories;
-        difference = cal - totalCalorie;
+        difference = this.caloriesPerDay - totalCalorie;
         console.log(" breakfast calories " + breakfastCalories);
         console.log("snacks" + snacksCalories);
         console.log("lunch" + lunchCalories);
         console.log("dinner" + dinnerCalories);
         console.log("total calories " + totalCalorie);
+        
 
         //method calling to find the calories 
-        this.calculatingTheRequiredCalories( difference, totalCalorie , cal);
+        this.calculatingTheRequiredCalories( difference, totalCalorie );
     }
 
-    calculatingTheRequiredCalories(difference, totalCalorie, cal){
+    calculatingTheRequiredCalories(difference, totalCalorie){
         this.difference = difference;
         this.totalCalorie = totalCalorie
-        this.cal = cal
+        // this.cal = cal
         let quantityOfEgg = 0;
-        if(this.cal > this.totalCalorie){
+        if(this.caloriesPerDay > this.totalCalorie){
             quantityOfEgg++;
             console.log(this.compensation);            
             totalCalorie = totalCalorie + this.compensation.snacks[0].Calorie;
