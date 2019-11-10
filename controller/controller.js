@@ -30,7 +30,6 @@ class Menu{
         }
     }
 
-
     //calculating the calories needed per day 
     calculatingCaloriesPerDay(){
         //calories need for weight loss
@@ -54,6 +53,12 @@ class Menu{
     calculateMenuPerDay() {
         let previousRandom = []
         let max = 4;
+        let totalCalorie = 0;
+        let breakfastCalories = 0;
+        let snacksCalories = 0;
+        let lunchCalories = 0;
+        let dinnerCalories = 0;
+
         for(let i = 0; i <= max; i++){
             previousRandom.push(i)
         }
@@ -68,25 +73,23 @@ class Menu{
             this.menuPerDay.lunch.push(this.menu.lunch[currentRandom])
             this.menuPerDay.dinner.push(this.menu.dinner[currentRandom])
         }
+
         console.log(this.menuPerDay)
         
-        let totalCalorie = 0;
-        let breakfastCalories = 0;
-        let snacksCalories = 0;
-        let lunchCalories = 0;
-        let dinnerCalories = 0;
         for(let i=0; i<2; i++){
             breakfastCalories = breakfastCalories + this.menuPerDay.breakfast[i].Calorie;
             snacksCalories = snacksCalories + this.menuPerDay.snacks[i].Calorie;
             lunchCalories = lunchCalories + this.menuPerDay.lunch[i].Calorie;
             dinnerCalories = dinnerCalories + this.menuPerDay.dinner[i].Calorie;
         }
+
         totalCalorie = breakfastCalories + snacksCalories + lunchCalories + dinnerCalories;
+        console.log("total calories " + totalCalorie);
         // console.log(" breakfast calories " + breakfastCalories);
         // console.log("snacks" + snacksCalories);
         // console.log("lunch" + lunchCalories);
         // console.log("dinner" + dinnerCalories);
-        console.log("total calories " + totalCalorie);
+
         //method calling to find the calories 
         if( this.caloriesPerDay > totalCalorie ){
             this.calculatingTheRequiredCalories( totalCalorie );        
@@ -113,7 +116,6 @@ class Menu{
             console.log("count of the egg  " + this.quantityOfEgg);
         }
     }
-   
 
 }
 

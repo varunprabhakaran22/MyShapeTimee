@@ -22,5 +22,3 @@ mongo.connect(db.url, { useNewUrlParser: true, useUnifiedTopology: true }, (err,
     });
 })
 
-
-
