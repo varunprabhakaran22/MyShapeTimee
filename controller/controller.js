@@ -3,11 +3,13 @@ class Menu{
     constructor(userData, menu , menuPerDay){
         this.menu = menu;
         this.menuPerDay = menuPerDay;
+        this.compensation = menu;
         this.userData = userData;
         this.userData.height = userData.height;
         this.userData.weight = userData.Weight;
         this.userData.desiredWeight = userData.desiredWeight
         this.userData.age = userData.age;
+        this.caloriesPerDay = 0;
     }
 
     //calculating the bmi
@@ -15,9 +17,8 @@ class Menu{
         let bmi = Math.round(this.userData.weight/((this.userData.height/100)*(this.userData.height/100)));
         console.log("bmi is " + bmi);
         //categorizing
-        if(bmi > 25){
-            console.log("over weight");
-            
+        if(bmi >= 25){
+            console.log("over weight");   
         }
         if(bmi < 19){
             console.log("under weight");
@@ -69,7 +70,7 @@ class Menu{
         console.log(this.menuPerDay)
 
         // calculating the calories from menu
-        let cal = 1750;
+        let cal = 2750;
         let difference=0;
         let totalCalorie = 0;
         let breakfastCalories = 0;
@@ -89,6 +90,8 @@ class Menu{
         console.log("lunch" + lunchCalories);
         console.log("dinner" + dinnerCalories);
         console.log("total calories " + totalCalorie);
+
+        //method calling to find the calories 
         this.calculatingTheRequiredCalories( difference, totalCalorie , cal);
     }
 
@@ -99,7 +102,9 @@ class Menu{
         let quantityOfEgg = 0;
         if(this.cal > this.totalCalorie){
             quantityOfEgg++;
-            totalCalorie = totalCalorie + this.menuPerDay.snacks[0].Calorie;
+            console.log(this.compensation);            
+            totalCalorie = totalCalorie + this.compensation.snacks[0].Calorie;
+            console.log(this.compensation.snacks[0].Name);
             console.log(quantityOfEgg);
             console.log("Updated total calories " + totalCalorie);
         }
