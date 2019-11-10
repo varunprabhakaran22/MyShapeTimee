@@ -37,7 +37,6 @@ class Menu{
             this.caloriesPerDay = ( bmr * 1.1 );
             console.log(" desired weight " + this.userData.desiredWeight +" weight :" + this.userData.Weight);
             console.log("Weight loss " + this.caloriesPerDay);
-
 	    }    
         //calories need for weight gain 
         else
@@ -48,6 +47,7 @@ class Menu{
             console.log("Weight gain " + this.caloriesPerDay);     
         }
     }
+
 
     //calculating the menu
     calculateMenuPerDay() {
@@ -71,7 +71,7 @@ class Menu{
 
         // calculating the calories from menu
         // let cal = 2750;
-        let difference=0;
+        
         let totalCalorie = 0;
         let breakfastCalories = 0;
         let snacksCalories = 0;
@@ -84,7 +84,6 @@ class Menu{
             dinnerCalories = dinnerCalories + this.menuPerDay.dinner[i].Calorie;
         }
         totalCalorie = breakfastCalories + snacksCalories + lunchCalories + dinnerCalories;
-        difference = this.caloriesPerDay - totalCalorie;
         console.log(" breakfast calories " + breakfastCalories);
         console.log("snacks" + snacksCalories);
         console.log("lunch" + lunchCalories);
@@ -93,13 +92,19 @@ class Menu{
         
 
         //method calling to find the calories 
-        this.calculatingTheRequiredCalories( difference, totalCalorie );
+        if( this.caloriesPerDay > totalCalorie ){
+            this.calculatingTheRequiredCalories( totalCalorie );        
+
+        }
     }
 
-    calculatingTheRequiredCalories(difference, totalCalorie){
-        this.difference = difference;
+
+    calculatingTheRequiredCalories(totalCalorie){
+        let difference=0;
         this.totalCalorie = totalCalorie
-        // this.cal = cal
+        difference = this.caloriesPerDay - this.totalCalorie;
+        // console.log("difference" + difference);
+        // console.log("total calorie" + this.totalCalorie);
         let quantityOfEgg = 0;
         if(this.caloriesPerDay > this.totalCalorie){
             quantityOfEgg++;
@@ -108,6 +113,7 @@ class Menu{
             console.log(this.compensation.snacks[0].Name);
             console.log(quantityOfEgg);
             console.log("Updated total calories " + totalCalorie);
+            this.calculatingTheRequiredCalories(totalCalorie)
         }
     }
 }
