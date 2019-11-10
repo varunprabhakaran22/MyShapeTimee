@@ -10,6 +10,7 @@ class Menu{
         this.userData.desiredWeight = userData.desiredWeight
         this.userData.age = userData.age;
         this.caloriesPerDay = 0;
+        this.quantityOfEgg = 0;
     }
 
     //calculating the bmi
@@ -94,7 +95,6 @@ class Menu{
         //method calling to find the calories 
         if( this.caloriesPerDay > totalCalorie ){
             this.calculatingTheRequiredCalories( totalCalorie );        
-
         }
     }
 
@@ -103,15 +103,12 @@ class Menu{
         let difference=0;
         this.totalCalorie = totalCalorie
         difference = this.caloriesPerDay - this.totalCalorie;
-        // console.log("difference" + difference);
-        // console.log("total calorie" + this.totalCalorie);
-        let quantityOfEgg = 0;
+        console.log("total calorie" + this.totalCalorie);
         if(this.caloriesPerDay > this.totalCalorie){
-            quantityOfEgg++;
-            console.log(this.compensation);            
+            this.quantityOfEgg++;            
             totalCalorie = totalCalorie + this.compensation.snacks[0].Calorie;
             console.log(this.compensation.snacks[0].Name);
-            console.log(quantityOfEgg);
+            console.log("count of the egg" + this.quantityOfEgg);
             console.log("Updated total calories " + totalCalorie);
             this.calculatingTheRequiredCalories(totalCalorie)
         }
