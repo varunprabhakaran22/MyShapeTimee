@@ -97,7 +97,6 @@ class Menu{
 
         return this.menuPerDay
         // return this.quantityOfEgg
-        // return this.menuPerDay.breakfast[0]
     }
 
 
