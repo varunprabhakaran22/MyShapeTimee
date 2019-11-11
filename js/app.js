@@ -6,6 +6,7 @@ let password;
 let data;
 let Repassword;
 let desiredWeight;
+let perDayMenu
 
 
 
@@ -97,9 +98,11 @@ function checkLogin(){
             }
         })
         .done(function(data){
+            perDayMenu = data.perDayMenu
+            display()
             if(data.msg=="User Exist")
             {
-                location.replace("Dashboard.html");
+                // location.replace("Dashboard.html");
             }
             else if(data.msg=="User Does Not Exist")
             {
@@ -112,4 +115,10 @@ function checkLogin(){
             }
         }); 
     }  
+}
+
+
+function display(){
+    console.log("heyyy");
+    console.log(perDayMenu);
 }
