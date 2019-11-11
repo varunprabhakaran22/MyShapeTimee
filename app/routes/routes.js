@@ -5,6 +5,7 @@ const {Menu} = require("../../controller/controller");
 
 let eggCount = 0;
 let userData;
+let numberOfDayMenuTook = 0
 let menuPerDay={
 	breakfast: [],
 	lunch: [],
@@ -187,8 +188,13 @@ module.exports = (app, db) => {
 	
 	app.post("/day", (req, res) => {
 		console.log("am executing");
-		
-		console.log(req.body.message);
+		if(req.body.message === "yes"){
+			let userMenu = new Menu(userData, menu , menuPerDay);
+			userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
+		}
+		else{
+			numberOfDayMenuTook--;
+		}
 	});
 }
 
