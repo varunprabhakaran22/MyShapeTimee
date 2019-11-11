@@ -73,7 +73,6 @@ class Menu{
             this.menuPerDay.dinner.push(this.menu.dinner[currentRandom])
         }
 
-        
         for(let i=0; i<2; i++){
             breakfastCalories = breakfastCalories + this.menuPerDay.breakfast[i].Calorie;
             snacksCalories = snacksCalories + this.menuPerDay.snacks[i].Calorie;
@@ -81,8 +80,6 @@ class Menu{
             dinnerCalories = dinnerCalories + this.menuPerDay.dinner[i].Calorie;
         }
 
-        console.log(this.menuPerDay)
-    
         totalCalorie = breakfastCalories + snacksCalories + lunchCalories + dinnerCalories;
         console.log("total calories " + totalCalorie);
         // console.log(" breakfast calories " + breakfastCalories);
@@ -90,12 +87,13 @@ class Menu{
         // console.log("lunch" + lunchCalories);
         // console.log("dinner" + dinnerCalories);
 
+
         //method calling to find the calories 
         if( this.caloriesPerDay > totalCalorie ){
             this.calculatingTheRequiredCalories( totalCalorie );        
         }
 
-        return this.menuPerDay
+        return this.menuPerDay 
         // return this.quantityOfEgg
     }
 
@@ -109,14 +107,9 @@ class Menu{
         if(this.caloriesPerDay > this.totalCalorie){
             this.quantityOfEgg++;            
             totalCalorie = totalCalorie + this.compensation.snacks[0].Calorie;
-            // console.log(this.compensation.snacks[0].Name);
-            // console.log("count of the egg" + this.quantityOfEgg);
-            // console.log("Updated total calories " + totalCalorie);
             this.calculatingTheRequiredCalories(totalCalorie)
         }
         else{
-            //passing the day menu to client
-            // console.log(" one day menu " + this.menuPerDay)
             console.log("count of the egg  " + this.quantityOfEgg);
         }
     }
