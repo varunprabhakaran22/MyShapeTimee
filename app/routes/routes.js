@@ -174,7 +174,7 @@ module.exports = (app, db) => {
 						
 						console.log(menuPerDay);
 						
-						res.status(200).json({msg:"User Exist"}); 
+						res.status(200).json({msg:"User Exist", perDayMenu: menuPerDay}); 
                     } 
                 });
             }
