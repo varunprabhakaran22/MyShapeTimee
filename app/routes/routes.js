@@ -183,6 +183,12 @@ module.exports = (app, db) => {
               res.status(200).json({msg:"User Does Not Exist"});
            }
         });
-    });    
+	});
+	
+	app.post("/day", (req, res) => {
+		console.log("am executing");
+		
+		console.log(req.body.message);
+	});
 }
 
