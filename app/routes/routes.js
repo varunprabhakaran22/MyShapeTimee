@@ -191,6 +191,10 @@ module.exports = (app, db) => {
 		if(req.body.message === "yes"){
 			let userMenu = new Menu(userData, menu , menuPerDay);
 			userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
+			userMenu.calculatingBmi();
+			userMenu.calculatingCaloriesPerDay();
+			userMenu.calculateMenuPerDay();
+			// console.log(menuPerDay);
 		}
 		else{
 			numberOfDayMenuTook--;
