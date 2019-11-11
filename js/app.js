@@ -46,7 +46,7 @@ function uploadData(){
         alert("Password does not matchs"); 
     }
 
-    else if ( ((a - b) < 0 ) && ((a -b) >= 20 ) ){
+    else if ( ((a - b) < 0 ) && ((a -b) >= 12 ) ){
         alert("Enter valid Desired Weight.."); 
     }
 
@@ -102,7 +102,7 @@ function checkLogin(){
             display()
             if(data.msg=="User Exist")
             {
-                // location.replace("Dashboard.html");
+                location.replace("Dashboard.html");
             }
             else if(data.msg=="User Does Not Exist")
             {
@@ -121,4 +121,32 @@ function checkLogin(){
 function display(){
     console.log("heyyy");
     console.log(perDayMenu);
+    for(let i= 0; i< 2; i++){
+        let breakfast = console.log(perDayMenu.breakfast[i].Name)
+        let lunch = console.log(perDayMenu.lunch[i].Name)
+        let snacks = console.log(perDayMenu.snacks[i].Name)
+        let dinner = console.log(perDayMenu.dinner[i].Name)
+    }
+    
+    $(".yes").addEventListener("click", function(){
+        $.ajax({
+            url: 'http://localhost:8000/day',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                'message' : 'yes' 
+            }
+        });    
+    });
+
+    $(".no").addEventListener("click", function(){
+        $.ajax({
+            url: 'http://localhost:8000/day',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                'message' : 'no' 
+            }
+        });    
+    });
 }
