@@ -1,5 +1,5 @@
 //fetch the menu/day from json file 
-class Menu{ 
+class Menu{
     constructor(userData, menu , menuPerDay){
         this.menu = menu;
         this.menuPerDay = menuPerDay;
@@ -22,8 +22,7 @@ class Menu{
             console.log("over weight");   
         }
         if(bmi < 19){
-            console.log("under weight");
-            
+            console.log("under weight");        
         }
         if((bmi > 19)&&( bmi < 25)){
             console.log("Normal weight ");   
@@ -38,7 +37,7 @@ class Menu{
             this.caloriesPerDay = ( bmr * 1.1 );
             console.log(" desired weight " + this.userData.desiredWeight +" weight :" + this.userData.Weight);
             console.log("Weight loss " + this.caloriesPerDay);
-	    }    
+        }    
         //calories need for weight gain 
         else
         {
@@ -74,7 +73,6 @@ class Menu{
             this.menuPerDay.dinner.push(this.menu.dinner[currentRandom])
         }
 
-        console.log(this.menuPerDay)
         
         for(let i=0; i<2; i++){
             breakfastCalories = breakfastCalories + this.menuPerDay.breakfast[i].Calorie;
@@ -83,6 +81,8 @@ class Menu{
             dinnerCalories = dinnerCalories + this.menuPerDay.dinner[i].Calorie;
         }
 
+        console.log(this.menuPerDay)
+    
         totalCalorie = breakfastCalories + snacksCalories + lunchCalories + dinnerCalories;
         console.log("total calories " + totalCalorie);
         // console.log(" breakfast calories " + breakfastCalories);
@@ -94,10 +94,15 @@ class Menu{
         if( this.caloriesPerDay > totalCalorie ){
             this.calculatingTheRequiredCalories( totalCalorie );        
         }
+
+        return this.menuPerDay
+        // return this.quantityOfEgg
+        // return this.menuPerDay.breakfast[0]
     }
 
-    calculatingTheRequiredCalories(totalCalorie){
-        let difference=0;
+
+    calculatingTheRequiredCalories( totalCalorie ){
+        let difference = 0;
         this.totalCalorie = totalCalorie
         difference = this.caloriesPerDay - this.totalCalorie;
         // console.log("total calorie" + this.totalCalorie);
@@ -116,7 +121,6 @@ class Menu{
             console.log("count of the egg  " + this.quantityOfEgg);
         }
     }
-
 }
 
 

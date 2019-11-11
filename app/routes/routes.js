@@ -3,7 +3,7 @@ const router = express.Router();
 const {Menu} = require("../../controller/controller");
 
 
-
+let eggCount = 0;
 let userData;
 let menuPerDay={
 	breakfast: [],
@@ -30,12 +30,12 @@ let menu = {
 		{
 			"Name": "OatMmeals",
 			"Protein": 17,
-			"Calorie": 68
+			"Calorie": 75
 		},
 		{
 			"Name": "Wheat Bread",
 			"Protein": 3.6,
-			"Calorie": 69
+			"Calorie": 75
 		}
 	],
 	
@@ -62,7 +62,7 @@ let menu = {
 		{
 			"Name": "Nuts",
 			"Protein": 7,
-			"Calorie": 607
+			"Calorie": 160
 		}
 	],
 
@@ -79,7 +79,7 @@ let menu = {
 		{
 			"Name": "Spinach",
 			"Protein": 2.9,
-			"Calorie": 10
+			"Calorie": 100
 		},
 		{
 			"Name": "Salmon",
@@ -96,7 +96,7 @@ let menu = {
 	"dinner" :[{
 			"Name": "Nuts",
 			"Protein": 7,
-			"Calorie": 607
+			"Calorie": 160
 		},
 		{
 			"Name": "Beans",
@@ -119,7 +119,7 @@ let menu = {
 		{
 			"Name": "Chapathi",
 			"Protein": 3.5,
-			"Calorie": 90
+			"Calorie": 200
 		}
 	]
 }
@@ -165,12 +165,16 @@ module.exports = (app, db) => {
                     else
                     {
                         userData=result;
-                        res.status(200).json({msg:"User Exist"});
                         let userMenu = new Menu(userData, menu , menuPerDay);
                         userMenu.calculatingBmi();
-                        userMenu.calculatingCaloriesPerDay()
-						userMenu.calculateMenuPerDay();
-						res.status(200);    
+						userMenu.calculatingCaloriesPerDay();
+						menuPerDay = userMenu.calculateMenuPerDay();
+						
+						console.log("printing from route");
+						
+						console.log(menuPerDay);
+						
+						res.status(200).json({msg:"User Exist"}); 
                     } 
                 });
             }
