@@ -13,6 +13,8 @@ class Menu{
         this.quantityOfEgg = 0;
     }
 
+
+
     //calculating the bmi
     calculatingBmi(){
         let bmi = Math.round(this.userData.weight/((this.userData.height/100)*(this.userData.height/100)));
@@ -32,8 +34,8 @@ class Menu{
     //calculating the calories needed per day 
     calculatingCaloriesPerDay(){
         //calories need for weight loss
-        if(this.userData.Weight > this.userData.desiredWeight ){
-            let bmr = ( 655.1 + ( 9.563 * this.userData.Weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
+        if(this.userData.weight > this.userData.desiredWeight ){
+            let bmr = ( 655.1 + ( 9.563 * this.userData.weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
             this.caloriesPerDay = ( bmr * 1.1 );
             console.log(" desired weight " + this.userData.desiredWeight +" weight :" + this.userData.Weight);
             console.log("Weight loss " + this.caloriesPerDay);
@@ -41,7 +43,7 @@ class Menu{
         //calories need for weight gain 
         else
         {
-            let bmr = ( 655.1 + ( 9.563 * this.userData.Weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
+            let bmr = ( 655.1 + ( 9.563 * this.userData.weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
             this.caloriesPerDay = ( bmr * 1.4 );
             console.log(" desired weight " +this.userData.desiredWeight +" weight :" + this.userData.Weight );
             console.log("Weight gain " + this.caloriesPerDay);     
@@ -112,6 +114,19 @@ class Menu{
         else{
             console.log("count of the egg  " + this.quantityOfEgg);
         }
+    }
+
+
+    ifUserTookTheMenu(numberOfDayMenuTook){
+        this.numberOfDayMenuTook = numberOfDayMenuTook;
+        this.numberOfDayMenuTook++;
+
+            console.log(this.numberOfDayMenuTook);
+            this.userData.weight = this.userData.weight - 1.2;
+            console.log("updated user weight " + this.userData.weight);  
+            this.calculatingBmi()
+            this.calculatingCaloriesPerDay()
+        
     }
 }
 
