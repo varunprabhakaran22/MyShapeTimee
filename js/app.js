@@ -46,7 +46,7 @@ function uploadData(){
         alert("Password does not matchs"); 
     }
 
-    else if ( ((a - b) < 0 ) && ((a -b) >= 12 ) ){
+    else if ( ((a - b) < 0 ) && ((a -b) >= 10 ) ){
         alert("Enter valid Desired Weight.."); 
     }
 
@@ -98,11 +98,12 @@ function checkLogin(){
             }
         })
         .done(function(data){
-            perDayMenu = data.perDayMenu
-            display()
+            perDayMenu = data.perDayMenu;
             if(data.msg=="User Exist")
             {
+                
                 location.replace("Dashboard.html");
+                perDayMenu = data.perDayMenu
             }
             else if(data.msg=="User Does Not Exist")
             {
@@ -120,15 +121,15 @@ function checkLogin(){
 
 function display(){
     console.log("heyyy");
-    console.log(perDayMenu);
-    for(let i= 0; i< 2; i++){
-        let breakfast = console.log(perDayMenu.breakfast[i].Name)
-        let lunch = console.log(perDayMenu.lunch[i].Name)
-        let snacks = console.log(perDayMenu.snacks[i].Name)
-        let dinner = console.log(perDayMenu.dinner[i].Name)
-    }
+    // console.log(perDayMenu);
+    // for(let i= 0; i< 2; i++){
+    //     let breakfast = console.log(perDayMenu.breakfast[i].Name)
+    //     let lunch = console.log(perDayMenu.lunch[i].Name)
+    //     let snacks = console.log(perDayMenu.snacks[i].Name)
+    //     let dinner = console.log(perDayMenu.dinner[i].Name)
+    // }
     
-    $(".yes").addEventListener("click", function(){
+    document.getElementsByClassName("yes")[0].addEventListener("click", function(){
         $.ajax({
             url: 'http://localhost:8000/day',
             type: 'POST',
@@ -139,7 +140,7 @@ function display(){
         });    
     });
 
-    $(".no").addEventListener("click", function(){
+    document.getElementsByClassName("no")[0].addEventListener("click", function(){
         $.ajax({
             url: 'http://localhost:8000/day',
             type: 'POST',
