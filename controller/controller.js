@@ -121,12 +121,13 @@ class Menu{
         this.numberOfDayMenuTook = numberOfDayMenuTook;
         this.numberOfDayMenuTook++;
 
-            console.log(this.numberOfDayMenuTook);
-            this.userData.weight = this.userData.weight - 1.2;
-            console.log("updated user weight " + this.userData.weight);  
-            this.calculatingBmi()
-            this.calculatingCaloriesPerDay()
-        
+
+        console.log(this.numberOfDayMenuTook);
+        this.userData.weight = this.userData.weight - 1.2;
+        console.log("updated user weight " + this.userData.weight);  
+        // this.calculatingBmi();
+        // this.calculatingCaloriesPerDay();
+        // this.calculateMenuPerDay();
     }
 }
 
