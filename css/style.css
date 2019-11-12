@@ -2,6 +2,10 @@
 {
     text-align-last: center;
     font-size: 50px;
+    /* background-image: url('car.jpg'); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 .name,.password,.age,.height,.weight,.Re-password,.email,.desiredWeight
 {
