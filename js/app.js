@@ -7,6 +7,7 @@ let data;
 let Repassword;
 let desiredWeight;
 let perDayMenu
+let eggQuantity
 let numberOfTimeUserTookMenu = 0;
 
 
@@ -104,6 +105,7 @@ function checkLogin(){
                 
                 location.replace("Dashboard.html");
                 perDayMenu = data.perDayMenu
+                eggQuantity = data.eggQuantity
             }
             else if(data.msg=="User Does Not Exist")
             {
@@ -143,8 +145,12 @@ function display(){
                 }
             })
             .done(function(data){
-                perDayMenu = data.perDayMenu;
+                perDayMenu = data.perDayMenu;                
+                eggQuantity = data.eggQuantity
+                let we = data.updatedWeight
                 console.log(perDayMenu);
+                console.log(eggQuantity);
+                
             });
         }
 
@@ -161,6 +167,8 @@ function display(){
             .done(function(data){
                 perDayMenu = data.perDayMenu;
                 console.log(perDayMenu);
+                console.log(data.eggQuantity);
+                
             });
         }
     });
