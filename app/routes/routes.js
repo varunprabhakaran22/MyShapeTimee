@@ -11,7 +11,7 @@ let menuPerDay={
 	snacks: []   
 }
 
-module.exports = (app, db) => {    
+module.exports = (app, db) => {  
 	app.post("/add", (req, res) => {
         console.log(req.body);
         const note = { name: req.body.name, email:req.body.email, age: req.body.age,
