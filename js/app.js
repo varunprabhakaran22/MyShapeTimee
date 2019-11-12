@@ -132,19 +132,22 @@ function display(){
     document.getElementsByClassName("yes")[0].addEventListener("click", function(){
         numberOfTimeUserTookMenu++;
         console.log(numberOfTimeUserTookMenu);
-        if( (numberOfTimeUserTookMenu % 7) === 0 ){   
+        if( (numberOfTimeUserTookMenu % 3) === 0 ){  
+            console.log("me" + numberOfTimeUserTookMenu);
             $.ajax({
-                url: 'http://localhost:8000/day',
+                url: 'http://localhost:8000/oneweek',
                 type: 'POST',
                 dataType: 'json',
                 data: {
-                    'message' : 'oneWeek' 
+                    'message' :'oneWeek' 
                 }
             });  
         }
+
         else{
+            console.log("else block");     
             $.ajax({
-                url: 'http://localhost:8000/day',
+                url: 'http://localhost:8000/tookmenu',
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -154,14 +157,14 @@ function display(){
         }
     });
     
-    document.getElementsByClassName("no")[0].addEventListener("click", function(){
-        $.ajax({
-            url: 'http://localhost:8000/day',
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                'message' : 'no' 
-            }
-        });    
-    });
+    // document.getElementsByClassName("no")[0].addEventListener("click", function(){
+    //     $.ajax({
+    //         url: 'http://localhost:8000/day',
+    //         type: 'POST',
+    //         dataType: 'json',
+    //         data: {
+    //             'message' : 'no' 
+    //         }
+    //     });    
+    // });
 }
