@@ -35,7 +35,7 @@ class Menu{
         if(this.userData.weight > this.userData.desiredWeight ){
             let bmr = ( 655.1 + ( 9.563 * this.userData.weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
             this.caloriesPerDay = ( bmr * 1.1 );
-            console.log(" desired weight " + this.userData.desiredWeight +" weight :" + this.userData.Weight);
+            // console.log(" desired weight " + this.userData.desiredWeight +" weight :" + this.userData.Weight);
             console.log("Weight loss " + this.caloriesPerDay);
         }    
         //calories need for weight gain 
@@ -43,7 +43,7 @@ class Menu{
         {
             let bmr = ( 655.1 + ( 9.563 * this.userData.weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
             this.caloriesPerDay = ( bmr * 1.4 );
-            console.log(" desired weight " +this.userData.desiredWeight +" weight :" + this.userData.Weight );
+            // console.log(" desired weight " +this.userData.desiredWeight +" weight :" + this.userData.Weight );
             console.log("Weight gain " + this.caloriesPerDay);     
         }
     }
@@ -115,7 +115,8 @@ class Menu{
         console.log("ifusertook");
         console.log(this.numberOfDayMenuTook);
         this.userData.weight = this.userData.weight - 1.2;
-        console.log("updated user weight " + this.userData.weight);  
+        console.log("updated user weight " + this.userData.weight);
+        return this.userData.weight
         // this.calculatingBmi();
         // this.calculatingCaloriesPerDay();
         // this.calculateMenuPerDay();
