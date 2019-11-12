@@ -210,13 +210,29 @@ module.exports = (app, db) => {
 	// });
 
 	
-	app.post("/day", (req, res) => {
+	app.post("/oneweek", (req, res) => {
+		console.log("message from ajax call " + req.body.message);
+		console.log(" message one week ");
 		let userMenu = new Menu(userData, menu , menuPerDay);
 		userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
 		userMenu.calculatingBmi();
 		userMenu.calculatingCaloriesPerDay();
-		userMenu.calculateMenuPerDay();
+		menuPerDay =  userMenu.calculateMenuPerDay();
+		console.log(" messages one week ");
 		console.log(menuPerDay);
+		res.status(200).json({msg:"one week", perDayMenu: menuPerDay});
+	});
+
+	app.post("/tookmenu", (req, res) => {
+		console.log("message from ajax call " + req.body.message);
+		console.log(" message tookmenu ");
+		let userMenu = new Menu(userData, menu , menuPerDay);
+		userMenu.calculatingBmi();
+		userMenu.calculatingCaloriesPerDay();
+		menuPerDay =  userMenu.calculateMenuPerDay();
+		console.log(" message tookmenu ");
+		console.log(menuPerDay);
+		res.status(200).json({msg:"tookmenu", perDayMenu: menuPerDay});
 	});
 }
 

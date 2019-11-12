@@ -7,7 +7,7 @@ let data;
 let Repassword;
 let desiredWeight;
 let perDayMenu
-let numberOfTimeUserTookMenu
+let numberOfTimeUserTookMenu = 0;
 
 
 // getting the user profile data from client using ajax call 
@@ -131,28 +131,48 @@ function display(){
     
     document.getElementsByClassName("yes")[0].addEventListener("click", function(){
         numberOfTimeUserTookMenu++;
-        if( (numberOfTimeUserTookMenu % 7) === 0 ){   
-            console.log(numberOfTimeUserTookMenu);
+        console.log(numberOfTimeUserTookMenu);
+        if( (numberOfTimeUserTookMenu % 7 ) === 0 ){  
+            console.log("me" + numberOfTimeUserTookMenu);
             $.ajax({
-                url: 'http://localhost:8000/day',
+                url: 'http://localhost:8000/oneweek',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'message' :'oneWeek' 
+                }
+            })
+            .done(function(data){
+                perDayMenu = data.perDayMenu;
+                console.log(perDayMenu);
+            });
+        }
+
+        else{
+            console.log("else block");     
+            $.ajax({
+                url: 'http://localhost:8000/tookmenu',
                 type: 'POST',
                 dataType: 'json',
                 data: {
                     'message' : 'yes' 
                 }
-            });  
-        }  
+            })
+            .done(function(data){
+                perDayMenu = data.perDayMenu;
+                console.log(perDayMenu);
+            });
+        }
     });
-
-        
-    document.getElementsByClassName("no")[0].addEventListener("click", function(){
-        $.ajax({
-            url: 'http://localhost:8000/day',
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                'message' : 'no' 
-            }
-        });    
-    });
+    
+    // document.getElementsByClassName("no")[0].addEventListener("click", function(){
+    //     $.ajax({
+    //         url: 'http://localhost:8000/day',
+    //         type: 'POST',
+    //         dataType: 'json',
+    //         data: {
+    //             'message' : 'no' 
+    //         }
+    //     });    
+    // });
 }
