@@ -3,6 +3,10 @@ const router = express.Router();
 const {Menu} = require("../../controller/controller");
 
 let userData;
+let eggCount = 0;
+let userData;
+let updatedWeight = 0;
+let numberOfDayMenuTook = 0;
 let menuPerDay={
 	breakfast: [],
 	lunch: [],
@@ -179,41 +183,36 @@ module.exports = (app, db) => {
            }
         });
 	});
-	
 
-	// app.post("/day", (req, res) => {
-	// 	console.log("am executing");
-	// 	if(req.body.message === "yes"){
-	// 		numberOfDayMenuTook++;
-	// 		console.log("numberOfDayMenuTook " + numberOfDayMenuTook);
-			
-	// 		if((numberOfDayMenuTook % 7 ) == 0){
-	// 			let userMenu = new Menu(userData, menu , menuPerDay);
-	// 			userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
-	// 			userMenu.calculatingBmi();
-	// 			userMenu.calculatingCaloriesPerDay();
-	// 			userMenu.calculateMenuPerDay();
-	// 			console.log(menuPerDay);
-	// 		}
-	// 		else{
-	// 			let userMenu = new Menu(userData, menu , menuPerDay); 
-	// 			userMenu.calculatingBmi();
-	// 			userMenu.calculatingCaloriesPerDay();
-	// 			menuPerDay = userMenu.calculateMenuPerDay();
-	// 			console.log("printing from route");
-	// 			console.log(menuPerDay);
-	// 		}	
-	// 	}
-	// });
-
-	
-	app.post("/day", (req, res) => {
+	app.post("/oneweek", (req, res) => {
+		console.log("message from ajax call " + req.body.message);
+		console.log(" message one week ");
 		let userMenu = new Menu(userData, menu , menuPerDay);
-		userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
+		updatedWeight = userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
 		userMenu.calculatingBmi();
 		userMenu.calculatingCaloriesPerDay();
-		userMenu.calculateMenuPerDay();
+		menuPerDay =  userMenu.calculateMenuPerDay();
+		eggCount = userMenu.calculatingTheRequiredCalories();
+		console.log(" messages one week ");
 		console.log(menuPerDay);
+		res.status(200).json({msg:"one week", perDayMenu: menuPerDay, updatedWeight: updatedWeight,eggQuantity : eggCount});
 	});
+
+	//if user take the menu then that menu is stored in mongodb and next day menu is show to user
+	app.post("/tookmenu", (req, res) => {
+		console.log("message from ajax call " + req.body.message);
+		console.log(" message tookmenu ");
+		let userMenu = new Menu(userData, menu , menuPerDay);
+		userMenu.calculatingBmi();
+		userMenu.calculatingCaloriesPerDay();
+		menuPerDay =  userMenu.calculateMenuPerDay();
+		eggCount = userMenu.calculatingTheRequiredCalories();
+		console.log(" message tookmenu ");
+		console.log(menuPerDay);
+		res.status(200).json({msg:"tookmenu", perDayMenu: menuPerDay,eggQuantity : eggCount});
+	});
+
+
+
 }
 
