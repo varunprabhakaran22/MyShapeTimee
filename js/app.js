@@ -101,10 +101,9 @@ function checkLogin(){
             perDayMenu = data.perDayMenu;
             if(data.msg=="User Exist")
             {
-                getData(data);
-                location.replace("Dashboard.html");
-                console.log(perDayData);
+                //console.log(perDayData);
                 perDayMenu = data.perDayMenu;
+                getData(data);
                 
             }
             else if(data.msg=="User Does Not Exist")
@@ -121,10 +120,18 @@ function checkLogin(){
 
     }  
 }
+function getData(perDayData)
+{
+    
+    console.log(perDayData);
+    location.replace("Dashboard.html");
+    document.getElementById("data").innerHTML=perDayData.data;
+    
+}
 
 
 function display(){
-    console.log("heyyy");
+    //console.log("heyyy");
     // console.log(perDayMenu);
     // for(let i= 0; i< 2; i++){
     //     let breakfast = console.log(perDayMenu.breakfast[i].Name)
@@ -155,9 +162,4 @@ function display(){
         });    
     });
 }
-function getData(perDayData)
-{
-    
-    console.log(perDayData);
-    document.getElementById("data").innerHTML=perDayData.data;
-}
+
