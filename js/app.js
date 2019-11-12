@@ -189,8 +189,6 @@ function display(){
             });  
         }  
     });
-
-        
     document.getElementsByClassName("no")[0].addEventListener("click", function(){
         $.ajax({
             url: 'http://localhost:8000/day',
@@ -203,3 +201,10 @@ function display(){
     });
 }
 
+function logout()
+{
+    location.replace("login.html");
+    localStorage.clear();
+    // localStorage.removeItem(perDayMenu);
+    //localStorage.removeItem(email);
+}
