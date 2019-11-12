@@ -22,7 +22,7 @@ function uploadData(){
     Repassword=document.getElementsByClassName("Re-password");
     let atposition=email[0].value.indexOf("@");  
     let dotposition=email[0].value.lastIndexOf(".");  
-
+    console.log(desiredWeight[0].value);
     if(Weight > desiredWeight){
         a = Weight
         b = desiredWeight;
