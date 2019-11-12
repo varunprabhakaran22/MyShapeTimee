@@ -1,4 +1,4 @@
-//fetch the menu/day from json file 
+//Creating the class for program logical 
 class Menu{
     constructor(userData, menu , menuPerDay){
         this.menu = menu;
@@ -73,6 +73,7 @@ class Menu{
             this.menuPerDay.dinner[i] = this.menu.dinner[currentRandom]
         }
 
+        //getting the calorie value 
         for(let i=0; i<2; i++){
             breakfastCalories = breakfastCalories + this.menuPerDay.breakfast[i].Calorie;
             snacksCalories = snacksCalories + this.menuPerDay.snacks[i].Calorie;
@@ -80,18 +81,21 @@ class Menu{
             dinnerCalories = dinnerCalories + this.menuPerDay.dinner[i].Calorie;
         }
 
+        //storing all the calorie value in single variable 
         totalCalorie = breakfastCalories + snacksCalories + lunchCalories + dinnerCalories;
         console.log("total calories " + totalCalorie);
 
-        //method calling to find the calories 
+        //calling  the method to find the required calories 
         if( this.caloriesPerDay > totalCalorie ){
+            //if obtained calories is less than required calories call the method again untill it satisfy the condition
             this.calculatingTheRequiredCalories( totalCalorie );        
         }
 
+        //returning the menu chart to route.js
         return this.menuPerDay
-        // return this.quantityOfEgg
     }
 
+    //compensation method where incrementing the egg count untill it satisfy the required calories
     calculatingTheRequiredCalories( totalCalorie ){
         let difference = 0;
         this.totalCalorie = totalCalorie
@@ -106,10 +110,11 @@ class Menu{
         else{
             console.log("count of the egg  " + this.quantityOfEgg);
         }
+        //returning the quantity of the egg
         return this.quantityOfEgg
     }
 
-
+    // once the user took menu for 7 day then the user weight is updated
     ifUserTookTheMenu(numberOfDayMenuTook){
         this.numberOfDayMenuTook = numberOfDayMenuTook;
         this.numberOfDayMenuTook++;
@@ -118,9 +123,6 @@ class Menu{
         this.userData.weight = this.userData.weight - 1.2;
         console.log("updated user weight " + this.userData.weight);
         return this.userData.weight
-        // this.calculatingBmi();
-        // this.calculatingCaloriesPerDay();
-        // this.calculateMenuPerDay();
     }
 }
 

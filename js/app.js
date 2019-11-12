@@ -1,3 +1,4 @@
+//Declaring the global variables
 let name;
 let age;
 let Weight;
@@ -31,8 +32,9 @@ function uploadData(){
     else{
         b = Weight
         a = desiredWeight;
-    }      
+    } 
 
+//setting the condition for all the user input fields
     if((name[0].value=="" && email[0].value=="" && age[0].value=="" && height[0].value=="" && Weight[0].value==""
     && password[0].value==""))
     {
@@ -51,6 +53,7 @@ function uploadData(){
         alert("Enter valid Desired Weight.."); 
     }
 
+    //Passing the user details to the server using the ajax call
     else{   
         $.ajax({
             url: 'http://localhost:8000/add',
@@ -79,6 +82,7 @@ function uploadData(){
     }
 }
 
+//creating the function to check login 
 function checkLogin(){
     email=document.getElementsByClassName("email");
     password=document.getElementsByClassName("password");
