@@ -136,8 +136,11 @@ function getData()
     var x = localStorage.getItem("perDayMenu");
     var y=JSON.parse(x)
     console.log(y)
-    document.getElementById("data").innerHTML=y.perDayMenu.breakfast[0].Name;
-    
+    var para = document.createElement("breakfastData"); 
+    document.getElementById("breakfastData").innerHTML=y.perDayMenu.breakfast[0].Name;
+    var t = document.createTextNode(y.perDayMenu.breakfast[1].Name);
+    para.appendChild(t);                                          // Append the text to <p>
+    document.getElementById("breakfastData").appendChild(para);  
 }
 
 
