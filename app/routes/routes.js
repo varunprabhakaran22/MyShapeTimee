@@ -5,6 +5,7 @@ const {Menu} = require("../../controller/controller");
 
 let eggCount = 0;
 let userData;
+let updatedWeight = 0;
 let numberOfDayMenuTook = 0
 let menuPerDay={
 	breakfast: [],
@@ -214,13 +215,13 @@ module.exports = (app, db) => {
 		console.log("message from ajax call " + req.body.message);
 		console.log(" message one week ");
 		let userMenu = new Menu(userData, menu , menuPerDay);
-		userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
+		updatedWeight = userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
 		userMenu.calculatingBmi();
 		userMenu.calculatingCaloriesPerDay();
 		menuPerDay =  userMenu.calculateMenuPerDay();
 		console.log(" messages one week ");
 		console.log(menuPerDay);
-		res.status(200).json({msg:"one week", perDayMenu: menuPerDay});
+		res.status(200).json({msg:"one week", perDayMenu: menuPerDay, updatedWeight: updatedWeight});
 	});
 
 	app.post("/tookmenu", (req, res) => {
