@@ -50,6 +50,18 @@
 }
 .Menu
 {
-   padding-top: 70px;
-    margin-left: 200px;
+   padding-top: 0.2%;
+    padding-left: 10%;
+}
+.breakfastData,.lunchData,.dinnerData,.snacksData
+{
+    display: grid;
+}
+.EggCount
+{
+    margin:0;
+}
+.logout
+{
+    margin-right: 0%;
 }
