@@ -6,8 +6,9 @@ let password;
 let data;
 let Repassword;
 let desiredWeight;
-let perDayMenu;
-let perDayData;
+let perDayMenu
+let numberOfTimeUserTookMenu
+
 
 // getting the user profile data from client using ajax call 
 function uploadData(){
@@ -68,6 +69,8 @@ function uploadData(){
             if(data.msg=="success")
             {
                 location.replace("login.html");
+              
+
             }
             else if(data.msg=="Email Id already present")
             {
@@ -101,10 +104,16 @@ function checkLogin(){
             perDayMenu = data.perDayMenu;
             if(data.msg=="User Exist")
             {
-                //console.log(perDayData);
+                //
                 perDayMenu = data.perDayMenu;
-                getData(data);
+                sessionStorage.setItem("email",email[0].value);
+                //getData(data);
+                perDayMenu=data;
+                console.log(data.perDayMenu);
+                localStorage.setItem("perDayMenu",JSON.stringify(data));
                 
+              
+                location.replace("Dashboard.html");
             }
             else if(data.msg=="User Does Not Exist")
             {
@@ -120,12 +129,14 @@ function checkLogin(){
 
     }  
 }
-function getData(perDayData)
+function getData()
 {
-    
-    console.log(perDayData);
-    location.replace("Dashboard.html");
-    document.getElementById("data").innerHTML=perDayData.data;
+    let email=sessionStorage.getItem("email");
+    console.log(email);   
+    var x = localStorage.getItem("perDayMenu");
+    var y=JSON.parse(x)
+    console.log(y)
+    document.getElementById("data").innerHTML=y.perDayMenu.breakfast[0].Name;
     
 }
 
@@ -141,16 +152,21 @@ function display(){
     // }
     
     document.getElementsByClassName("yes")[0].addEventListener("click", function(){
-        $.ajax({
-            url: 'http://localhost:8000/day',
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                'message' : 'yes' 
-            }
-        });    
+        numberOfTimeUserTookMenu++;
+        if( (numberOfTimeUserTookMenu % 7) === 0 ){   
+            console.log(numberOfTimeUserTookMenu);
+            $.ajax({
+                url: 'http://localhost:8000/day',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'message' : 'yes' 
+                }
+            });  
+        }  
     });
 
+        
     document.getElementsByClassName("no")[0].addEventListener("click", function(){
         $.ajax({
             url: 'http://localhost:8000/day',
