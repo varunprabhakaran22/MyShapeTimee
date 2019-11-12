@@ -44,3 +44,12 @@
     padding:0 !important;
     margin-bottom: 0 !important;
 }
+.mainFrame
+{
+    height: 86vh;
+}
+.Menu
+{
+    margin-top: 20px;
+    margin-left: 100px;
+}
