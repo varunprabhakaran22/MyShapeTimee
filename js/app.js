@@ -6,7 +6,8 @@ let password;
 let data;
 let Repassword;
 let desiredWeight;
-let perDayMenu
+let perDayMenu;
+let perDayData;
 
 // getting the user profile data from client using ajax call 
 function uploadData(){
@@ -96,12 +97,15 @@ function checkLogin(){
             }
         })
         .done(function(data){
+            perDayData=data;
             perDayMenu = data.perDayMenu;
             if(data.msg=="User Exist")
             {
-                
+                getData(data);
                 location.replace("Dashboard.html");
-                perDayMenu = data.perDayMenu
+                console.log(perDayData);
+                perDayMenu = data.perDayMenu;
+                
             }
             else if(data.msg=="User Does Not Exist")
             {
@@ -150,4 +154,10 @@ function display(){
             }
         });    
     });
+}
+function getData(perDayData)
+{
+    
+    console.log(perDayData);
+    document.getElementById("data").innerHTML=perDayData.data;
 }
