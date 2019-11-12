@@ -106,6 +106,7 @@ class Menu{
         else{
             console.log("count of the egg  " + this.quantityOfEgg);
         }
+        return this.quantityOfEgg
     }
 
 
