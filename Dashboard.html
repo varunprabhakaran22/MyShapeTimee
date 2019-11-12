@@ -10,9 +10,22 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body onload="getData();">
-        <form>
         <nav class="navbar navbar-dark bg-dark">
-                <!-- Navbar content -->
+                <a class="font-weight-bold">
+                      <span id="logo" onclick="location.href='Welcome.html'" style="color: white;">MyShapeTime</span>
+                    </a>
+                    <ul class="nav justify-content-end">
+                      
+                            <li class="nav-item">
+                              <a class="nav-link active" href="Welcome.html"><span style="color: white;">Home</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="profile.html"><span style="color: white;">Profile</span></a>
+                              </li>
+                            <li class="nav-item">
+                                <a class="nav-link active"><button style="color: white;" onclick="logout(); ">Log Out</span></a>
+                            </li>
+                          </ul>
         </nav>
     <div class="mainFrame">
              <div class="Menu">
@@ -21,27 +34,29 @@
               </div>
             <div>
             <label><b>Breakfast</b></label>
-           <p id="breakfastData">Data</p>
+           <p id="breakfastData" class="breakfastData">Data</p>
           </div>
           <div>
             <label><b>Lunch</b></label>
-           <p id="lunchData">Data</p>
+           <p id="lunchData" class="lunchData">Data</p>
            </div>
            <div>
             <label><b>Dinner</b></label>
-           <p id="dinnerData">Data</p>
+           <p id="dinnerData" class="dinnerData">Data</p>
         </div>
         <div>
             <label><b>snacks</b></label>
-           <p id="snacksData">Data</p>
+           <p id="snacksData" class="snacksData">Data</p>
         </div>
+        <div>
+              Egg:<p id="EggCount" class="EggCount">Data</p>
+        <!-- </div>
            <div class="menu">
-            <form>
-                <label><b>Are You Complete Todays Menu?</b></label><br>
-                <input type="radio" value="yes" class="yes" checked>Yes  
-                <input type="radio" value="no" class="no">No
-            </form>
-        </div>
+                <label><b>Are You Completed Todays Menu?</b></label><br>
+                <input type="button" name="gender" value="yes" checked> Yes
+                <input type="button" name="gender" value="no"> No<br>
+            
+        </div> -->
         </div>
         
     </div>
@@ -49,7 +64,6 @@
     <nav class="navbar navbar-dark bg-dark">
             <!-- Navbar content -->
     </nav>
-</form>
 </body>
 <script src="/js/app.js"></script>
 </html>
