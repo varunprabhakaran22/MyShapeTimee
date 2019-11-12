@@ -12,12 +12,7 @@ let menuPerDay={
 	dinner:[],
 	snacks: []   
 }
-let menuPerDayTemp={
-	breakfast: [],
-	lunch: [],
-	dinner:[],
-	snacks: []   
-}
+
 let menu = {
 	"breakfast": [{
 			"Name": "Egg",
@@ -171,7 +166,7 @@ module.exports = (app, db) => {
                     else
                     {
                         userData=result;
-                        let userMenu = new Menu(userData, menu , menuPerDay,menuPerDayTemp);
+                        let userMenu = new Menu(userData, menu , menuPerDay);
                         userMenu.calculatingBmi();
 						userMenu.calculatingCaloriesPerDay();
 						menuPerDay = userMenu.calculateMenuPerDay();
@@ -188,19 +183,40 @@ module.exports = (app, db) => {
         });
 	});
 	
+
+	// app.post("/day", (req, res) => {
+	// 	console.log("am executing");
+	// 	if(req.body.message === "yes"){
+	// 		numberOfDayMenuTook++;
+	// 		console.log("numberOfDayMenuTook " + numberOfDayMenuTook);
+			
+	// 		if((numberOfDayMenuTook % 7 ) == 0){
+	// 			let userMenu = new Menu(userData, menu , menuPerDay);
+	// 			userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
+	// 			userMenu.calculatingBmi();
+	// 			userMenu.calculatingCaloriesPerDay();
+	// 			userMenu.calculateMenuPerDay();
+	// 			console.log(menuPerDay);
+	// 		}
+	// 		else{
+	// 			let userMenu = new Menu(userData, menu , menuPerDay); 
+	// 			userMenu.calculatingBmi();
+	// 			userMenu.calculatingCaloriesPerDay();
+	// 			menuPerDay = userMenu.calculateMenuPerDay();
+	// 			console.log("printing from route");
+	// 			console.log(menuPerDay);
+	// 		}	
+	// 	}
+	// });
+
+	
 	app.post("/day", (req, res) => {
-		console.log("am executing");
-		if(req.body.message === "yes"){
-			let userMenu = new Menu(userData, menu , menuPerDay);
-			userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
-			userMenu.calculatingBmi();
-			userMenu.calculatingCaloriesPerDay();
-			userMenu.calculateMenuPerDay();
-			console.log(menuPerDay);
-		}
-		else{
-			numberOfDayMenuTook--;
-		}
+		let userMenu = new Menu(userData, menu , menuPerDay);
+		userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
+		userMenu.calculatingBmi();
+		userMenu.calculatingCaloriesPerDay();
+		userMenu.calculateMenuPerDay();
+		console.log(menuPerDay);
 	});
 }
 
