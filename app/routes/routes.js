@@ -171,9 +171,11 @@ module.exports = (app, db) => {
                         userMenu.calculatingBmi();
 						userMenu.calculatingCaloriesPerDay();
 						menuPerDay = userMenu.calculateMenuPerDay();
+						eggCount = userMenu.calculatingTheRequiredCalories();
 						console.log("printing from route");
 						console.log(menuPerDay);
-						res.status(200).json({msg:"User Exist", perDayMenu: menuPerDay}); 
+						console.log(eggCount);
+						res.status(200).json({msg:"User Exist", perDayMenu: menuPerDay,eggQuantity : eggCount}); 
                     } 
                 });
             }
@@ -219,9 +221,10 @@ module.exports = (app, db) => {
 		userMenu.calculatingBmi();
 		userMenu.calculatingCaloriesPerDay();
 		menuPerDay =  userMenu.calculateMenuPerDay();
+		eggCount = userMenu.calculatingTheRequiredCalories();
 		console.log(" messages one week ");
 		console.log(menuPerDay);
-		res.status(200).json({msg:"one week", perDayMenu: menuPerDay, updatedWeight: updatedWeight});
+		res.status(200).json({msg:"one week", perDayMenu: menuPerDay, updatedWeight: updatedWeight,eggQuantity : eggCount});
 	});
 
 	app.post("/tookmenu", (req, res) => {
@@ -231,9 +234,10 @@ module.exports = (app, db) => {
 		userMenu.calculatingBmi();
 		userMenu.calculatingCaloriesPerDay();
 		menuPerDay =  userMenu.calculateMenuPerDay();
+		eggCount = userMenu.calculatingTheRequiredCalories();
 		console.log(" message tookmenu ");
 		console.log(menuPerDay);
-		res.status(200).json({msg:"tookmenu", perDayMenu: menuPerDay});
+		res.status(200).json({msg:"tookmenu", perDayMenu: menuPerDay,eggQuantity : eggCount});
 	});
 }
 
