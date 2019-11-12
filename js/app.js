@@ -164,7 +164,7 @@ function display(){
             });
         }
     });
-    
+
     // document.getElementsByClassName("no")[0].addEventListener("click", function(){
     //     $.ajax({
     //         url: 'http://localhost:8000/day',
