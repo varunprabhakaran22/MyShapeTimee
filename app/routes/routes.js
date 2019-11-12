@@ -220,6 +220,7 @@ module.exports = (app, db) => {
 		menuPerDay =  userMenu.calculateMenuPerDay();
 		console.log(" messages one week ");
 		console.log(menuPerDay);
+		res.status(200).json({msg:"one week", perDayMenu: menuPerDay});
 	});
 
 	app.post("/tookmenu", (req, res) => {
@@ -231,6 +232,7 @@ module.exports = (app, db) => {
 		menuPerDay =  userMenu.calculateMenuPerDay();
 		console.log(" message tookmenu ");
 		console.log(menuPerDay);
+		res.status(200).json({msg:"tookmenu", perDayMenu: menuPerDay});
 	});
 }
 
