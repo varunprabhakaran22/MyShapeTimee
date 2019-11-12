@@ -5,109 +5,115 @@ let height;
 let password;
 let data;
 let Repassword;
-let DesiredWeight;
+let desiredWeight;
+let perDayMenu
+let numberOfTimeUserTookMenu
 
+
+// getting the user profile data from client using ajax call 
 function uploadData(){
-    
     name=document.getElementsByClassName("name");
     email=document.getElementsByClassName("email");
     age=document.getElementsByClassName("age");
     height=document.getElementsByClassName("height");
     Weight=document.getElementsByClassName("weight");
-    DesiredWeight=document.getElementsByClassName("DesiredWeight");
+    desiredWeight=document.getElementsByClassName("desiredWeight");
     password=document.getElementsByClassName("password");
     Repassword=document.getElementsByClassName("Re-password");
-    
-    var atposition=email[0].value.indexOf("@");  
-    var dotposition=email[0].value.lastIndexOf(".");  
-
-    if(Weight > DesiredWeight){
+    let atposition=email[0].value.indexOf("@");  
+    let dotposition=email[0].value.lastIndexOf(".");  
+    console.log(desiredWeight[0].value);
+    if(Weight > desiredWeight){
         a = Weight
-        b = DesiredWeight;
+        b = desiredWeight;
     }
     else{
         b = Weight
-        a = DesiredWeight;
+        a = desiredWeight;
     }      
-   
 
     if((name[0].value=="" && email[0].value=="" && age[0].value=="" && height[0].value=="" && Weight[0].value==""
     && password[0].value==""))
     {
-        alert("Fill the data..");
-       
+        alert("Fill the data..");    
     }
+
     else if (atposition<1 || dotposition<atposition+2 || dotposition+2>=email[0].value.length){  
-
         alert("Please enter a valid Email"); 
-    
     }
-    else if(!(password[0].value === Repassword[0].value)){
 
+    else if(!(password[0].value === Repassword[0].value)){
         alert("Password does not matchs"); 
     }
-    else if ( ((a - b) < 0 ) && ((a -b) >= 20 ) ){
 
+    else if ( ((a - b) < 0 ) && ((a -b) >= 10 ) ){
         alert("Enter valid Desired Weight.."); 
-
     }
-    else{
-       
-       $.ajax({
-        url: 'http://localhost:8000/add',
-        type: 'POST',
-        dataType: 'json',
-        data: { 
-         'name': name[0].value, 
-         'email':email[0].value,
-         'age' : age[0].value,
-         'height' : height[0].value,
-         'Weight' : Weight[0].value,
-         'DesiredWeight' : DesiredWeight[0].value,
-         'password':password[0].value
-        }
-         }).done(function(data){
-                if(data.msg=="success")
-                {
-                    location.replace("login.html");
-                }
-                else if(data.msg=="Email Id already present")
-                {
-                    alert("Email ID Already Present")
-                }
+
+    else{   
+        $.ajax({
+            url: 'http://localhost:8000/add',
+            type: 'POST',
+            dataType: 'json',
+            data: { 
+                'name': name[0].value, 
+                'email':email[0].value,
+                'age' : age[0].value,
+                'height' : height[0].value,
+                'Weight' : Weight[0].value,
+                'desiredWeight' : desiredWeight[0].value,
+                'password':password[0].value
+            }
+        })
+        .done(function(data){
+            if(data.msg=="success")
+            {
+                location.replace("login.html");
+              
+
+            }
+            else if(data.msg=="Email Id already present")
+            {
+                alert("Email ID Already Present")
+            }
         }); 
     }
-
 }
 
-function checkLogin()
-{
+function checkLogin(){
     email=document.getElementsByClassName("email");
     password=document.getElementsByClassName("password");
- 
-    var atposition=email[0].value.indexOf("@");  
-    var dotposition=email[0].value.lastIndexOf(".");  
-
+    let atposition=email[0].value.indexOf("@");  
+    let dotposition=email[0].value.lastIndexOf(".");  
     if (atposition<1 || dotposition<atposition+2 || dotposition+2>=email[0].value.length){  
-
         alert("Please enter a valid e-mail address");  
-      
     }
     else
     {
-          $.ajax({
+        $.ajax({
             url: 'http://localhost:8000/',
             type: 'POST',
             dataType: 'json',
             data: { 
-            'email': email[0].value, 
-            'password' : password[0].value,
+                'email': email[0].value, 
+                'password' : password[0].value,
             }
-        }).done(function(data){
+        })
+        .done(function(data){
+            perDayData=data;
+            perDayMenu = data.perDayMenu;
             if(data.msg=="User Exist")
             {
+                //
+                perDayMenu = data.perDayMenu;
+                sessionStorage.setItem("email",email[0].value);
+                //getData(data);
+                perDayMenu=data;
+                console.log(data.perDayMenu);
+                localStorage.setItem("perDayMenu",JSON.stringify(data));
+                
+              
                 location.replace("Dashboard.html");
-                //console.log(data);
             }
             else if(data.msg=="User Does Not Exist")
             {
@@ -118,7 +124,87 @@ function checkLogin()
             {
                 alert("User Does Not Exist");
             }
-         }); 
+        }); 
+
+
     }  
 }
+function getData()
+{
+    let email=sessionStorage.getItem("email");
+    console.log(email);   
+    var x = localStorage.getItem("perDayMenu");
+    var y=JSON.parse(x)
+    console.log(y)
 
+    document.getElementById("breakfastData").innerHTML=y.perDayMenu.breakfast[0].Name+" ";
+    var para = document.createElement("breakfastData"); 
+    var t = document.createTextNode(y.perDayMenu.breakfast[1].Name);
+    para.appendChild(t);                                          // Append the text to <p>
+    document.getElementById("breakfastData").appendChild(para);  
+
+    document.getElementById("lunchData").innerHTML=y.perDayMenu.lunch[0].Name+" ";
+    var para = document.createElement("lunchData"); 
+    var t = document.createTextNode(y.perDayMenu.lunch[1].Name);
+    para.appendChild(t);                                          // Append the text to <p>
+    document.getElementById("lunchData").appendChild(para);  
+
+    document.getElementById("dinnerData").innerHTML=y.perDayMenu.dinner[0].Name+" ";
+    var para = document.createElement("dinnerData"); 
+    var t = document.createTextNode(y.perDayMenu.dinner[1].Name);
+    para.appendChild(t);                                          // Append the text to <p>
+    document.getElementById("dinnerData").appendChild(para);  
+
+    document.getElementById("snacksData").innerHTML=y.perDayMenu.snacks[0].Name+" ";
+    var para = document.createElement("snacksData"); 
+    var t = document.createTextNode(y.perDayMenu.snacks[1].Name);
+    para.appendChild(t);                                          // Append the text to <p>
+    document.getElementById("snacksData").appendChild(para);  
+
+
+}
+
+
+function display(){
+    //console.log("heyyy");
+    // console.log(perDayMenu);
+    // for(let i= 0; i< 2; i++){
+    //     let breakfast = console.log(perDayMenu.breakfast[i].Name)
+    //     let lunch = console.log(perDayMenu.lunch[i].Name)
+    //     let snacks = console.log(perDayMenu.snacks[i].Name)
+    //     let dinner = console.log(perDayMenu.dinner[i].Name)
+    // }
+    
+    document.getElementsByClassName("yes")[0].addEventListener("click", function(){
+        numberOfTimeUserTookMenu++;
+        if( (numberOfTimeUserTookMenu % 7) === 0 ){   
+            console.log(numberOfTimeUserTookMenu);
+            $.ajax({
+                url: 'http://localhost:8000/day',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'message' : 'yes' 
+                }
+            });  
+        }  
+    });
+    document.getElementsByClassName("no")[0].addEventListener("click", function(){
+        $.ajax({
+            url: 'http://localhost:8000/day',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                'message' : 'no' 
+            }
+        });    
+    });
+}
+
+function logout()
+{
+    location.replace("login.html");
+    localStorage.clear();
+    // localStorage.removeItem(perDayMenu);
+    //localStorage.removeItem(email);
+}
