@@ -132,7 +132,7 @@ function display(){
     document.getElementsByClassName("yes")[0].addEventListener("click", function(){
         numberOfTimeUserTookMenu++;
         console.log(numberOfTimeUserTookMenu);
-        if( (numberOfTimeUserTookMenu % 3) === 0 ){  
+        if( (numberOfTimeUserTookMenu % 7 ) === 0 ){  
             console.log("me" + numberOfTimeUserTookMenu);
             $.ajax({
                 url: 'http://localhost:8000/oneweek',
@@ -141,7 +141,11 @@ function display(){
                 data: {
                     'message' :'oneWeek' 
                 }
-            });  
+            })
+            .done(function(data){
+                perDayMenu = data.perDayMenu;
+                console.log(perDayMenu);
+            });
         }
 
         else{
@@ -153,6 +157,10 @@ function display(){
                 data: {
                     'message' : 'yes' 
                 }
+            })
+            .done(function(data){
+                perDayMenu = data.perDayMenu;
+                console.log(perDayMenu);
             });
         }
     });
