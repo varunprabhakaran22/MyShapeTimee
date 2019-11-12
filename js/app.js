@@ -1,3 +1,4 @@
+//Declaring the global variables
 let name;
 let age;
 let Weight;
@@ -7,7 +8,8 @@ let data;
 let Repassword;
 let desiredWeight;
 let perDayMenu
-let numberOfTimeUserTookMenu
+let eggQuantity
+let numberOfTimeUserTookMenu = 0;
 
 
 // getting the user profile data from client using ajax call 
@@ -100,7 +102,7 @@ function checkLogin(){
             }
         })
         .done(function(data){
-            perDayData=data;
+
             perDayMenu = data.perDayMenu;
             if(data.msg=="User Exist")
             {
@@ -111,8 +113,8 @@ function checkLogin(){
                 perDayMenu=data;
                 console.log(data.perDayMenu);
                 localStorage.setItem("perDayMenu",JSON.stringify(data));
-                
-              
+                perDayMenu = data.perDayMenu
+                eggQuantity = data.eggQuantity
                 location.replace("Dashboard.html");
             }
             else if(data.msg=="User Does Not Exist")
@@ -166,28 +168,47 @@ function getData()
 
 
 function display(){
-    //console.log("heyyy");
-    // console.log(perDayMenu);
-    // for(let i= 0; i< 2; i++){
-    //     let breakfast = console.log(perDayMenu.breakfast[i].Name)
-    //     let lunch = console.log(perDayMenu.lunch[i].Name)
-    //     let snacks = console.log(perDayMenu.snacks[i].Name)
-    //     let dinner = console.log(perDayMenu.dinner[i].Name)
-    // }
     
     document.getElementsByClassName("yes")[0].addEventListener("click", function(){
         numberOfTimeUserTookMenu++;
-        if( (numberOfTimeUserTookMenu % 7) === 0 ){   
-            console.log(numberOfTimeUserTookMenu);
+        console.log(numberOfTimeUserTookMenu);
+        if( (numberOfTimeUserTookMenu % 7 ) === 0 ){  
+            console.log("me" + numberOfTimeUserTookMenu);
             $.ajax({
-                url: 'http://localhost:8000/day',
+                url: 'http://localhost:8000/oneweek',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'message' :'oneWeek' 
+                }
+            })
+            .done(function(data){
+                perDayMenu = data.perDayMenu;                
+                eggQuantity = data.eggQuantity
+                let we = data.updatedWeight
+                console.log(perDayMenu);
+                console.log(eggQuantity);
+                
+            });
+        }
+
+        else{
+            console.log("else block");     
+            $.ajax({
+                url: 'http://localhost:8000/tookmenu',
                 type: 'POST',
                 dataType: 'json',
                 data: {
                     'message' : 'yes' 
                 }
-            });  
-        }  
+            })
+            .done(function(data){
+                perDayMenu = data.perDayMenu;
+                console.log(perDayMenu);
+                console.log(data.eggQuantity);
+                
+            });
+        }
     });
     document.getElementsByClassName("no")[0].addEventListener("click", function(){
         $.ajax({
@@ -205,6 +226,5 @@ function logout()
 {
     location.replace("login.html");
     localStorage.clear();
-    // localStorage.removeItem(perDayMenu);
-    //localStorage.removeItem(email);
+    sessionStorage.clear();
 }
