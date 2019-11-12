@@ -7,7 +7,7 @@ let data;
 let Repassword;
 let desiredWeight;
 let perDayMenu
-let numberOfTimeUserTookMenu
+let numberOfTimeUserTookMenu = 0;
 
 
 // getting the user profile data from client using ajax call 
@@ -131,8 +131,18 @@ function display(){
     
     document.getElementsByClassName("yes")[0].addEventListener("click", function(){
         numberOfTimeUserTookMenu++;
+        console.log(numberOfTimeUserTookMenu);
         if( (numberOfTimeUserTookMenu % 7) === 0 ){   
-            console.log(numberOfTimeUserTookMenu);
+            $.ajax({
+                url: 'http://localhost:8000/day',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'message' : 'oneWeek' 
+                }
+            });  
+        }
+        else{
             $.ajax({
                 url: 'http://localhost:8000/day',
                 type: 'POST',
@@ -140,11 +150,10 @@ function display(){
                 data: {
                     'message' : 'yes' 
                 }
-            });  
-        }  
+            });
+        }
     });
-
-        
+    
     document.getElementsByClassName("no")[0].addEventListener("click", function(){
         $.ajax({
             url: 'http://localhost:8000/day',
