@@ -211,12 +211,21 @@ module.exports = (app, db) => {
 
 	
 	app.post("/day", (req, res) => {
-		let userMenu = new Menu(userData, menu , menuPerDay);
-		userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
-		userMenu.calculatingBmi();
-		userMenu.calculatingCaloriesPerDay();
-		userMenu.calculateMenuPerDay();
-		console.log(menuPerDay);
+		if(req.body.message === "oneWeek"){
+			let userMenu = new Menu(userData, menu , menuPerDay);
+			userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
+			userMenu.calculatingBmi();
+			userMenu.calculatingCaloriesPerDay();
+			userMenu.calculateMenuPerDay();
+			console.log(menuPerDay);
+		}
+		else{
+			let userMenu = new Menu(userData, menu , menuPerDay);
+			userMenu.calculatingBmi();
+			userMenu.calculatingCaloriesPerDay();
+			userMenu.calculateMenuPerDay();
+			console.log(menuPerDay);
+		}
 	});
 }
 
