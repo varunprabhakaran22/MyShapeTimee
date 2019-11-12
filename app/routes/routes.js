@@ -210,22 +210,27 @@ module.exports = (app, db) => {
 	// });
 
 	
-	app.post("/day", (req, res) => {
-		if(req.body.message === "oneWeek"){
-			let userMenu = new Menu(userData, menu , menuPerDay);
-			userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
-			userMenu.calculatingBmi();
-			userMenu.calculatingCaloriesPerDay();
-			userMenu.calculateMenuPerDay();
-			console.log(menuPerDay);
-		}
-		else{
-			let userMenu = new Menu(userData, menu , menuPerDay);
-			userMenu.calculatingBmi();
-			userMenu.calculatingCaloriesPerDay();
-			userMenu.calculateMenuPerDay();
-			console.log(menuPerDay);
-		}
+	app.post("/oneweek", (req, res) => {
+		console.log("message from ajax call " + req.body.message);
+		console.log(" message one week ");
+		let userMenu = new Menu(userData, menu , menuPerDay);
+		userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
+		userMenu.calculatingBmi();
+		userMenu.calculatingCaloriesPerDay();
+		menuPerDay =  userMenu.calculateMenuPerDay();
+		console.log(" messages one week ");
+		console.log(menuPerDay);
+	});
+
+	app.post("/tookmenu", (req, res) => {
+		console.log("message from ajax call " + req.body.message);
+		console.log(" message tookmenu ");
+		let userMenu = new Menu(userData, menu , menuPerDay);
+		userMenu.calculatingBmi();
+		userMenu.calculatingCaloriesPerDay();
+		menuPerDay =  userMenu.calculateMenuPerDay();
+		console.log(" message tookmenu ");
+		console.log(menuPerDay);
 	});
 }
 
