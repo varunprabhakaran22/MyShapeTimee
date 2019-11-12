@@ -4,7 +4,6 @@ const {Menu} = require("../../controller/controller");
 
 let userData;
 let eggCount = 0;
-let userData;
 let updatedWeight = 0;
 let numberOfDayMenuTook = 0;
 let menuPerDay={
