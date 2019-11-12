@@ -1,27 +1,30 @@
 //fetch the menu/day from json file 
-class Menu{ 
+class Menu{
     constructor(userData, menu , menuPerDay){
         this.menu = menu;
         this.menuPerDay = menuPerDay;
+        this.compensation = menu;
         this.userData = userData;
         this.userData.height = userData.height;
         this.userData.weight = userData.Weight;
         this.userData.desiredWeight = userData.desiredWeight
         this.userData.age = userData.age;
+        this.caloriesPerDay = 0;
+        this.quantityOfEgg = 0;
     }
+
+
 
     //calculating the bmi
     calculatingBmi(){
         let bmi = Math.round(this.userData.weight/((this.userData.height/100)*(this.userData.height/100)));
         console.log("bmi is " + bmi);
         //categorizing
-        if(bmi > 25){
-            console.log("over weight");
-            
+        if(bmi >= 25){
+            console.log("over weight");   
         }
         if(bmi < 19){
-            console.log("under weight");
-            
+            console.log("under weight");        
         }
         if((bmi > 19)&&( bmi < 25)){
             console.log("Normal weight ");   
@@ -31,20 +34,19 @@ class Menu{
     //calculating the calories needed per day 
     calculatingCaloriesPerDay(){
         //calories need for weight loss
-        if(this.userData.Weight > this.userData.desiredWeight ){
-            let bmr = ( 655.1 + ( 9.563 * this.userData.Weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
-            let caloriesPerDay = ( bmr * 1.1 );
+        if(this.userData.weight > this.userData.desiredWeight ){
+            let bmr = ( 655.1 + ( 9.563 * this.userData.weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
+            this.caloriesPerDay = ( bmr * 1.1 );
             console.log(" desired weight " + this.userData.desiredWeight +" weight :" + this.userData.Weight);
-            console.log("Weight loss " + caloriesPerDay);
-
-	    }    
+            console.log("Weight loss " + this.caloriesPerDay);
+        }    
         //calories need for weight gain 
         else
         {
-            let bmr = ( 655.1 + ( 9.563 * this.userData.Weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
-            let caloriesPerDay = ( bmr * 1.4 );
+            let bmr = ( 655.1 + ( 9.563 * this.userData.weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
+            this.caloriesPerDay = ( bmr * 1.4 );
             console.log(" desired weight " +this.userData.desiredWeight +" weight :" + this.userData.Weight );
-            console.log("Weight gain " + caloriesPerDay);     
+            console.log("Weight gain " + this.caloriesPerDay);     
         }
     }
 
@@ -52,6 +54,12 @@ class Menu{
     calculateMenuPerDay() {
         let previousRandom = []
         let max = 4;
+        let totalCalorie = 0;
+        let breakfastCalories = 0;
+        let snacksCalories = 0;
+        let lunchCalories = 0;
+        let dinnerCalories = 0;
+
         for(let i = 0; i <= max; i++){
             previousRandom.push(i)
         }
@@ -66,44 +74,60 @@ class Menu{
             this.menuPerDay.lunch.push(this.menu.lunch[currentRandom])
             this.menuPerDay.dinner.push(this.menu.dinner[currentRandom])
         }
-        console.log(this.menuPerDay)
 
-        // calculating the calories from menu
-        let cal = 1750;
-        let difference=0;
-        let totalCalorie = 0;
-        let breakfastCalories = 0;
-        let snacksCalories = 0;
-        let lunchCalories = 0;
-        let dinnerCalories = 0;
         for(let i=0; i<2; i++){
             breakfastCalories = breakfastCalories + this.menuPerDay.breakfast[i].Calorie;
             snacksCalories = snacksCalories + this.menuPerDay.snacks[i].Calorie;
             lunchCalories = lunchCalories + this.menuPerDay.lunch[i].Calorie;
             dinnerCalories = dinnerCalories + this.menuPerDay.dinner[i].Calorie;
         }
-        totalCalorie = breakfastCalories + snacksCalories + lunchCalories + dinnerCalories;
-        difference = cal - totalCalorie;
-        this.calculatingTheRequiredCalories( difference, totalCalorie , cal);
-    
 
-        console.log(" breakfast calories " + breakfastCalories);
-        console.log("snacks" + snacksCalories);
-        console.log("lunch" + lunchCalories);
-        console.log("dinner" + dinnerCalories);
+        totalCalorie = breakfastCalories + snacksCalories + lunchCalories + dinnerCalories;
         console.log("total calories " + totalCalorie);
+        // console.log(" breakfast calories " + breakfastCalories);
+        // console.log("snacks" + snacksCalories);
+        // console.log("lunch" + lunchCalories);
+        // console.log("dinner" + dinnerCalories);
+
+
+        //method calling to find the calories 
+        if( this.caloriesPerDay > totalCalorie ){
+            this.calculatingTheRequiredCalories( totalCalorie );        
+        }
+
+        return this.menuPerDay 
+        // return this.quantityOfEgg
     }
 
-    calculatingTheRequiredCalories(difference, totalCalorie, cal){
-        this.difference = difference;
-        let quantityOfEgg = 0;
-        this.cal = cal
-        if(this.cal > totalCalorie){
-            quantityOfEgg++;
-            totalCalorie = totalCalorie + this.menuPerDay.snacks[i].Calorie;
-            console.log(totalCalorie);
-            
+
+    calculatingTheRequiredCalories( totalCalorie ){
+        let difference = 0;
+        this.totalCalorie = totalCalorie
+        difference = this.caloriesPerDay - this.totalCalorie;
+        // console.log("total calorie" + this.totalCalorie);
+
+        if(this.caloriesPerDay > this.totalCalorie){
+            this.quantityOfEgg++;            
+            totalCalorie = totalCalorie + this.compensation.snacks[0].Calorie;
+            this.calculatingTheRequiredCalories(totalCalorie)
         }
+        else{
+            console.log("count of the egg  " + this.quantityOfEgg);
+        }
+    }
+
+
+    ifUserTookTheMenu(numberOfDayMenuTook){
+        this.numberOfDayMenuTook = numberOfDayMenuTook;
+        this.numberOfDayMenuTook++;
+
+
+        console.log(this.numberOfDayMenuTook);
+        this.userData.weight = this.userData.weight - 1.2;
+        console.log("updated user weight " + this.userData.weight);  
+        // this.calculatingBmi();
+        // this.calculatingCaloriesPerDay();
+        // this.calculateMenuPerDay();
     }
 }
 

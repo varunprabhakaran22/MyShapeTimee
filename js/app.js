@@ -6,6 +6,7 @@ let password;
 let data;
 let Repassword;
 let desiredWeight;
+let perDayMenu
 
 // getting the user profile data from client using ajax call 
 function uploadData(){
@@ -43,7 +44,7 @@ function uploadData(){
         alert("Password does not matchs"); 
     }
 
-    else if ( ((a - b) < 0 ) && ((a -b) >= 20 ) ){
+    else if ( ((a - b) < 0 ) && ((a -b) >= 10 ) ){
         alert("Enter valid Desired Weight.."); 
     }
 
@@ -95,9 +96,12 @@ function checkLogin(){
             }
         })
         .done(function(data){
+            perDayMenu = data.perDayMenu;
             if(data.msg=="User Exist")
             {
+                
                 location.replace("Dashboard.html");
+                perDayMenu = data.perDayMenu
             }
             else if(data.msg=="User Does Not Exist")
             {
@@ -112,4 +116,38 @@ function checkLogin(){
 
 
     }  
+}
+
+
+function display(){
+    console.log("heyyy");
+    // console.log(perDayMenu);
+    // for(let i= 0; i< 2; i++){
+    //     let breakfast = console.log(perDayMenu.breakfast[i].Name)
+    //     let lunch = console.log(perDayMenu.lunch[i].Name)
+    //     let snacks = console.log(perDayMenu.snacks[i].Name)
+    //     let dinner = console.log(perDayMenu.dinner[i].Name)
+    // }
+    
+    document.getElementsByClassName("yes")[0].addEventListener("click", function(){
+        $.ajax({
+            url: 'http://localhost:8000/day',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                'message' : 'yes' 
+            }
+        });    
+    });
+
+    document.getElementsByClassName("no")[0].addEventListener("click", function(){
+        $.ajax({
+            url: 'http://localhost:8000/day',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                'message' : 'no' 
+            }
+        });    
+    });
 }
