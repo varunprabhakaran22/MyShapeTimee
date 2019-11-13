@@ -9,6 +9,7 @@ let userData;
 let eggCount = 0;
 let updatedWeight = 0;
 let numberOfDayMenuTook = 0;
+let dayCount=0;
 let menuPerDay={
 	breakfast: [],
 	lunch: [],
@@ -164,9 +165,11 @@ module.exports = (app, db) => {
         console.log(req.body);
 		const note = {Weight: req.body.Weight };
 
-		var myquery = { address: "Valley 345" };
-		var newvalues = { $set: {Weight: req.body.Weight } };
-        db.collection('UserData').UpdateOne(myquery,newvalues,function(err,result){
+		var myquery = { email: req.body.email };
+		console.log(myquery);
+		var newvalues = { $set: {Weight: req.body.weight } };
+		console.log(newvalues);
+        db.collection("UserData").updateOne(myquery,newvalues,function(err,result){
             if(err){
                 throw err;
             }
@@ -200,8 +203,12 @@ module.exports = (app, db) => {
 						console.log(menuPerDay);
 						console.log(eggCount);
 						res.status(200).json({msg:"User Exist", perDayMenu: menuPerDay,eggQuantity : eggCount}); 
+
                     } 
-                });
+				});
+				
+
+				
             }
            else
            {
