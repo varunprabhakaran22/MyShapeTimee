@@ -168,20 +168,16 @@ module.exports = (app, db) => {
 		var newvalues = { $set: {Weight: req.body.Weight } };
         db.collection('UserData').UpdateOne(myquery,newvalues,function(err,result){
             if(err){
-                throw
+                throw err;
             }
             else
             {
+				console.log("1 document updated");
                 
             }
         });
     });
 
-<<<<<<< HEAD
-
-=======
-	//If registered user login then show him the menu details 
->>>>>>> db4aa1daa062d588f91c5c3d33f90cead97883ae
     app.post("/", (req, res) => {
         const note = { email: req.body.email, password: req.body.password };
         db.collection('UserData').findOne({email: req.body.email, password: req.body.password}).then(function(result){
@@ -214,7 +210,6 @@ module.exports = (app, db) => {
         });
 	});
 
-<<<<<<< HEAD
 //  if user take oneweek menu then the weight is updated in mongodb
     app.post("/oneweek", (req, res) => {
         console.log("message from ajax call " + req.body.message);
@@ -229,25 +224,6 @@ module.exports = (app, db) => {
         console.log(menuPerDay);
         res.status(200).json({msg:"one week", perDayMenu: menuPerDay, updatedWeight: updatedWeight,eggQuantity : eggCount});
 	});    
-=======
-
-	
-	// if user take oneweek menu then the weight is updated in mongodb
-	app.post("/oneweek", (req, res) => {
-		console.log("message from ajax call " + req.body.message);
-		console.log(" message one week ");
-		let userMenu = new Menu(userData, menu , menuPerDay);
-		updatedWeight = userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
-		userMenu.calculatingBmi();
-		userMenu.calculatingCaloriesPerDay();
-		menuPerDay =  userMenu.calculateMenuPerDay();
-		eggCount = userMenu.calculatingTheRequiredCalories();
-		console.log(" messages one week ");
-		console.log(menuPerDay);
-		res.status(200).json({msg:"one week", perDayMenu: menuPerDay, updatedWeight: updatedWeight,eggQuantity : eggCount});
-	});
-
->>>>>>> db4aa1daa062d588f91c5c3d33f90cead97883ae
 	//if user take the menu then that menu is stored in mongodb and next day menu is show to user
     app.post("/tookmenu", (req, res) => {
         console.log("message from ajax call " + req.body.message);
