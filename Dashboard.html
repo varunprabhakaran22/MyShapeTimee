@@ -9,13 +9,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body onload="getData();">
+<body>
         <nav class="navbar navbar-dark bg-dark">
                 <a class="font-weight-bold">
                       <span id="logo" onclick="location.href='Welcome.html'" style="color: white;">MyShapeTime</span>
                     </a>
                     <ul class="nav justify-content-end">
-                      
                             <li class="nav-item">
                               <a class="nav-link active" href="Welcome.html"><span style="color: white;">Home</span></a>
                             </li>
@@ -23,7 +22,7 @@
                                 <a class="nav-link active" href="profile.html"><span style="color: white;">Profile</span></a>
                               </li>
                             <li class="nav-item">
-                                <a class="nav-link active"><button style="color: white;" onclick="logout(); ">Log Out</span></a>
+                                <a class="nav-link active" onclick="logout();"><span style="color: white;">Log Out</span></a>
                             </li>
                           </ul>
         </nav>
@@ -50,16 +49,17 @@
         </div>
         <div>
               Egg:<p id="EggCount" class="EggCount">Data</p>
-        <!-- </div>
+        </div>
            <div class="menu">
                 <label><b>Are You Completed Todays Menu?</b></label><br>
-                <input type="button" name="gender" value="yes" checked> Yes
-                <input type="button" name="gender" value="no"> No<br>
+                <input type="button" name="gender" class="yes" value="yes" onclick="display();"> Yes
+                <input type="button" name="gender" value="no" class="no"> No<br>
             
-        </div> -->
+        </div>
         </div>
         
     </div>
+
    
     <nav class="navbar navbar-dark bg-dark">
             <!-- Navbar content -->

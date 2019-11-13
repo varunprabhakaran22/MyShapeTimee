@@ -1,3 +1,4 @@
+//Declaring the global variables
 let name;
 let age;
 let Weight;
@@ -7,7 +8,9 @@ let data;
 let Repassword;
 let desiredWeight;
 let perDayMenu
-let numberOfTimeUserTookMenu
+let eggQuantity
+let numberOfTimeUserTookMenu = 0;
+let we;
 
 
 // getting the user profile data from client using ajax call 
@@ -30,8 +33,9 @@ function uploadData(){
     else{
         b = Weight
         a = desiredWeight;
-    }      
+    } 
 
+//setting the condition for all the user input fields
     if((name[0].value=="" && email[0].value=="" && age[0].value=="" && height[0].value=="" && Weight[0].value==""
     && password[0].value==""))
     {
@@ -50,6 +54,7 @@ function uploadData(){
         alert("Enter valid Desired Weight.."); 
     }
 
+    //Passing the user details to the server using the ajax call
     else{   
         $.ajax({
             url: 'http://localhost:8000/add',
@@ -80,6 +85,7 @@ function uploadData(){
     }
 }
 
+//creating the function to check login 
 function checkLogin(){
     email=document.getElementsByClassName("email");
     password=document.getElementsByClassName("password");
@@ -100,7 +106,7 @@ function checkLogin(){
             }
         })
         .done(function(data){
-            perDayData=data;
+
             perDayMenu = data.perDayMenu;
             if(data.msg=="User Exist")
             {
@@ -109,11 +115,12 @@ function checkLogin(){
                 sessionStorage.setItem("email",email[0].value);
                 //getData(data);
                 perDayMenu=data;
-                console.log(data.perDayMenu);
-                localStorage.setItem("perDayMenu",JSON.stringify(data));
-                
-              
+               // console.log(data.perDayMenu);
+                // localStorage.setItem("perDayMenu",JSON.stringify(data));
+                // perDayMenu = data.perDayMenu
+                // eggQuantity = data.eggQuantity
                 location.replace("Dashboard.html");
+
             }
             else if(data.msg=="User Does Not Exist")
             {
@@ -129,82 +136,104 @@ function checkLogin(){
 
     }  
 }
-function getData()
+
+// function getData()
+// {
+//     let email=sessionStorage.getItem("email");
+//     console.log(email);   
+//     var x = localStorage.getItem("perDayMenu");
+//     var y=JSON.parse(x)
+//    // console.log(y)
+
+//     document.getElementById("breakfastData").innerHTML=y.perDayMenu.breakfast[0].Name+" ";
+//     var para = document.createElement("breakfastData"); 
+//     var t = document.createTextNode(y.perDayMenu.breakfast[1].Name);
+//     para.appendChild(t);                                          // Append the text to <p>
+//     document.getElementById("breakfastData").appendChild(para);  
+
+//     document.getElementById("lunchData").innerHTML=y.perDayMenu.lunch[0].Name+" ";
+//     var para = document.createElement("lunchData"); 
+//     var t = document.createTextNode(y.perDayMenu.lunch[1].Name);
+//     para.appendChild(t);                                          // Append the text to <p>
+//     document.getElementById("lunchData").appendChild(para);  
+
+//     document.getElementById("dinnerData").innerHTML=y.perDayMenu.dinner[0].Name+" ";
+//     var para = document.createElement("dinnerData"); 
+//     var t = document.createTextNode(y.perDayMenu.dinner[1].Name);
+//     para.appendChild(t);                                          // Append the text to <p>
+//     document.getElementById("dinnerData").appendChild(para);  
+
+//     document.getElementById("snacksData").innerHTML=y.perDayMenu.snacks[0].Name+" ";
+//     var para = document.createElement("snacksData"); 
+//     var t = document.createTextNode(y.perDayMenu.snacks[1].Name);
+//     para.appendChild(t);                                          // Append the text to <p>
+//     document.getElementById("snacksData").appendChild(para);  
+
+
+// }
+
+function display()
 {
+    console.log("heyyy");
+    numberOfTimeUserTookMenu++;
     let email=sessionStorage.getItem("email");
-    console.log(email);   
-    var x = localStorage.getItem("perDayMenu");
-    var y=JSON.parse(x)
-    console.log(y)
+    console.log(numberOfTimeUserTookMenu);
+    if( (numberOfTimeUserTookMenu % 7 ) === 0 )
+        {
+            console.log("me" + numberOfTimeUserTookMenu);
 
-    document.getElementById("breakfastData").innerHTML=y.perDayMenu.breakfast[0].Name+" ";
-    var para = document.createElement("breakfastData"); 
-    var t = document.createTextNode(y.perDayMenu.breakfast[1].Name);
-    para.appendChild(t);                                          // Append the text to <p>
-    document.getElementById("breakfastData").appendChild(para);  
-
-    document.getElementById("lunchData").innerHTML=y.perDayMenu.lunch[0].Name+" ";
-    var para = document.createElement("lunchData"); 
-    var t = document.createTextNode(y.perDayMenu.lunch[1].Name);
-    para.appendChild(t);                                          // Append the text to <p>
-    document.getElementById("lunchData").appendChild(para);  
-
-    document.getElementById("dinnerData").innerHTML=y.perDayMenu.dinner[0].Name+" ";
-    var para = document.createElement("dinnerData"); 
-    var t = document.createTextNode(y.perDayMenu.dinner[1].Name);
-    para.appendChild(t);                                          // Append the text to <p>
-    document.getElementById("dinnerData").appendChild(para);  
-
-    document.getElementById("snacksData").innerHTML=y.perDayMenu.snacks[0].Name+" ";
-    var para = document.createElement("snacksData"); 
-    var t = document.createTextNode(y.perDayMenu.snacks[1].Name);
-    para.appendChild(t);                                          // Append the text to <p>
-    document.getElementById("snacksData").appendChild(para);  
-
-
-}
-
-
-function display(){
-    //console.log("heyyy");
-    // console.log(perDayMenu);
-    // for(let i= 0; i< 2; i++){
-    //     let breakfast = console.log(perDayMenu.breakfast[i].Name)
-    //     let lunch = console.log(perDayMenu.lunch[i].Name)
-    //     let snacks = console.log(perDayMenu.snacks[i].Name)
-    //     let dinner = console.log(perDayMenu.dinner[i].Name)
-    // }
-    
-    document.getElementsByClassName("yes")[0].addEventListener("click", function(){
-        numberOfTimeUserTookMenu++;
-        if( (numberOfTimeUserTookMenu % 7) === 0 ){   
-            console.log(numberOfTimeUserTookMenu);
             $.ajax({
-                url: 'http://localhost:8000/day',
+                url: 'http://localhost:8000/oneweek',
                 type: 'POST',
                 dataType: 'json',
                 data: {
-                    'message' : 'yes' 
+                    'message' :'oneWeek'
                 }
-            });  
-        }  
-    });
-    document.getElementsByClassName("no")[0].addEventListener("click", function(){
-        $.ajax({
-            url: 'http://localhost:8000/day',
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                'message' : 'no' 
-            }
-        });    
-    });
-}
+            })
+            .done(function(data){
+                perDayMenu = data.perDayMenu;
+                eggQuantity = data.eggQuantity
+                let we = data.updatedWeight
+                console.log(perDayMenu);
+                console.log(eggQuantity);    
+                console.log(we)
+                
+                $.ajax({
+                    url: 'http://localhost:8000/updateWeight',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        'email': email,
+                        'weight' :we
+                    }
+                })
+                
+            });
+        }       
+         else{
+            console.log("else block");
+            $.ajax({
+                url: 'http://localhost:8000/oneweek',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'message' :'oneWeek' 
+                }
+            })
+            .done(function(data){
+                perDayMenu = data.perDayMenu;                
+                eggQuantity = data.eggQuantity
+                let we = data.updatedWeight
+                console.log(perDayMenu);
+                console.log(eggQuantity);
+                
+            });
+         }
+ }
 
 function logout()
 {
     location.replace("login.html");
     localStorage.clear();
-    // localStorage.removeItem(perDayMenu);
-    //localStorage.removeItem(email);
+    sessionStorage.clear();
 }
