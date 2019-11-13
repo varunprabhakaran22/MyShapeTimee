@@ -172,9 +172,11 @@ function checkLogin(){
 
 // }
 
-function display(){
+function display()
+{
     console.log("heyyy");
     numberOfTimeUserTookMenu++;
+    let email=sessionStorage.getItem("email");
     console.log(numberOfTimeUserTookMenu);
     if( (numberOfTimeUserTookMenu % 7 ) === 0 )
         {
@@ -194,13 +196,15 @@ function display(){
                 let we = data.updatedWeight
                 console.log(perDayMenu);
                 console.log(eggQuantity);    
+                console.log(we)
                 
                 $.ajax({
                     url: 'http://localhost:8000/updateWeight',
                     type: 'POST',
                     dataType: 'json',
                     data: {
-                        'weight' :we.value
+                        'email': email,
+                        'weight' :we
                     }
                 })
                 
