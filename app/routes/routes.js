@@ -3,11 +3,12 @@ const express = require('express');
 const router = express.Router();
 const {Menu} = require("../../controller/controller");
 
+
 // declaring the global variables
-let eggCount = 0;
 let userData;
+let eggCount = 0;
 let updatedWeight = 0;
-let numberOfDayMenuTook = 0
+let numberOfDayMenuTook = 0;
 let menuPerDay={
 	breakfast: [],
 	lunch: [],
@@ -191,6 +192,8 @@ module.exports = (app, db) => {
            }
         });
 	});
+
+
 	
 	// if user take oneweek menu then the weight is updated in mongodb
 	app.post("/oneweek", (req, res) => {
@@ -220,5 +223,8 @@ module.exports = (app, db) => {
 		console.log(menuPerDay);
 		res.status(200).json({msg:"tookmenu", perDayMenu: menuPerDay,eggQuantity : eggCount});
 	});
+
+
+
 }
 

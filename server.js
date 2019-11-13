@@ -2,7 +2,7 @@
 const express = require('express');
 const mongo = require('mongodb').MongoClient;
 const db = require('./config/config');
-const port = 8000;
+const port = process.env.PORT || 8000;
 const app = express();
 const body=require('body-parser');
 const cors=require('cors');
