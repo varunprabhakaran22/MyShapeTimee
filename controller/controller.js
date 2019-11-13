@@ -1,4 +1,6 @@
+
 // Creating the class for program logical 
+
 class Menu{
     constructor(userData, menu , menuPerDay){
         this.menu = menu;

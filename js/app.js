@@ -33,8 +33,9 @@ function uploadData(){
     else{
         b = Weight
         a = desiredWeight;
-    }      
+    } 
 
+//setting the condition for all the user input fields
     if((name[0].value=="" && email[0].value=="" && age[0].value=="" && height[0].value=="" && Weight[0].value==""
     && password[0].value==""))
     {
@@ -53,6 +54,7 @@ function uploadData(){
         alert("Enter valid Desired Weight.."); 
     }
 
+    //Passing the user details to the server using the ajax call
     else{   
         $.ajax({
             url: 'http://localhost:8000/add',
@@ -83,6 +85,7 @@ function uploadData(){
     }
 }
 
+//creating the function to check login 
 function checkLogin(){
     email=document.getElementsByClassName("email");
     password=document.getElementsByClassName("password");
@@ -112,11 +115,20 @@ function checkLogin(){
                 sessionStorage.setItem("email",email[0].value);
                 //getData(data);
                 perDayMenu=data;
+<<<<<<< HEAD
                // console.log(data.perDayMenu);
                 // localStorage.setItem("perDayMenu",JSON.stringify(data));
                 // perDayMenu = data.perDayMenu
                 // eggQuantity = data.eggQuantity
+=======
+                console.log(data.perDayMenu);
+                localStorage.setItem("perDayMenu",JSON.stringify(data));
+                perDayMenu = data.perDayMenu
+                eggQuantity = data.eggQuantity
+
+>>>>>>> db4aa1daa062d588f91c5c3d33f90cead97883ae
                 location.replace("Dashboard.html");
+
             }
             else if(data.msg=="User Does Not Exist")
             {
@@ -175,6 +187,7 @@ function display(){
     if( (numberOfTimeUserTookMenu % 7 ) === 0 )
         {
             console.log("me" + numberOfTimeUserTookMenu);
+
             $.ajax({
                 url: 'http://localhost:8000/oneweek',
                 type: 'POST',
@@ -204,6 +217,27 @@ function display(){
          else{
             console.log("else block");
             $.ajax({
+            $.ajax({
+                url: 'http://localhost:8000/oneweek',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'message' :'oneWeek' 
+                }
+            })
+            .done(function(data){
+                perDayMenu = data.perDayMenu;                
+                eggQuantity = data.eggQuantity
+                let we = data.updatedWeight
+                console.log(perDayMenu);
+                console.log(eggQuantity);
+                
+            });
+        }
+
+        else{
+            console.log("else block");     
+            $.ajax({
                 url: 'http://localhost:8000/tookmenu',
                 type: 'POST',
                 dataType: 'json',
@@ -217,18 +251,44 @@ function display(){
                 console.log(data.eggQuantity);       
                  });
         }
+<<<<<<< HEAD
        
      // document.getElementsByClassName("no")[0].addEventListener("click", function(){
+=======
+    });
+
+    document.getElementsByClassName("no")[0].addEventListener("click", function(){
+        $.ajax({
+            url: 'http://localhost:8000/day',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                'message' : 'no' 
+            }
+        });    
+    });
+
+
+    // document.getElementsByClassName("no")[0].addEventListener("click", function(){
+>>>>>>> db4aa1daa062d588f91c5c3d33f90cead97883ae
     //     $.ajax({
     //         url: 'http://localhost:8000/day',
     //         type: 'POST',
     //         dataType: 'json',
     //         data: {
+<<<<<<< HEAD
     //             'message' : 'no'
     //         }
     //     });
     // });
  }
+=======
+    //             'message' : 'no' 
+    //         }
+    //     });    
+    // });
+}
+>>>>>>> db4aa1daa062d588f91c5c3d33f90cead97883ae
 
 function logout()
 {
