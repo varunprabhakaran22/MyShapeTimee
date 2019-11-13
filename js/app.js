@@ -115,18 +115,10 @@ function checkLogin(){
                 sessionStorage.setItem("email",email[0].value);
                 //getData(data);
                 perDayMenu=data;
-<<<<<<< HEAD
                // console.log(data.perDayMenu);
                 // localStorage.setItem("perDayMenu",JSON.stringify(data));
                 // perDayMenu = data.perDayMenu
                 // eggQuantity = data.eggQuantity
-=======
-                console.log(data.perDayMenu);
-                localStorage.setItem("perDayMenu",JSON.stringify(data));
-                perDayMenu = data.perDayMenu
-                eggQuantity = data.eggQuantity
-
->>>>>>> db4aa1daa062d588f91c5c3d33f90cead97883ae
                 location.replace("Dashboard.html");
 
             }
@@ -217,7 +209,6 @@ function display(){
          else{
             console.log("else block");
             $.ajax({
-            $.ajax({
                 url: 'http://localhost:8000/oneweek',
                 type: 'POST',
                 dataType: 'json',
@@ -233,62 +224,8 @@ function display(){
                 console.log(eggQuantity);
                 
             });
-        }
-
-        else{
-            console.log("else block");     
-            $.ajax({
-                url: 'http://localhost:8000/tookmenu',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    'message' : 'yes'
-                }
-            })
-            .done(function(data){
-                perDayMenu = data.perDayMenu;
-                console.log(perDayMenu);
-                console.log(data.eggQuantity);       
-                 });
-        }
-<<<<<<< HEAD
-       
-     // document.getElementsByClassName("no")[0].addEventListener("click", function(){
-=======
-    });
-
-    document.getElementsByClassName("no")[0].addEventListener("click", function(){
-        $.ajax({
-            url: 'http://localhost:8000/day',
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                'message' : 'no' 
-            }
-        });    
-    });
-
-
-    // document.getElementsByClassName("no")[0].addEventListener("click", function(){
->>>>>>> db4aa1daa062d588f91c5c3d33f90cead97883ae
-    //     $.ajax({
-    //         url: 'http://localhost:8000/day',
-    //         type: 'POST',
-    //         dataType: 'json',
-    //         data: {
-<<<<<<< HEAD
-    //             'message' : 'no'
-    //         }
-    //     });
-    // });
+         }
  }
-=======
-    //             'message' : 'no' 
-    //         }
-    //     });    
-    // });
-}
->>>>>>> db4aa1daa062d588f91c5c3d33f90cead97883ae
 
 function logout()
 {
