@@ -172,7 +172,6 @@ function display(){
     document.getElementsByClassName("yes")[0].addEventListener("click", function(){
         numberOfTimeUserTookMenu++;
         console.log(numberOfTimeUserTookMenu);
-        document.getElementById("EggCount").innerHTML=numberOfTimeUserTookMenu;
         if( (numberOfTimeUserTookMenu % 7 ) === 0 ){  
             console.log("me" + numberOfTimeUserTookMenu);
             $.ajax({
@@ -192,7 +191,6 @@ function display(){
                 
             });
         }
-
         else{
             console.log("else block");     
             $.ajax({
