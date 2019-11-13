@@ -152,7 +152,25 @@ module.exports = (app, db) => {
                 });
             }
         });
+	});
+
+	app.post("/updateWeight", (req, res) => {
+        console.log(req.body);
+		const note = {Weight: req.body.Weight };
+
+		var myquery = { address: "Valley 345" };
+		var newvalues = { $set: {Weight: req.body.Weight } };
+        db.collection('UserData').UpdateOne(myquery,newvalues,function(err,result){
+            if(err){
+                throw
+            }
+            else
+            {
+                
+            }
+        });
     });
+
 
     app.post("/", (req, res) => {
         const note = { email: req.body.email, password: req.body.password };
@@ -183,35 +201,31 @@ module.exports = (app, db) => {
         });
 	});
 
-	app.post("/oneweek", (req, res) => {
-		console.log("message from ajax call " + req.body.message);
-		console.log(" message one week ");
-		let userMenu = new Menu(userData, menu , menuPerDay);
-		updatedWeight = userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
-		userMenu.calculatingBmi();
-		userMenu.calculatingCaloriesPerDay();
-		menuPerDay =  userMenu.calculateMenuPerDay();
-		eggCount = userMenu.calculatingTheRequiredCalories();
-		console.log(" messages one week ");
-		console.log(menuPerDay);
-		res.status(200).json({msg:"one week", perDayMenu: menuPerDay, updatedWeight: updatedWeight,eggQuantity : eggCount});
-	});
-
+//  if user take oneweek menu then the weight is updated in mongodb
+    app.post("/oneweek", (req, res) => {
+        console.log("message from ajax call " + req.body.message);
+        console.log(" message one week ");
+        let userMenu = new Menu(userData, menu , menuPerDay);
+        updatedWeight = userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
+        userMenu.calculatingBmi();
+        userMenu.calculatingCaloriesPerDay();
+        menuPerDay =  userMenu.calculateMenuPerDay();
+        eggCount = userMenu.calculatingTheRequiredCalories();
+        console.log(" messages one week ");
+        console.log(menuPerDay);
+        res.status(200).json({msg:"one week", perDayMenu: menuPerDay, updatedWeight: updatedWeight,eggQuantity : eggCount});
+	});    
 	//if user take the menu then that menu is stored in mongodb and next day menu is show to user
-	app.post("/tookmenu", (req, res) => {
-		console.log("message from ajax call " + req.body.message);
-		console.log(" message tookmenu ");
-		let userMenu = new Menu(userData, menu , menuPerDay);
-		userMenu.calculatingBmi();
-		userMenu.calculatingCaloriesPerDay();
-		menuPerDay =  userMenu.calculateMenuPerDay();
-		eggCount = userMenu.calculatingTheRequiredCalories();
-		console.log(" message tookmenu ");
-		console.log(menuPerDay);
-		res.status(200).json({msg:"tookmenu", perDayMenu: menuPerDay,eggQuantity : eggCount});
-	});
-
-
-
+    app.post("/tookmenu", (req, res) => {
+        console.log("message from ajax call " + req.body.message);
+        console.log(" message tookmenu ");
+        let userMenu = new Menu(userData, menu , menuPerDay);
+        userMenu.calculatingBmi();
+        userMenu.calculatingCaloriesPerDay();
+        menuPerDay =  userMenu.calculateMenuPerDay();
+        eggCount = userMenu.calculatingTheRequiredCalories();
+        console.log(" message tookmenu ");
+        console.log(menuPerDay);
+        res.status(200).json({msg:"tookmenu", perDayMenu: menuPerDay,eggQuantity : eggCount});
+    });
 }
-
