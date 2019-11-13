@@ -32,8 +32,9 @@ function uploadData(){
     else{
         b = Weight
         a = desiredWeight;
-    }      
+    } 
 
+//setting the condition for all the user input fields
     if((name[0].value=="" && email[0].value=="" && age[0].value=="" && height[0].value=="" && Weight[0].value==""
     && password[0].value==""))
     {
@@ -52,6 +53,7 @@ function uploadData(){
         alert("Enter valid Desired Weight.."); 
     }
 
+    //Passing the user details to the server using the ajax call
     else{   
         $.ajax({
             url: 'http://localhost:8000/add',
@@ -82,6 +84,7 @@ function uploadData(){
     }
 }
 
+//creating the function to check login 
 function checkLogin(){
     email=document.getElementsByClassName("email");
     password=document.getElementsByClassName("password");
@@ -115,7 +118,9 @@ function checkLogin(){
                 localStorage.setItem("perDayMenu",JSON.stringify(data));
                 perDayMenu = data.perDayMenu
                 eggQuantity = data.eggQuantity
+
                 location.replace("Dashboard.html");
+
             }
             else if(data.msg=="User Does Not Exist")
             {
@@ -174,6 +179,7 @@ function display(){
         console.log(numberOfTimeUserTookMenu);
         if( (numberOfTimeUserTookMenu % 7 ) === 0 ){  
             console.log("me" + numberOfTimeUserTookMenu);
+
             $.ajax({
                 url: 'http://localhost:8000/oneweek',
                 type: 'POST',
@@ -194,6 +200,27 @@ function display(){
         else{
             console.log("else block");     
             $.ajax({
+            $.ajax({
+                url: 'http://localhost:8000/oneweek',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'message' :'oneWeek' 
+                }
+            })
+            .done(function(data){
+                perDayMenu = data.perDayMenu;                
+                eggQuantity = data.eggQuantity
+                let we = data.updatedWeight
+                console.log(perDayMenu);
+                console.log(eggQuantity);
+                
+            });
+        }
+
+        else{
+            console.log("else block");     
+            $.ajax({
                 url: 'http://localhost:8000/tookmenu',
                 type: 'POST',
                 dataType: 'json',
@@ -209,6 +236,7 @@ function display(){
             });
         }
     });
+
     document.getElementsByClassName("no")[0].addEventListener("click", function(){
         $.ajax({
             url: 'http://localhost:8000/day',
@@ -219,6 +247,18 @@ function display(){
             }
         });    
     });
+
+
+    // document.getElementsByClassName("no")[0].addEventListener("click", function(){
+    //     $.ajax({
+    //         url: 'http://localhost:8000/day',
+    //         type: 'POST',
+    //         dataType: 'json',
+    //         data: {
+    //             'message' : 'no' 
+    //         }
+    //     });    
+    // });
 }
 
 function logout()

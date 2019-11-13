@@ -1,7 +1,10 @@
+//importing all the documents
 const express = require('express');
 const router = express.Router();
 const {Menu} = require("../../controller/controller");
 
+
+// declaring the global variables
 let userData;
 let eggCount = 0;
 let updatedWeight = 0;
@@ -126,19 +129,23 @@ let menu = {
 	]
 }
 
+
+// getting user details and storing the details to mongodb
 module.exports = (app, db) => {    
     app.post("/add", (req, res) => {
         console.log(req.body);
         const note = { name: req.body.name, email:req.body.email, age: req.body.age,
                      height: req.body.height,Weight: req.body.Weight, desiredWeight : req.body.desiredWeight,
                      password:req.body.password
-        };
+		};
+		//if user name already present in mongodb alerting the user 
         db.collection('UserData').findOne({email: req.body.email}).then(function(result){
             if(!(result==null)){
                 res.status(200).json({msg:"Email Id already present"});
             }
             else
             {
+				// if user not present then store the new data to mongodb
                 db.collection('UserData').insertOne(note, (err, result) => {
                     if (err)
                     {
@@ -146,7 +153,6 @@ module.exports = (app, db) => {
                     }
                     else
                     {
-    
                          res.status(200).json({msg:"success"});
                     }
                 });
@@ -154,6 +160,7 @@ module.exports = (app, db) => {
         });
     });
 
+	//If registered user login then show him the menu details 
     app.post("/", (req, res) => {
         const note = { email: req.body.email, password: req.body.password };
         db.collection('UserData').findOne({email: req.body.email, password: req.body.password}).then(function(result){
@@ -165,14 +172,17 @@ module.exports = (app, db) => {
                     }
                     else
                     {
-                        userData=result;
+						userData=result;
+						// creating the object and with the help of object calling the class methods 
                         let userMenu = new Menu(userData, menu , menuPerDay);
                         userMenu.calculatingBmi();
 						userMenu.calculatingCaloriesPerDay();
 						menuPerDay = userMenu.calculateMenuPerDay();
+						eggCount = userMenu.calculatingTheRequiredCalories();
 						console.log("printing from route");
 						console.log(menuPerDay);
-						res.status(200).json({msg:"User Exist", perDayMenu: menuPerDay}); 
+						console.log(eggCount);
+						res.status(200).json({msg:"User Exist", perDayMenu: menuPerDay,eggQuantity : eggCount}); 
                     } 
                 });
             }
@@ -183,6 +193,9 @@ module.exports = (app, db) => {
         });
 	});
 
+
+	
+	// if user take oneweek menu then the weight is updated in mongodb
 	app.post("/oneweek", (req, res) => {
 		console.log("message from ajax call " + req.body.message);
 		console.log(" message one week ");
