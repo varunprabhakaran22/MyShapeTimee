@@ -144,9 +144,6 @@ function checkLogin(){
 //     var x = localStorage.getItem("perDayMenu");
 //     var y=JSON.parse(x)
 //    // console.log(y)
-
-   
-
     // document.getElementById("lunchData").innerHTML=y.perDayMenu.lunch[0].Name+" ";
     // var para = document.createElement("lunchData"); 
     // var t = document.createTextNode(y.perDayMenu.lunch[1].Name);
