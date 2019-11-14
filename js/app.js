@@ -204,7 +204,7 @@ function display()
                     dataType: 'json',
                     data: {
                         'email': email,
-                        'weight' :we
+                        'Weight' :we
                     }
                 })
                 
