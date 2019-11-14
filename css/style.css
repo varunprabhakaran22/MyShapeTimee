@@ -21,14 +21,13 @@
     display: inline;
     font-size: 16px;
     border-radius: 10px;
-
 }
 .main
 {
     justify-content: center;
     align-items: center;
     display: flex;
-    background-color: aqua;
+    /* background-color: aqua; */
     height: 86vh;
 }
 .session
