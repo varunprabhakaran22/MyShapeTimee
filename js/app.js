@@ -196,16 +196,19 @@ function display()
                 console.log(perDayMenu);
                 console.log(eggQuantity);    
                 console.log(we)
-            });
 
-            $.ajax({
-                url: 'http://localhost:8000/updateWeight',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    'email': email,
-                    'weight' :we
-                }
+                
+                $.ajax({
+                    url: 'http://localhost:8000/updateWeight',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        'email': email,
+                        'Weight' :we
+                    }
+                })
+                
+
             });
         }       
          else{
