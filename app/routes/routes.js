@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const {Menu} = require("../../controller/controller");
-
+const menu = require('./menudata')
 
 // declaring the global variables
 let userData;
