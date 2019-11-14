@@ -73,7 +73,7 @@ function uploadData(){
         .done(function(data){
             if(data.msg=="success")
             {
-                location.replace("login.html");
+                location.replace("index.html");
               
 
             }
@@ -124,7 +124,7 @@ function checkLogin(){
             }
             else if(data.msg=="User Does Not Exist")
             {
-                location.replace("login.html");
+                location.replace("index.html");
                 alert("User Does Not Exist");
             }
             else
@@ -234,7 +234,7 @@ function display()
 
 function logout()
 {
-    location.replace("login.html");
+    location.replace("index.html");
     localStorage.clear();
     sessionStorage.clear();
 }
