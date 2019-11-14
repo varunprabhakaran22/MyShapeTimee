@@ -13,7 +13,7 @@ let numberOfTimeUserTookMenu = 0;
 let we;
 
 
-// getting the user profile data from client using ajax call 
+// getting the profile data from user and storing those data in global variable
 function uploadData(){
     name=document.getElementsByClassName("name");
     email=document.getElementsByClassName("email");
@@ -35,7 +35,7 @@ function uploadData(){
         a = desiredWeight;
     } 
 
-//setting the condition for all the user input fields
+    //setting the condition for all the user input fields
     if((name[0].value=="" && email[0].value=="" && age[0].value=="" && height[0].value=="" && Weight[0].value==""
     && password[0].value==""))
     {
@@ -57,7 +57,8 @@ function uploadData(){
     //Passing the user details to the server using the ajax call
     else{   
         $.ajax({
-            url: 'https://myshapetime.herokuapp.com/add',
+            // url: 'https://myshapetime.herokuapp.com/add',
+            url: 'http://localhost:8000/add',
             type: 'POST',
             dataType: 'json',
             data: { 
@@ -70,6 +71,7 @@ function uploadData(){
                 'password':password[0].value
             }
         })
+        // if ajax call is success then relocating the page to index page
         .done(function(data){
             if(data.msg=="success")
             {
@@ -83,7 +85,7 @@ function uploadData(){
     }
 }
 
-//creating the function to check login 
+//creating the function to check login condition
 function checkLogin(){
     email=document.getElementsByClassName("email");
     password=document.getElementsByClassName("password");
@@ -96,7 +98,7 @@ function checkLogin(){
     {
         $.ajax({
             // url: 'https://myshapetime.herokuapp.com/',
-            url: 'http://localhost/8000/',
+            url: 'http://localhost:8000/',
             type: 'POST',
             dataType: 'json',
             data: { 
@@ -112,13 +114,13 @@ function checkLogin(){
                 perDayMenu = data.perDayMenu;
                 sessionStorage.setItem("email",email[0].value);
                 //getData(data);
+                location.replace("/Frontend/Dashboard.html");
                 perDayMenu=data;
-                // console.log(data.perDayMenu);
+                console.log(perDayMenu);
                 // localStorage.setItem("perDayMenu",JSON.stringify(data));
                 // perDayMenu = data.perDayMenu
                 // eggQuantity = data.eggQuantity
-                location.replace("/Frontend/Dashboard.html");
-
+                
             }
             else if(data.msg=="User Does Not Exist")
             {
@@ -137,117 +139,114 @@ function checkLogin(){
 // {
 //     let email=sessionStorage.getItem("email");
 //     console.log(email);   
-//     var x = localStorage.getItem("perDayMenu");
-//     var y=JSON.parse(x)
+//     let x = localStorage.getItem("perDayMenu");
+//     let y=JSON.parse(x)
 //    // console.log(y)
     // document.getElementById("lunchData").innerHTML=y.perDayMenu.lunch[0].Name+" ";
-    // var para = document.createElement("lunchData"); 
-    // var t = document.createTextNode(y.perDayMenu.lunch[1].Name);
+    // let para = document.createElement("lunchData"); 
+    // let t = document.createTextNode(y.perDayMenu.lunch[1].Name);
     // para.appendChild(t);                                          // Append the text to <p>
     // document.getElementById("lunchData").appendChild(para);  
 
     // document.getElementById("dinnerData").innerHTML=y.perDayMenu.dinner[0].Name+" ";
-    // var para = document.createElement("dinnerData"); 
-    // var t = document.createTextNode(y.perDayMenu.dinner[1].Name);
+    // let para = document.createElement("dinnerData"); 
+    // let t = document.createTextNode(y.perDayMenu.dinner[1].Name);
     // para.appendChild(t);                                          // Append the text to <p>
     // document.getElementById("dinnerData").appendChild(para);  
 
     // document.getElementById("snacksData").innerHTML=y.perDayMenu.snacks[0].Name+" ";
-    // var para = document.createElement("snacksData"); 
-    // var t = document.createTextNode(y.perDayMenu.snacks[1].Name);
+    // let para = document.createElement("snacksData"); 
+    // let t = document.createTextNode(y.perDayMenu.snacks[1].Name);
     // para.appendChild(t);                                          // Append the text to <p>
     // document.getElementById("snacksData").appendChild(para);  
 
 
 // }
 
-function display()
-{
+
+function display(){
     numberOfTimeUserTookMenu++;
     let email=sessionStorage.getItem("email");
     console.log(numberOfTimeUserTookMenu);
-    if( (numberOfTimeUserTookMenu % 7 ) === 0 )
-        {
-            console.log("me" + numberOfTimeUserTookMenu);
+
+    //if user took menu for 7 days then different route 
+    if( (numberOfTimeUserTookMenu % 7 ) === 0 ){
+        console.log("me" + numberOfTimeUserTookMenu);
+        $.ajax({
+            // url: 'https://myshapetime.herokuapp.com/oneweek',
+            url: 'http://localhost:8000/oneweek',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                'message' :'oneWeek'
+            }
+        })
+        .done(function(data){
+            perDayMenu = data.perDayMenu;
+            eggQuantity = data.eggQuantity
+            let we = data.updatedWeight
+            console.log(perDayMenu);
+            console.log(eggQuantity);    
+            console.log(we)
+            
             $.ajax({
-                // url: 'https://myshapetime.herokuapp.com/oneweek',
-                url: 'http://localhost/8000/oneweek',
+                // url: 'https://myshapetime.herokuapp.com/updateWeight',
+                url: 'http://localhost:8000/updateWeight',
                 type: 'POST',
                 dataType: 'json',
                 data: {
-                    'message' :'oneWeek'
+                    'email': email,
+                    'Weight' :we
                 }
             })
-            .done(function(data){
-                perDayMenu = data.perDayMenu;
-                eggQuantity = data.eggQuantity
-                let we = data.updatedWeight
-                console.log(perDayMenu);
-                console.log(eggQuantity);    
-                console.log(we)
-                
-                $.ajax({
-                    // url: 'https://myshapetime.herokuapp.com/updateWeight',
-                    url: 'http://localhost/8000/updateWeight',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        'email': email,
-                        'Weight' :we
-                    }
-                })
-            });
-        }       
-         else{
-            console.log("else block");
-            $.ajax({
-                // url: 'https://myshapetime.herokuapp.com/oneweek',
-                url: 'http://localhost/8000/tookmenu',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    'message' :'oneWeek' 
-                }
-            })
-            .done(function(data){
-                perDayMenu = data.perDayMenu;                
-                eggQuantity = data.eggQuantity
-                let we = data.updatedWeight
-                console.log(perDayMenu);
-                console.log(eggQuantity);
-                
-                document.getElementById("breakfastData").innerHTML=perDayMenu.breakfast[0].Name+" ";
-                var para = document.createElement("breakfastData"); 
-                var t = document.createTextNode(perDayMenu.breakfast[1].Name);
-                para.appendChild(t);                                          // Append the text to <p>
-                document.getElementById("breakfastData").appendChild(para);  
+        });
+    }       
+    else{
+        console.log("else block");
+        $.ajax({
+            // url: 'https://myshapetime.herokuapp.com/oneweek',
+            url: 'http://localhost:8000/took',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                'message' :'tookmenu' 
+            }
+        })
+        .done(function(data){
+            perDayMenu = data.perDayMenu;                
+            eggQuantity = data.eggQuantity
+            let we = data.updatedWeight
+            console.log(perDayMenu);
+            console.log(eggQuantity);
+            
+            // getting the details with the help of Api and sending those data to client side 
 
+            document.getElementById("breakfastData").innerHTML=perDayMenu.breakfast[0].Name+" ";
+            let para = document.createElement("breakfastData"); 
+            let t = document.createTextNode(perDayMenu.breakfast[1].Name);
+            para.appendChild(t);                                          // Append the text to <p>
+            document.getElementById("breakfastData").appendChild(para);  
+            document.getElementById("lunchData").innerHTML=perDayMenu.lunch[0].Name+" ";
+            let para = document.createElement("lunchData"); 
+            let t = document.createTextNode(perDayMenu.lunch[1].Name);
+            para.appendChild(t);                                          // Append the text to <p>
+            document.getElementById("lunchData").appendChild(para);  
+            document.getElementById("dinnerData").innerHTML=perDayMenu.dinner[0].Name+" ";
+            let para = document.createElement("dinnerData"); 
+            let t = document.createTextNode(perDayMenu.dinner[1].Name);
+            para.appendChild(t);                                          // Append the text to <p>
+            document.getElementById("dinnerData").appendChild(para);  
+            document.getElementById("snacksData").innerHTML=perDayMenu.snacks[0].Name+" ";
+            let para = document.createElement("snacksData"); 
+            let t = document.createTextNode(perDayMenu.snacks[1].Name);
+            para.appendChild(t);                                          // Append the text to <p>
+            document.getElementById("snacksData").appendChild(para);  
+            document.getElementById("EggCount").innerHTML=eggQuantity;
+        });
+    }
+}
 
-                document.getElementById("lunchData").innerHTML=perDayMenu.lunch[0].Name+" ";
-                var para = document.createElement("lunchData"); 
-                var t = document.createTextNode(perDayMenu.lunch[1].Name);
-                para.appendChild(t);                                          // Append the text to <p>
-                document.getElementById("lunchData").appendChild(para);  
-
-                document.getElementById("dinnerData").innerHTML=perDayMenu.dinner[0].Name+" ";
-                var para = document.createElement("dinnerData"); 
-                var t = document.createTextNode(perDayMenu.dinner[1].Name);
-                para.appendChild(t);                                          // Append the text to <p>
-                document.getElementById("dinnerData").appendChild(para);  
-
-                document.getElementById("snacksData").innerHTML=perDayMenu.snacks[0].Name+" ";
-                var para = document.createElement("snacksData"); 
-                var t = document.createTextNode(perDayMenu.snacks[1].Name);
-                para.appendChild(t);                                          // Append the text to <p>
-                document.getElementById("snacksData").appendChild(para);  
-
-                document.getElementById("EggCount").innerHTML=eggQuantity;
-            });
-         }
- }
-
-function logout()
-{
+function logout(){
     location.replace("/index.html");
     localStorage.clear();
     sessionStorage.clear();
