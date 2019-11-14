@@ -136,8 +136,8 @@ module.exports = (app, db) => {
     app.post("/add", (req, res) => {
         console.log(req.body);
         const note = { name: req.body.name, email:req.body.email, age: req.body.age,
-                     height: req.body.height,Weight: req.body.Weight, desiredWeight : req.body.desiredWeight,
-                     password:req.body.password
+			height: req.body.height,Weight: req.body.Weight, desiredWeight : req.body.desiredWeight,
+			password:req.body.password
 		};
 		//if user name already present in mongodb alerting the user 
         db.collection('UserData').findOne({email: req.body.email}).then(function(result){
@@ -154,7 +154,7 @@ module.exports = (app, db) => {
                     }
                     else
                     {
-                         res.status(200).json({msg:"success"});
+                        res.status(200).json({msg:"success"});
                     }
                 });
             }
@@ -193,7 +193,6 @@ module.exports = (app, db) => {
                     {
 						userData=result;
 						console.log("hello");
-						
 						console.log("printing from userdata " + userData.Weight);
 						// creating the object and with the help of object calling the class methods 
                         let userMenu = new Menu(userData, menu , menuPerDay);
