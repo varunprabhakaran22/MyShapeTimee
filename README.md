@@ -19,6 +19,5 @@ HTML,Canvas, CSS, JavaScript(ES6), Bootstrap, NodeJS, ExpressJs, MongoDB
 
 Create a Fitness App.
 
-
 ## Visit:
 [MyShapeTime](https://musing-euclid-ef5911.netlify.com)
