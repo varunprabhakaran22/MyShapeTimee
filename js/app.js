@@ -147,23 +147,23 @@ function checkLogin(){
 
    
 
-    document.getElementById("lunchData").innerHTML=y.perDayMenu.lunch[0].Name+" ";
-    var para = document.createElement("lunchData"); 
-    var t = document.createTextNode(y.perDayMenu.lunch[1].Name);
-    para.appendChild(t);                                          // Append the text to <p>
-    document.getElementById("lunchData").appendChild(para);  
+    // document.getElementById("lunchData").innerHTML=y.perDayMenu.lunch[0].Name+" ";
+    // var para = document.createElement("lunchData"); 
+    // var t = document.createTextNode(y.perDayMenu.lunch[1].Name);
+    // para.appendChild(t);                                          // Append the text to <p>
+    // document.getElementById("lunchData").appendChild(para);  
 
-    document.getElementById("dinnerData").innerHTML=y.perDayMenu.dinner[0].Name+" ";
-    var para = document.createElement("dinnerData"); 
-    var t = document.createTextNode(y.perDayMenu.dinner[1].Name);
-    para.appendChild(t);                                          // Append the text to <p>
-    document.getElementById("dinnerData").appendChild(para);  
+    // document.getElementById("dinnerData").innerHTML=y.perDayMenu.dinner[0].Name+" ";
+    // var para = document.createElement("dinnerData"); 
+    // var t = document.createTextNode(y.perDayMenu.dinner[1].Name);
+    // para.appendChild(t);                                          // Append the text to <p>
+    // document.getElementById("dinnerData").appendChild(para);  
 
-    document.getElementById("snacksData").innerHTML=y.perDayMenu.snacks[0].Name+" ";
-    var para = document.createElement("snacksData"); 
-    var t = document.createTextNode(y.perDayMenu.snacks[1].Name);
-    para.appendChild(t);                                          // Append the text to <p>
-    document.getElementById("snacksData").appendChild(para);  
+    // document.getElementById("snacksData").innerHTML=y.perDayMenu.snacks[0].Name+" ";
+    // var para = document.createElement("snacksData"); 
+    // var t = document.createTextNode(y.perDayMenu.snacks[1].Name);
+    // para.appendChild(t);                                          // Append the text to <p>
+    // document.getElementById("snacksData").appendChild(para);  
 
 
 // }
@@ -249,6 +249,7 @@ function display()
                 para.appendChild(t);                                          // Append the text to <p>
                 document.getElementById("snacksData").appendChild(para);  
 
+                document.getElementById("EggCount").innerHTML=eggQuantity;
             });
          }
  }
