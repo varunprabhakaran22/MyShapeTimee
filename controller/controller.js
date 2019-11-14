@@ -17,6 +17,7 @@ class Menu{
 
     //calculating the bmi
     calculatingBmi(){
+        console.log("Weight " + this.userData.weight + " height " + this.userData.height);
         let bmi = Math.round(this.userData.weight/((this.userData.height/100)*(this.userData.height/100)));
         console.log("bmi is " + bmi);
         //categorizing
