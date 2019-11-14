@@ -57,7 +57,7 @@ function uploadData(){
     //Passing the user details to the server using the ajax call
     else{   
         $.ajax({
-            url: 'http://localhost:8000/add',
+            url: 'https://myshapetime.herokuapp.com/add',
             type: 'POST',
             dataType: 'json',
             data: { 
@@ -73,7 +73,7 @@ function uploadData(){
         .done(function(data){
             if(data.msg=="success")
             {
-                location.replace("index.html");
+                location.replace("/index.html");
               
 
             }
@@ -97,7 +97,7 @@ function checkLogin(){
     else
     {
         $.ajax({
-            url: 'http://localhost:8000/',
+            url: 'https://myshapetime.herokuapp.com/',
             type: 'POST',
             dataType: 'json',
             data: { 
@@ -119,12 +119,12 @@ function checkLogin(){
                 // localStorage.setItem("perDayMenu",JSON.stringify(data));
                 // perDayMenu = data.perDayMenu
                 // eggQuantity = data.eggQuantity
-                location.replace("Dashboard.html");
+                location.replace("/Frontend/Dashboard.html");
 
             }
             else if(data.msg=="User Does Not Exist")
             {
-                location.replace("index.html");
+                location.replace("/index.html");
                 alert("User Does Not Exist");
             }
             else
@@ -144,9 +144,6 @@ function checkLogin(){
 //     var x = localStorage.getItem("perDayMenu");
 //     var y=JSON.parse(x)
 //    // console.log(y)
-
-   
-
     // document.getElementById("lunchData").innerHTML=y.perDayMenu.lunch[0].Name+" ";
     // var para = document.createElement("lunchData"); 
     // var t = document.createTextNode(y.perDayMenu.lunch[1].Name);
@@ -178,7 +175,7 @@ function display()
         {
             console.log("me" + numberOfTimeUserTookMenu);
             $.ajax({
-                url: 'http://localhost:8000/oneweek',
+                url: 'https://myshapetime.herokuapp.com/oneweek',
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -195,7 +192,7 @@ function display()
 
                 
                 $.ajax({
-                    url: 'http://localhost:8000/updateWeight',
+                    url: 'https://myshapetime.herokuapp.com/updateWeight',
                     type: 'POST',
                     dataType: 'json',
                     data: {
@@ -210,7 +207,7 @@ function display()
          else{
             console.log("else block");
             $.ajax({
-                url: 'http://localhost:8000/oneweek',
+                url: 'https://myshapetime.herokuapp.com/oneweek',
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -256,7 +253,7 @@ function display()
 
 function logout()
 {
-    location.replace("index.html");
+    location.replace("/index.html");
     localStorage.clear();
     sessionStorage.clear();
 }
