@@ -13,7 +13,7 @@ MyShapeTimee
 
 ## Technology Used:
 
-HTML,Canvas, CSS, JavaScript(ES6), Bootstrap, NodeJS, ExpressJs, MongoDB
+HTML,Canvas, CSS, JavaScript, Bootstrap, NodeJS, ExpressJs, MongoDB
 
 ## Objective:
 
