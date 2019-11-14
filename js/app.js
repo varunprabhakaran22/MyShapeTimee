@@ -181,7 +181,6 @@ function display()
     if( (numberOfTimeUserTookMenu % 7 ) === 0 )
         {
             console.log("me" + numberOfTimeUserTookMenu);
-
             $.ajax({
                 url: 'http://localhost:8000/oneweek',
                 type: 'POST',
@@ -197,6 +196,7 @@ function display()
                 console.log(perDayMenu);
                 console.log(eggQuantity);    
                 console.log(we)
+
                 
                 $.ajax({
                     url: 'http://localhost:8000/updateWeight',
@@ -208,6 +208,7 @@ function display()
                     }
                 })
                 
+
             });
         }       
          else{

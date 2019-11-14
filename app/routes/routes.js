@@ -162,11 +162,11 @@ module.exports = (app, db) => {
 	});
 
 	app.post("/updateWeight", (req, res) => {
-        console.log(req.body);
-
+     console.log(req.body);
 		var myquery = { email: req.body.email };
 		console.log(myquery);
 		var newvalues = { $set: { Weight: req.body.Weight } };
+
 		console.log(newvalues);
         db.collection("UserData").updateOne(myquery,newvalues,function(err,result){
             if(err){
@@ -192,10 +192,11 @@ module.exports = (app, db) => {
                     else
                     {
 						userData=result;
+						console.log("printing from userdata " + userData.Weight);
 						// creating the object and with the help of object calling the class methods 
                         let userMenu = new Menu(userData, menu , menuPerDay);
                         userMenu.calculatingBmi();
-						userMenu.calculatingCaloriesPerDay();
+						userMenu.calculatingCaloriesPerDay(); 
 						menuPerDay = userMenu.calculateMenuPerDay();
 						eggCount = userMenu.calculatingTheRequiredCalories();
 						console.log("printing from route");
@@ -205,9 +206,6 @@ module.exports = (app, db) => {
 
                     } 
 				});
-				
-
-
             }
            else
            {
@@ -230,6 +228,8 @@ module.exports = (app, db) => {
         console.log(menuPerDay);
         res.status(200).json({msg:"one week", perDayMenu: menuPerDay, updatedWeight: updatedWeight,eggQuantity : eggCount});
 	});    
+
+
 	//if user take the menu then that menu is stored in mongodb and next day menu is show to user
     app.post("/tookmenu", (req, res) => {
         console.log("message from ajax call " + req.body.message);
