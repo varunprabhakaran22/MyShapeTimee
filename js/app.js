@@ -111,10 +111,14 @@ function checkLogin(){
             if(data.msg=="User Exist")
             {
                 sessionStorage.setItem("email",email[0].value);
+
                 location.replace("/Frontend/Dashboard.html");
 
                 perDayMenu=data;
                 console.log(perDayMenu);
+                displayingData(perDayMenu);
+
+                
                 // localStorage.setItem("perDayMenu",JSON.stringify(data));
                 // perDayMenu = data.perDayMenu
                 // eggQuantity = data.eggQuantity 
@@ -158,7 +162,7 @@ function display(){
             console.log(perDayMenu);
             console.log(eggQuantity);    
             console.log(we)
-            
+            displayingData(perDayMenu);
             $.ajax({
                 // url: 'https://myshapetime.herokuapp.com/updateWeight',
                 url: 'http://localhost:8000/updateWeight',
@@ -188,32 +192,36 @@ function display(){
             let we = data.updatedWeight
             console.log(perDayMenu);
             console.log(eggQuantity);
-            
+            displayingData(perDayMenu)
             // getting the details with the help of Api and sending those data to client side 
 
-            document.getElementById("breakfastData").innerHTML=perDayMenu.breakfast[0].Name+" ";
-            let para = document.createElement("breakfastData"); 
-            let t = document.createTextNode(perDayMenu.breakfast[1].Name);
-            para.appendChild(t);                                          // Append the text to <p>
-            document.getElementById("breakfastData").appendChild(para);  
-            document.getElementById("lunchData").innerHTML=perDayMenu.lunch[0].Name+" ";
-            para = document.createElement("lunchData"); 
-            t = document.createTextNode(perDayMenu.lunch[1].Name);
-            para.appendChild(t);                                          // Append the text to <p>
-            document.getElementById("lunchData").appendChild(para);  
-            document.getElementById("dinnerData").innerHTML=perDayMenu.dinner[0].Name+" ";
-            para = document.createElement("dinnerData"); 
-            t = document.createTextNode(perDayMenu.dinner[1].Name);
-            para.appendChild(t);                                          // Append the text to <p>
-            document.getElementById("dinnerData").appendChild(para);  
-            document.getElementById("snacksData").innerHTML=perDayMenu.snacks[0].Name+" ";
-            para = document.createElement("snacksData"); 
-            t = document.createTextNode(perDayMenu.snacks[1].Name);
-            para.appendChild(t);                                          // Append the text to <p>
-            document.getElementById("snacksData").appendChild(para);  
-            document.getElementById("EggCount").innerHTML=eggQuantity;
         });
     }
+}
+
+function displayingData(perDayMenu){
+    perDayMenu = perDayMenu
+    document.getElementById("breakfastData").innerHTML=perDayMenu.breakfast[0].Name+" ";
+    let para = document.createElement("breakfastData"); 
+    let t = document.createTextNode(perDayMenu.breakfast[1].Name);
+    para.appendChild(t);                                          // Append the text to <p>
+    document.getElementById("breakfastData").appendChild(para);  
+    document.getElementById("lunchData").innerHTML=perDayMenu.lunch[0].Name+" ";
+    para = document.createElement("lunchData"); 
+    t = document.createTextNode(perDayMenu.lunch[1].Name);
+    para.appendChild(t);                                          // Append the text to <p>
+    document.getElementById("lunchData").appendChild(para);  
+    document.getElementById("dinnerData").innerHTML=perDayMenu.dinner[0].Name+" ";
+    para = document.createElement("dinnerData"); 
+    t = document.createTextNode(perDayMenu.dinner[1].Name);
+    para.appendChild(t);                                          // Append the text to <p>
+    document.getElementById("dinnerData").appendChild(para);  
+    document.getElementById("snacksData").innerHTML=perDayMenu.snacks[0].Name+" ";
+    para = document.createElement("snacksData"); 
+    t = document.createTextNode(perDayMenu.snacks[1].Name);
+    para.appendChild(t);                                          // Append the text to <p>
+    document.getElementById("snacksData").appendChild(para);  
+    document.getElementById("EggCount").innerHTML=eggQuantity;
 }
 
 function logout(){
