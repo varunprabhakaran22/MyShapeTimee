@@ -10,6 +10,7 @@ let desiredWeight;
 let perDayMenu
 let eggQuantity
 let numberOfTimeUserTookMenu = 0;
+let we;
 
 
 // getting the user profile data from client using ajax call 
@@ -73,6 +74,8 @@ function uploadData(){
             if(data.msg=="success")
             {
                 location.replace("login.html");
+              
+
             }
             else if(data.msg=="Email Id already present")
             {
@@ -103,13 +106,21 @@ function checkLogin(){
             }
         })
         .done(function(data){
+
             perDayMenu = data.perDayMenu;
             if(data.msg=="User Exist")
             {
-                
+                //
+                perDayMenu = data.perDayMenu;
+                sessionStorage.setItem("email",email[0].value);
+                //getData(data);
+                perDayMenu=data;
+               // console.log(data.perDayMenu);
+                // localStorage.setItem("perDayMenu",JSON.stringify(data));
+                // perDayMenu = data.perDayMenu
+                // eggQuantity = data.eggQuantity
                 location.replace("Dashboard.html");
-                perDayMenu = data.perDayMenu
-                eggQuantity = data.eggQuantity
+
             }
             else if(data.msg=="User Does Not Exist")
             {
@@ -121,25 +132,86 @@ function checkLogin(){
                 alert("User Does Not Exist");
             }
         }); 
+
+
     }  
 }
 
+// function getData()
+// {
+//     let email=sessionStorage.getItem("email");
+//     console.log(email);   
+//     var x = localStorage.getItem("perDayMenu");
+//     var y=JSON.parse(x)
+//    // console.log(y)
 
-function display(){
+//     document.getElementById("breakfastData").innerHTML=y.perDayMenu.breakfast[0].Name+" ";
+//     var para = document.createElement("breakfastData"); 
+//     var t = document.createTextNode(y.perDayMenu.breakfast[1].Name);
+//     para.appendChild(t);                                          // Append the text to <p>
+//     document.getElementById("breakfastData").appendChild(para);  
+
+//     document.getElementById("lunchData").innerHTML=y.perDayMenu.lunch[0].Name+" ";
+//     var para = document.createElement("lunchData"); 
+//     var t = document.createTextNode(y.perDayMenu.lunch[1].Name);
+//     para.appendChild(t);                                          // Append the text to <p>
+//     document.getElementById("lunchData").appendChild(para);  
+
+//     document.getElementById("dinnerData").innerHTML=y.perDayMenu.dinner[0].Name+" ";
+//     var para = document.createElement("dinnerData"); 
+//     var t = document.createTextNode(y.perDayMenu.dinner[1].Name);
+//     para.appendChild(t);                                          // Append the text to <p>
+//     document.getElementById("dinnerData").appendChild(para);  
+
+//     document.getElementById("snacksData").innerHTML=y.perDayMenu.snacks[0].Name+" ";
+//     var para = document.createElement("snacksData"); 
+//     var t = document.createTextNode(y.perDayMenu.snacks[1].Name);
+//     para.appendChild(t);                                          // Append the text to <p>
+//     document.getElementById("snacksData").appendChild(para);  
+
+
+// }
+
+function display()
+{
     console.log("heyyy");
-    // console.log(perDayMenu);
-    // for(let i= 0; i< 2; i++){
-    //     let breakfast = console.log(perDayMenu.breakfast[i].Name)
-    //     let lunch = console.log(perDayMenu.lunch[i].Name)
-    //     let snacks = console.log(perDayMenu.snacks[i].Name)
-    //     let dinner = console.log(perDayMenu.dinner[i].Name)
-    // }
-    
-    document.getElementsByClassName("yes")[0].addEventListener("click", function(){
-        numberOfTimeUserTookMenu++;
-        console.log(numberOfTimeUserTookMenu);
-        if( (numberOfTimeUserTookMenu % 7 ) === 0 ){  
+    numberOfTimeUserTookMenu++;
+    let email=sessionStorage.getItem("email");
+    console.log(numberOfTimeUserTookMenu);
+    if( (numberOfTimeUserTookMenu % 7 ) === 0 )
+        {
             console.log("me" + numberOfTimeUserTookMenu);
+
+            $.ajax({
+                url: 'http://localhost:8000/oneweek',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'message' :'oneWeek'
+                }
+            })
+            .done(function(data){
+                perDayMenu = data.perDayMenu;
+                eggQuantity = data.eggQuantity
+                let we = data.updatedWeight
+                console.log(perDayMenu);
+                console.log(eggQuantity);    
+                console.log(we)
+                
+                $.ajax({
+                    url: 'http://localhost:8000/updateWeight',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        'email': email,
+                        'weight' :we
+                    }
+                })
+                
+            });
+        }       
+         else{
+            console.log("else block");
             $.ajax({
                 url: 'http://localhost:8000/oneweek',
                 type: 'POST',
@@ -156,35 +228,12 @@ function display(){
                 console.log(eggQuantity);
                 
             });
-        }
+         }
+ }
 
-        else{
-            console.log("else block");     
-            $.ajax({
-                url: 'http://localhost:8000/tookmenu',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    'message' : 'yes' 
-                }
-            })
-            .done(function(data){
-                perDayMenu = data.perDayMenu;
-                console.log(perDayMenu);
-                console.log(data.eggQuantity);
-                
-            });
-        }
-    });
-
-    // document.getElementsByClassName("no")[0].addEventListener("click", function(){
-    //     $.ajax({
-    //         url: 'http://localhost:8000/day',
-    //         type: 'POST',
-    //         dataType: 'json',
-    //         data: {
-    //             'message' : 'no' 
-    //         }
-    //     });    
-    // });
+function logout()
+{
+    location.replace("login.html");
+    localStorage.clear();
+    sessionStorage.clear();
 }
