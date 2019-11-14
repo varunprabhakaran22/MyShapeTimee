@@ -73,7 +73,7 @@ function uploadData(){
         .done(function(data){
             if(data.msg=="success")
             {
-                location.replace("login.html");
+                location.replace("index.html");
             }
             else if(data.msg=="Email Id already present")
             {
@@ -120,7 +120,7 @@ function checkLogin(){
             }
             else if(data.msg=="User Does Not Exist")
             {
-                location.replace("login.html");
+                location.replace("index.html");
                 alert("User Does Not Exist");
             }
             else
@@ -139,29 +139,25 @@ function checkLogin(){
 //     var y=JSON.parse(x)
 //    // console.log(y)
 
-//     document.getElementById("breakfastData").innerHTML=y.perDayMenu.breakfast[0].Name+" ";
-//     var para = document.createElement("breakfastData"); 
-//     var t = document.createTextNode(y.perDayMenu.breakfast[1].Name);
-//     para.appendChild(t);                                          // Append the text to <p>
-//     document.getElementById("breakfastData").appendChild(para);  
+   
 
-//     document.getElementById("lunchData").innerHTML=y.perDayMenu.lunch[0].Name+" ";
-//     var para = document.createElement("lunchData"); 
-//     var t = document.createTextNode(y.perDayMenu.lunch[1].Name);
-//     para.appendChild(t);                                          // Append the text to <p>
-//     document.getElementById("lunchData").appendChild(para);  
+    // document.getElementById("lunchData").innerHTML=y.perDayMenu.lunch[0].Name+" ";
+    // var para = document.createElement("lunchData"); 
+    // var t = document.createTextNode(y.perDayMenu.lunch[1].Name);
+    // para.appendChild(t);                                          // Append the text to <p>
+    // document.getElementById("lunchData").appendChild(para);  
 
-//     document.getElementById("dinnerData").innerHTML=y.perDayMenu.dinner[0].Name+" ";
-//     var para = document.createElement("dinnerData"); 
-//     var t = document.createTextNode(y.perDayMenu.dinner[1].Name);
-//     para.appendChild(t);                                          // Append the text to <p>
-//     document.getElementById("dinnerData").appendChild(para);  
+    // document.getElementById("dinnerData").innerHTML=y.perDayMenu.dinner[0].Name+" ";
+    // var para = document.createElement("dinnerData"); 
+    // var t = document.createTextNode(y.perDayMenu.dinner[1].Name);
+    // para.appendChild(t);                                          // Append the text to <p>
+    // document.getElementById("dinnerData").appendChild(para);  
 
-//     document.getElementById("snacksData").innerHTML=y.perDayMenu.snacks[0].Name+" ";
-//     var para = document.createElement("snacksData"); 
-//     var t = document.createTextNode(y.perDayMenu.snacks[1].Name);
-//     para.appendChild(t);                                          // Append the text to <p>
-//     document.getElementById("snacksData").appendChild(para);  
+    // document.getElementById("snacksData").innerHTML=y.perDayMenu.snacks[0].Name+" ";
+    // var para = document.createElement("snacksData"); 
+    // var t = document.createTextNode(y.perDayMenu.snacks[1].Name);
+    // para.appendChild(t);                                          // Append the text to <p>
+    // document.getElementById("snacksData").appendChild(para);  
 
 
 // }
@@ -218,13 +214,39 @@ function display()
                 console.log(perDayMenu);
                 console.log(eggQuantity);
                 
+                document.getElementById("breakfastData").innerHTML=perDayMenu.breakfast[0].Name+" ";
+                var para = document.createElement("breakfastData"); 
+                var t = document.createTextNode(perDayMenu.breakfast[1].Name);
+                para.appendChild(t);                                          // Append the text to <p>
+                document.getElementById("breakfastData").appendChild(para);  
+
+
+                document.getElementById("lunchData").innerHTML=perDayMenu.lunch[0].Name+" ";
+                var para = document.createElement("lunchData"); 
+                var t = document.createTextNode(perDayMenu.lunch[1].Name);
+                para.appendChild(t);                                          // Append the text to <p>
+                document.getElementById("lunchData").appendChild(para);  
+
+                document.getElementById("dinnerData").innerHTML=perDayMenu.dinner[0].Name+" ";
+                var para = document.createElement("dinnerData"); 
+                var t = document.createTextNode(perDayMenu.dinner[1].Name);
+                para.appendChild(t);                                          // Append the text to <p>
+                document.getElementById("dinnerData").appendChild(para);  
+
+                document.getElementById("snacksData").innerHTML=perDayMenu.snacks[0].Name+" ";
+                var para = document.createElement("snacksData"); 
+                var t = document.createTextNode(perDayMenu.snacks[1].Name);
+                para.appendChild(t);                                          // Append the text to <p>
+                document.getElementById("snacksData").appendChild(para);  
+
+                document.getElementById("EggCount").innerHTML=eggQuantity;
             });
          }
  }
 
 function logout()
 {
-    location.replace("login.html");
+    location.replace("index.html");
     localStorage.clear();
     sessionStorage.clear();
 }
