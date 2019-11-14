@@ -167,7 +167,6 @@ module.exports = (app, db) => {
 		let  myquery = { email: req.body.email };
 		console.log(myquery);
 		let newvalues = { $set: { Weight: req.body.Weight } };
-
 		// console.log("updated weight " + newvalues.value);
         db.collection("UserData").updateOne(myquery,newvalues,function(err,result){
             if(err){
