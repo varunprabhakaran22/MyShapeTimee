@@ -116,7 +116,7 @@ function checkLogin(){
 
                 perDayMenu=data;
                 console.log(perDayMenu);
-                displayingData(perDayMenu);
+                displayingMenuData(perDayMenu);
 
                 
                 // localStorage.setItem("perDayMenu",JSON.stringify(data));
@@ -162,7 +162,7 @@ function display(){
             console.log(perDayMenu);
             console.log(eggQuantity);    
             console.log(we)
-            displayingData(perDayMenu);
+            displayingMenuData(perDayMenu);
             $.ajax({
                 // url: 'https://myshapetime.herokuapp.com/updateWeight',
                 url: 'http://localhost:8000/updateWeight',
@@ -192,14 +192,21 @@ function display(){
             let we = data.updatedWeight
             console.log(perDayMenu);
             console.log(eggQuantity);
-            displayingData(perDayMenu)
+            displayingMenuData(perDayMenu)
             // getting the details with the help of Api and sending those data to client side 
 
         });
     }
 }
 
-function displayingData(perDayMenu){
+
+function skippingMenu(){
+    $(".displaying-menu").hide();
+    $(".exercise-task").show();
+    displayingExerciseData();
+}
+
+function displayingMenuData(perDayMenu){
     perDayMenu = perDayMenu
     document.getElementById("breakfastData").innerHTML=perDayMenu.breakfast[0].Name+" ";
     let para = document.createElement("breakfastData"); 
@@ -223,6 +230,13 @@ function displayingData(perDayMenu){
     document.getElementById("snacksData").appendChild(para);  
     document.getElementById("EggCount").innerHTML=eggQuantity;
 }
+
+function displayingExerciseData(){
+    document.getElementById("running").innerHTML = "3 Km " +" ";
+    document.getElementById("cycling").innerHTML = "5 Km " +" ";
+    document.getElementById("squats").innerHTML = " 15 X 3 " +" ";
+}
+
 
 function logout(){
     location.replace("/index.html");
