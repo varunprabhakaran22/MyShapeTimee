@@ -16,7 +16,7 @@ let menuPerDay={
 	dinner:[],
 	snacks: []   
 }
-
+let UserWeight = 0
 let menu = {
 	"breakfast": [{
 			"Name": "Egg",
@@ -161,13 +161,14 @@ module.exports = (app, db) => {
         });
 	});
 
+
 	app.post("/updateWeight", (req, res) => {
      console.log(req.body);
-		var myquery = { email: req.body.email };
+		let  myquery = { email: req.body.email };
 		console.log(myquery);
-		var newvalues = { $set: { Weight: req.body.Weight } };
+		let newvalues = { $set: { Weight: req.body.Weight } };
 
-		console.log(newvalues);
+		// console.log("updated weight " + newvalues.value);
         db.collection("UserData").updateOne(myquery,newvalues,function(err,result){
             if(err){
                 throw err;
@@ -175,10 +176,10 @@ module.exports = (app, db) => {
             else
             {
 				console.log("1 document updated");
-                
             }
         });
     });
+
 
     app.post("/", (req, res) => {
         const note = { email: req.body.email, password: req.body.password };
@@ -203,7 +204,6 @@ module.exports = (app, db) => {
 						console.log(menuPerDay);
 						console.log(eggCount);
 						res.status(200).json({msg:"User Exist", perDayMenu: menuPerDay,eggQuantity : eggCount}); 
-
                     } 
 				});
             }
@@ -217,9 +217,10 @@ module.exports = (app, db) => {
 //  if user take oneweek menu then the weight is updated in mongodb
     app.post("/oneweek", (req, res) => {
         console.log("message from ajax call " + req.body.message);
-        console.log(" message one week ");
+		console.log(" message one week ");
+		let userUpdatedWeight = userData.Weight
         let userMenu = new Menu(userData, menu , menuPerDay);
-        updatedWeight = userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
+        updatedWeight = userMenu.ifUserTookTheMenu(numberOfDayMenuTook, userUpdatedWeight);
         userMenu.calculatingBmi();
         userMenu.calculatingCaloriesPerDay();
         menuPerDay =  userMenu.calculateMenuPerDay();
