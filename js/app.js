@@ -95,7 +95,8 @@ function checkLogin(){
     else
     {
         $.ajax({
-            url: 'https://myshapetime.herokuapp.com/',
+            // url: 'https://myshapetime.herokuapp.com/',
+            url: 'http://localhost/8000/',
             type: 'POST',
             dataType: 'json',
             data: { 
@@ -169,7 +170,8 @@ function display()
         {
             console.log("me" + numberOfTimeUserTookMenu);
             $.ajax({
-                url: 'https://myshapetime.herokuapp.com/oneweek',
+                // url: 'https://myshapetime.herokuapp.com/oneweek',
+                url: 'http://localhost/8000/oneweek',
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -185,7 +187,8 @@ function display()
                 console.log(we)
                 
                 $.ajax({
-                    url: 'https://myshapetime.herokuapp.com/updateWeight',
+                    // url: 'https://myshapetime.herokuapp.com/updateWeight',
+                    url: 'http://localhost/8000/updateWeight',
                     type: 'POST',
                     dataType: 'json',
                     data: {
@@ -198,7 +201,8 @@ function display()
          else{
             console.log("else block");
             $.ajax({
-                url: 'https://myshapetime.herokuapp.com/oneweek',
+                // url: 'https://myshapetime.herokuapp.com/oneweek',
+                url: 'http://localhost/8000/tookmenu',
                 type: 'POST',
                 dataType: 'json',
                 data: {

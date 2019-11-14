@@ -192,6 +192,8 @@ module.exports = (app, db) => {
                     else
                     {
 						userData=result;
+						console.log("hello");
+						
 						console.log("printing from userdata " + userData.Weight);
 						// creating the object and with the help of object calling the class methods 
                         let userMenu = new Menu(userData, menu , menuPerDay);
