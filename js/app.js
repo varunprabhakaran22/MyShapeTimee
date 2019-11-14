@@ -207,14 +207,12 @@ function display()
                         'Weight' :we
                     }
                 })
-                
-
             });
         }       
          else{
             console.log("else block");
             $.ajax({
-                url: 'http://localhost:8000/oneweek',
+                url: 'http://localhost:8000/tookmenu',
                 type: 'POST',
                 dataType: 'json',
                 data: {
