@@ -74,8 +74,6 @@ function uploadData(){
             if(data.msg=="success")
             {
                 location.replace("login.html");
-              
-
             }
             else if(data.msg=="Email Id already present")
             {
@@ -106,21 +104,19 @@ function checkLogin(){
             }
         })
         .done(function(data){
-
             perDayMenu = data.perDayMenu;
             if(data.msg=="User Exist")
             {
-                //
+                location.replace("Dashboard.html");
                 perDayMenu = data.perDayMenu;
                 sessionStorage.setItem("email",email[0].value);
                 //getData(data);
                 perDayMenu=data;
-               // console.log(data.perDayMenu);
+                // console.log(data.perDayMenu);
                 // localStorage.setItem("perDayMenu",JSON.stringify(data));
                 // perDayMenu = data.perDayMenu
                 // eggQuantity = data.eggQuantity
-                location.replace("Dashboard.html");
-
+                // location.replace("Dashboard.html");
             }
             else if(data.msg=="User Does Not Exist")
             {
@@ -132,8 +128,6 @@ function checkLogin(){
                 alert("User Does Not Exist");
             }
         }); 
-
-
     }  
 }
 
@@ -174,7 +168,6 @@ function checkLogin(){
 
 function display()
 {
-    console.log("heyyy");
     numberOfTimeUserTookMenu++;
     let email=sessionStorage.getItem("email");
     console.log(numberOfTimeUserTookMenu);
@@ -196,7 +189,6 @@ function display()
                 console.log(perDayMenu);
                 console.log(eggQuantity);    
                 console.log(we)
-
                 
                 $.ajax({
                     url: 'http://localhost:8000/updateWeight',
