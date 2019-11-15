@@ -13,7 +13,7 @@ let numberOfTimeUserTookMenu = 0;
 let we;
 
 
-// getting the profile data from user and storing those data in global variable
+// getting the profile data from user and storing those data in global variables
 function uploadData(){
     name=document.getElementsByClassName("name");
     email=document.getElementsByClassName("email");
@@ -111,17 +111,10 @@ function checkLogin(){
             if(data.msg=="User Exist")
             {
                 sessionStorage.setItem("email",email[0].value);
-
-                location.replace("/Frontend/Dashboard.html");
-
+                // location.replace("/Frontend/Dashboard.html");
                 perDayMenu=data;
                 console.log(perDayMenu);
                 displayingMenuData(perDayMenu);
-
-                
-                // localStorage.setItem("perDayMenu",JSON.stringify(data));
-                // perDayMenu = data.perDayMenu
-                // eggQuantity = data.eggQuantity 
             }
             else if(data.msg=="User Does Not Exist")
             {
@@ -229,6 +222,7 @@ function displayingMenuData(perDayMenu){
     para.appendChild(t);                                          // Append the text to <p>
     document.getElementById("snacksData").appendChild(para);  
     document.getElementById("EggCount").innerHTML=eggQuantity;
+
 }
 
 
@@ -237,7 +231,6 @@ function displayingExerciseData(){
     document.getElementById("cycling").innerHTML = "5 Km " 
     document.getElementById("squats").innerHTML = " 15 X 3 Sets " 
 }
-
 
 function logout(){
     location.replace("/index.html");
