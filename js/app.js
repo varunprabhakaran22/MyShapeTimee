@@ -111,7 +111,7 @@ function checkLogin(){
             if(data.msg=="User Exist")
             {
                 sessionStorage.setItem("email",email[0].value);
-                // location.replace("/Frontend/Dashboard.html");
+                location.replace("/Frontend/Dashboard.html");
                 perDayMenu=data;
                 console.log(perDayMenu);
                 displayingMenuData(perDayMenu);
