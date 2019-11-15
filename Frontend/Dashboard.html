@@ -30,35 +30,53 @@
   </nav>
   <div class="mainFrame">
     <!-- <div class="dayOneMenu">
-      <input type="button" value="To Day Menu">
+      <input type="button" value=" Are You Interested to see Today Menu">
     </div> -->
-    <div class="Menu">
-        <div>
-          <h1>Todays Menu</h1>
-        </div>
+    <div class="Menu displaying-menu">
+      <div>
+        <h1>Todays Menu</h1>
+      </div>
       <div>
         <label><b>Breakfast</b></label>
-        <p id="breakfastData" class="breakfastData">Data</p>
+        <p id="breakfastData" class="breakfastData"></p>
       </div>
       <div>
         <label><b>Lunch</b></label>
-        <p id="lunchData" class="lunchData">Data</p>
+        <p id="lunchData" class="lunchData"></p>
       </div>
       <div>
         <label><b>Dinner</b></label>
-        <p id="dinnerData" class="dinnerData">Data</p>
+        <p id="dinnerData" class="dinnerData"></p>
       </div>
       <div>
         <label><b>snacks</b></label>
-        <p id="snacksData" class="snacksData">Data</p>
+        <p id="snacksData" class="snacksData"></p>
       </div>
       <div>
-        Egg:<p id="EggCount" class="EggCount">Data</p>
+        Egg:<p id="EggCount" class="EggCount"></p>
       </div>
       <div class="menu">
         <label><b>Are You Completed Todays Menu?</b></label><br>
         <input type="button" name="gender" class="yes" value="yes" onclick="display();"> 
-        <input type="button" name="gender" value="no" class="no"><br> 
+        <input type="button" name="gender" value="no" class="no" onclick= "skippingMenu();"><br> 
+      </div>
+    </div>
+
+    <div class="exercise-task">
+      <div>
+        <h1>Today's Exercise</h1>
+      </div>
+      <div>
+        <label><b>Running </b></label>
+        <p id="running" class="running"></p>
+      </div>
+      <div>
+        <label><b>Cycling</b></label>
+        <p id="cycling" class="cycling"></p>
+      </div>
+      <div>
+        <label><b>Squats</b></label>
+        <p id="squats" class="squats"></p>
       </div>
     </div>
   </div>
