@@ -118,14 +118,15 @@ class Menu{
     }
 
     // once the user took menu for 7 day then the user weight is updated
-    ifUserTookTheMenu(numberOfDayMenuTook){
+    ifUserTookTheMenu(numberOfDayMenuTook, userUpdatedWeight){
+        this.userUpdatedWeight = userUpdatedWeight;
         this.numberOfDayMenuTook = numberOfDayMenuTook;
         this.numberOfDayMenuTook++;
         console.log("ifusertook");
         console.log(this.numberOfDayMenuTook);
-        this.userData.weight = this.userData.weight - 1.2;
-        console.log("updated user weight " + this.userData.weight);
-        return this.userData.weight
+        this.userUpdatedWeight = this.userUpdatedWeight - 1.2;
+        console.log("updated user weight " + this.userUpdatedWeight);
+        return this.userUpdatedWeight
     }
 }
 
