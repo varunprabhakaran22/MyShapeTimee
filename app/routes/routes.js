@@ -128,7 +128,6 @@ module.exports = (app, db) => {
 
 	//if user take the menu then that menu is stored in mongodb and next day menu is show to user
     app.post("/tookmenu", (req, res) => {
-		
         console.log("message from ajax call " + req.body.message);
         console.log(" message tookmenu ");
         let userMenu = new Menu(userData, menu , menuPerDay);
@@ -138,11 +137,9 @@ module.exports = (app, db) => {
         eggCount = userMenu.calculatingTheRequiredCalories();
         console.log(" message tookmenu ");
 		console.log(menuPerDay);
-
 		var myquery = { email: req.body.email };
 		console.log(myquery);
 		var newvalues = { $push: { menu : menuPerDay} };
-
 		console.log(newvalues);
         db.collection("PerDayMenuData").updateOne(myquery,newvalues,function(err,result){
             if(err){
@@ -151,7 +148,6 @@ module.exports = (app, db) => {
             else
             {
 				console.log("1 document updated");
-                
             }
         });
         res.status(200).json({msg:"tookmenu", perDayMenu: menuPerDay,eggQuantity : eggCount});
