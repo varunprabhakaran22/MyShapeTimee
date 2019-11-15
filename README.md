@@ -24,8 +24,8 @@ Create a Fitness App.
 MyShapeTimee is the fitness app which help the user to reduce or gain the weight by recommending the right menu to the user based on his BMI. The application will also show the history of menus so that the user can see their own progression
 
 ## Demo 
-Username: sandesh@gmail.com
-Password: sandesh123 
+Username: tom@gmail.com
+Password: 8390646129 
 
 ## Images
 
