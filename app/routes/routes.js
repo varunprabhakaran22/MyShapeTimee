@@ -139,12 +139,12 @@ module.exports = (app, db) => {
         console.log(" message tookmenu ");
 		console.log(menuPerDay);
 
-		var myquery = { email: email };
+		var myquery = { email: req.body.email };
 		console.log(myquery);
-		var newvalues = { $set: { menu : menuPerDay} };
+		var newvalues = { $push: { menu : menuPerDay} };
 
 		console.log(newvalues);
-        db.collection("PerDayMenuData").insertOne(myquery,newvalues,function(err,result){
+        db.collection("PerDayMenuData").updateOne(myquery,newvalues,function(err,result){
             if(err){
                 throw err;
             }
