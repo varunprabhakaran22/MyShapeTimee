@@ -57,8 +57,8 @@ function uploadData(){
     //Passing the user details to the server using the ajax call
     else{   
         $.ajax({
-            // url: 'https://myshapetime.herokuapp.com/add',
-            url: 'http://localhost:8000/add',
+             url: 'https://myshapetime.herokuapp.com/add',
+            //url: 'http://localhost:8000/add',
             type: 'POST',
             dataType: 'json',
             data: { 
@@ -97,8 +97,8 @@ function checkLogin(){
     else
     {
         $.ajax({
-            // url: 'https://myshapetime.herokuapp.com/',
-            url: 'http://localhost:8000/',
+            url: 'https://myshapetime.herokuapp.com/',
+            //url: 'http://localhost:8000/',
             type: 'POST',
             dataType: 'json',
             data: { 
@@ -140,8 +140,8 @@ function display(){
     if( (numberOfTimeUserTookMenu % 7 ) === 0 ){
         console.log("me" + numberOfTimeUserTookMenu);
         $.ajax({
-            // url: 'https://myshapetime.herokuapp.com/oneweek',
-            url: 'http://localhost:8000/oneweek',
+            url: 'https://myshapetime.herokuapp.com/oneweek',
+            //url: 'http://localhost:8000/oneweek',
             type: 'POST',
             dataType: 'json',
             data: {
@@ -157,8 +157,8 @@ function display(){
             console.log(we)
             displayingMenuData(perDayMenu);
             $.ajax({
-                // url: 'https://myshapetime.herokuapp.com/updateWeight',
-                url: 'http://localhost:8000/updateWeight',
+                url: 'https://myshapetime.herokuapp.com/updateWeight',
+                //url: 'http://localhost:8000/updateWeight',
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -171,12 +171,13 @@ function display(){
     else{
         console.log("else block");
         $.ajax({
-            // url: 'https://myshapetime.herokuapp.com/oneweek',
-            url: 'http://localhost:8000/tookmenu',
+            url: 'https://myshapetime.herokuapp.com/tookmenu',
+            //url: 'http://localhost:8000/tookmenu',
             type: 'POST',
             dataType: 'json',
             data: {
-                'message' :'tookmenu' 
+                'message' :'tookmenu',
+                'email': email
             }
         })
         .done(function(data){
