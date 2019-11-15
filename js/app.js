@@ -57,7 +57,8 @@ function uploadData(){
     //Passing the user details to the server using the ajax call
     else{   
         $.ajax({
-            url: 'https://myshapetime.herokuapp.com/add',
+            // url: 'https://myshapetime.herokuapp.com/add',
+            url: 'http://localhost:8000/add',  
             type: 'POST',
             dataType: 'json',
             data: { 
@@ -97,7 +98,8 @@ function checkLogin(){
     else
     {
         $.ajax({
-            url: 'https://myshapetime.herokuapp.com/',
+            // url: 'https://myshapetime.herokuapp.com/',
+            url: 'http://localhost:8000/',      
             type: 'POST',
             dataType: 'json',
             data: { 
@@ -175,7 +177,8 @@ function display()
         {
             console.log("me" + numberOfTimeUserTookMenu);
             $.ajax({
-                url: 'https://myshapetime.herokuapp.com/oneweek',
+                // url: 'https://myshapetime.herokuapp.com/oneweek',
+                url: 'http://localhost:8000/oneweek',
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -192,7 +195,8 @@ function display()
 
                 
                 $.ajax({
-                    url: 'https://myshapetime.herokuapp.com/updateWeight',
+                    // url: 'https://myshapetime.herokuapp.com/updateWeight',
+                    url: 'http://localhost:8000/updateWeight',
                     type: 'POST',
                     dataType: 'json',
                     data: {
@@ -207,11 +211,13 @@ function display()
          else{
             console.log("else block");
             $.ajax({
-                url: 'https://myshapetime.herokuapp.com/oneweek',
+                // url: 'https://myshapetime.herokuapp.com/tookmenu',
+
+                url: 'http://localhost:8000/tookmenu',
                 type: 'POST',
                 dataType: 'json',
                 data: {
-                    'message' :'oneWeek' 
+                    'message' :'tookmenu' 
                 }
             })
             .done(function(data){

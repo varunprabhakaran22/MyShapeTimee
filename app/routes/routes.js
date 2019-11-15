@@ -238,6 +238,7 @@ module.exports = (app, db) => {
 
 	//if user take the menu then that menu is stored in mongodb and next day menu is show to user
     app.post("/tookmenu", (req, res) => {
+		
         console.log("message from ajax call " + req.body.message);
         console.log(" message tookmenu ");
         let userMenu = new Menu(userData, menu , menuPerDay);
