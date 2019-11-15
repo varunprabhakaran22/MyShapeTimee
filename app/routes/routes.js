@@ -2,9 +2,11 @@
 const express = require('express');
 const router = express.Router();
 const {Menu} = require("../../controller/controller");
-
-
+const menu = require('../../menudata')
+// const menu = require('...me')
+console.log(menu);
 // declaring the global variables
+let email;
 let userData;
 let eggCount = 0;
 let updatedWeight = 0;
@@ -16,128 +18,18 @@ let menuPerDay={
 	dinner:[],
 	snacks: []   
 }
-
-let menu = {
-	"breakfast": [{
-			"Name": "Egg",
-			"Protein": 5,
-			"Calorie": 78
-		},
-		{
-			"Name": "Milk",
-			"Protein": 8,
-			"Calorie": 42
-		},
-		{
-			"Name": "Banana",
-			"Protein": 1.3,
-			"Calorie": 100
-		},
-		{
-			"Name": "OatMmeals",
-			"Protein": 17,
-			"Calorie": 75
-		},
-		{
-			"Name": "Wheat Bread",
-			"Protein": 3.6,
-			"Calorie": 75
-		}
-	],
-	
-	"snacks" :[{
-			"Name": "Egg",
-			"Protein": 5,
-			"Calorie": 78
-		},
-		{
-			"Name": "Apple",
-			"Protein": 5,
-			"Calorie": 150
-		},
-		{
-			"Name": "Turkey with cheese ",
-			"Protein": 5,
-			"Calorie": 140
-		},
-		{
-			"Name": "Cereal",
-			"Protein": 5,
-			"Calorie": 180
-		},
-		{
-			"Name": "Nuts",
-			"Protein": 7,
-			"Calorie": 160
-		}
-	],
-
-	"lunch" :[{
-			"Name": "Chicken Breast",
-			"Protein": 20,
-			"Calorie": 165
-		},
-		{
-			"Name": "Brown Rice",
-			"Protein": 3,
-			"Calorie": 111
-		},
-		{
-			"Name": "Spinach",
-			"Protein": 2.9,
-			"Calorie": 100
-		},
-		{
-			"Name": "Salmon",
-			"Protein": 20,
-			"Calorie": 185
-		},
-		{
-			"Name": "Tuna",
-			"Protein": 20,
-			"Calorie": 180
-		}
-	],
-	
-	"dinner" :[{
-			"Name": "Nuts",
-			"Protein": 7,
-			"Calorie": 160
-		},
-		{
-			"Name": "Beans",
-			"Protein": 8,
-			"Calorie": 347
-		},
-		
-		
-		{
-			"Name": "Avacados",
-			"Protein": 2.5,
-			"Calorie": 160
-		},
-		{
-			"Name": "Potato",
-			"Protein": 2.5,
-			"Calorie": 77
-		},
-		
-		{
-			"Name": "Chapathi",
-			"Protein": 3.5,
-			"Calorie": 200
-		}
-	]
-}
+let UserWeight = 0
 
 
 // getting user details and storing the details to mongodb
-module.exports = (app, db) => {    
+module.exports = (app, db) => {   
+
     app.post("/add", (req, res) => {
-        console.log(req.body);
+		console.log(req.body);
+		email= req.body.email;
         const note = { name: req.body.name, email:req.body.email, age: req.body.age,
-                     height: req.body.height,Weight: req.body.Weight, desiredWeight : req.body.desiredWeight,
-                     password:req.body.password
+			height: req.body.height,Weight: req.body.Weight, desiredWeight : req.body.desiredWeight,
+			password:req.body.password
 		};
 		//if user name already present in mongodb alerting the user 
         db.collection('UserData').findOne({email: req.body.email}).then(function(result){
@@ -154,20 +46,20 @@ module.exports = (app, db) => {
                     }
                     else
                     {
-                         res.status(200).json({msg:"success"});
+                        res.status(200).json({msg:"success"});
                     }
                 });
             }
         });
 	});
 
+
 	app.post("/updateWeight", (req, res) => {
      console.log(req.body);
-		var myquery = { email: req.body.email };
+		let  myquery = { email: req.body.email };
 		console.log(myquery);
-		var newvalues = { $set: { Weight: req.body.Weight } };
-
-		console.log(newvalues);
+		let newvalues = { $set: { Weight: req.body.Weight } };
+		// console.log("updated weight " + newvalues.value);
         db.collection("UserData").updateOne(myquery,newvalues,function(err,result){
             if(err){
                 throw err;
@@ -175,10 +67,10 @@ module.exports = (app, db) => {
             else
             {
 				console.log("1 document updated");
-                
             }
         });
     });
+
 
     app.post("/", (req, res) => {
         const note = { email: req.body.email, password: req.body.password };
@@ -192,6 +84,7 @@ module.exports = (app, db) => {
                     else
                     {
 						userData=result;
+						console.log("hello");
 						console.log("printing from userdata " + userData.Weight);
 						// creating the object and with the help of object calling the class methods 
                         let userMenu = new Menu(userData, menu , menuPerDay);
@@ -203,7 +96,6 @@ module.exports = (app, db) => {
 						console.log(menuPerDay);
 						console.log(eggCount);
 						res.status(200).json({msg:"User Exist", perDayMenu: menuPerDay,eggQuantity : eggCount}); 
-
                     } 
 				});
             }
@@ -217,21 +109,26 @@ module.exports = (app, db) => {
 //  if user take oneweek menu then the weight is updated in mongodb
     app.post("/oneweek", (req, res) => {
         console.log("message from ajax call " + req.body.message);
-        console.log(" message one week ");
+		console.log(" message one week ");
+		let userUpdatedWeight = userData.Weight
         let userMenu = new Menu(userData, menu , menuPerDay);
-        updatedWeight = userMenu.ifUserTookTheMenu(numberOfDayMenuTook);
+        updatedWeight = userMenu.ifUserTookTheMenu(numberOfDayMenuTook, userUpdatedWeight);
         userMenu.calculatingBmi();
         userMenu.calculatingCaloriesPerDay();
         menuPerDay =  userMenu.calculateMenuPerDay();
         eggCount = userMenu.calculatingTheRequiredCalories();
         console.log(" messages one week ");
-        console.log(menuPerDay);
-        res.status(200).json({msg:"one week", perDayMenu: menuPerDay, updatedWeight: updatedWeight,eggQuantity : eggCount});
+		console.log(menuPerDay);
+		
+		res.status(200).json({msg:"one week", perDayMenu: menuPerDay, 
+		updatedWeight: updatedWeight,eggQuantity : eggCount});
+
 	});    
 
 
 	//if user take the menu then that menu is stored in mongodb and next day menu is show to user
     app.post("/tookmenu", (req, res) => {
+		
         console.log("message from ajax call " + req.body.message);
         console.log(" message tookmenu ");
         let userMenu = new Menu(userData, menu , menuPerDay);
@@ -240,7 +137,23 @@ module.exports = (app, db) => {
         menuPerDay =  userMenu.calculateMenuPerDay();
         eggCount = userMenu.calculatingTheRequiredCalories();
         console.log(" message tookmenu ");
-        console.log(menuPerDay);
+		console.log(menuPerDay);
+
+		var myquery = { email: req.body.email };
+		console.log(myquery);
+		var newvalues = { $push: { menu : menuPerDay} };
+
+		console.log(newvalues);
+        db.collection("PerDayMenuData").updateOne(myquery,newvalues,function(err,result){
+            if(err){
+                throw err;
+            }
+            else
+            {
+				console.log("1 document updated");
+                
+            }
+        });
         res.status(200).json({msg:"tookmenu", perDayMenu: menuPerDay,eggQuantity : eggCount});
     });
 }
