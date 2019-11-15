@@ -4,7 +4,7 @@ const router = express.Router();
 const {Menu} = require("../../controller/controller");
 const menu = require('../../menudata.js')
 // const menu = require('...me')
-console.log(menu);
+//console.log(menu);
 // declaring the global variables
 let email;
 let userData;
@@ -55,7 +55,7 @@ module.exports = (app, db) => {
 
 
 	app.post("/updateWeight", (req, res) => {
-     console.log(req.body);
+     //console.log(req.body);
 		let  myquery = { email: req.body.email };
 		console.log(myquery);
 		let newvalues = { $set: { Weight: req.body.Weight } };
@@ -92,9 +92,9 @@ module.exports = (app, db) => {
 						userMenu.calculatingCaloriesPerDay(); 
 						menuPerDay = userMenu.calculateMenuPerDay();
 						eggCount = userMenu.calculatingTheRequiredCalories();
-						console.log("printing from route");
-						console.log(menuPerDay);
-						console.log(eggCount);
+						//console.log("printing from route");
+						//console.log(menuPerDay);
+						//console.log(eggCount);
 						res.status(200).json({msg:"User Exist", perDayMenu: menuPerDay,eggQuantity : eggCount}); 
                     } 
 				});
@@ -118,7 +118,7 @@ module.exports = (app, db) => {
         menuPerDay =  userMenu.calculateMenuPerDay();
         eggCount = userMenu.calculatingTheRequiredCalories();
         console.log(" messages one week ");
-		console.log(menuPerDay);
+		//console.log(menuPerDay);
 		
 		res.status(200).json({msg:"one week", perDayMenu: menuPerDay, 
 		updatedWeight: updatedWeight,eggQuantity : eggCount});
@@ -137,10 +137,10 @@ module.exports = (app, db) => {
         menuPerDay =  userMenu.calculateMenuPerDay();
         eggCount = userMenu.calculatingTheRequiredCalories();
         console.log(" message tookmenu ");
-		console.log(menuPerDay);
+		//console.log(menuPerDay);
 
 		var myquery = { email: req.body.email };
-		console.log(myquery);
+		//console.log(myquery);
 		var newvalues = { $push: { menu : menuPerDay} };
 
 		console.log(newvalues);
@@ -155,5 +155,19 @@ module.exports = (app, db) => {
             }
         });
         res.status(200).json({msg:"tookmenu", perDayMenu: menuPerDay,eggQuantity : eggCount});
+	});
+	
+	app.get("/data", (req, res) => {
+
+        db.collection('FoodData').find({}).toArray(function (err, result) {
+            if (err)
+                console.log(err + " this error has occured");
+            else {
+			 res.status(200).send(result);
+            }
+        });
     });
+
+
+
 }

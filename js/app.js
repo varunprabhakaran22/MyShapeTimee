@@ -57,8 +57,10 @@ function uploadData(){
     //Passing the user details to the server using the ajax call
     else{   
         $.ajax({
-             url: 'https://myshapetime.herokuapp.com/add',
-            //url: 'http://localhost:8000/add',
+
+            url: 'https://myshapetime.herokuapp.com/add',
+            // url: 'http://localhost:8000/add',
+
             type: 'POST',
             dataType: 'json',
             data: { 
@@ -98,7 +100,8 @@ function checkLogin(){
     {
         $.ajax({
             url: 'https://myshapetime.herokuapp.com/',
-            //url: 'http://localhost:8000/',
+
+            // url: 'http://localhost:8000/',
             type: 'POST',
             dataType: 'json',
             data: { 
@@ -141,7 +144,8 @@ function display(){
         console.log("me" + numberOfTimeUserTookMenu);
         $.ajax({
             url: 'https://myshapetime.herokuapp.com/oneweek',
-            //url: 'http://localhost:8000/oneweek',
+            // url: 'http://localhost:8000/oneweek',
+
             type: 'POST',
             dataType: 'json',
             data: {
@@ -158,7 +162,7 @@ function display(){
             displayingMenuData(perDayMenu);
             $.ajax({
                 url: 'https://myshapetime.herokuapp.com/updateWeight',
-                //url: 'http://localhost:8000/updateWeight',
+                // url: 'http://localhost:8000/updateWeight',
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -172,7 +176,7 @@ function display(){
         console.log("else block");
         $.ajax({
             url: 'https://myshapetime.herokuapp.com/tookmenu',
-            //url: 'http://localhost:8000/tookmenu',
+            // url: 'http://localhost:8000/tookmenu',
             type: 'POST',
             dataType: 'json',
             data: {
@@ -238,3 +242,12 @@ function logout(){
     localStorage.clear();
     sessionStorage.clear();
 }
+
+$.ajax({ 
+    //url:'https://quizappi.herokuapp.com'
+    url: 'http://localhost:8000/data',
+   }).done(function(dataNew) {
+    data=dataNew; 
+    console.log(dataNew[0].breakfast[0])
+});
+
