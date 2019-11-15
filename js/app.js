@@ -183,7 +183,8 @@ function display(){
             type: 'POST',
             dataType: 'json',
             data: {
-                'message' :'tookmenu' 
+                'message' :'tookmenu',
+                'email': email
             }
         })
         .done(function(data){
