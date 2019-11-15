@@ -49,12 +49,12 @@
 {
     height: 86vh;
 }
-.Menu
+.Menu,.exercise-task
 {
    padding-top: 0.2%;
     padding-left: 10%;
 }
-.breakfastData,.lunchData,.dinnerData,.snacksData
+.breakfastData,.lunchData,.dinnerData,.snacksData,.running,.cycling,.squats
 {
     display: grid;
 }
@@ -65,4 +65,13 @@
 .logout
 {
     margin-right: 0%;
+}
+
+/* .dayOneMenu{
+    display: none;
+} */
+
+
+.exercise-task{
+    display: none;
 }

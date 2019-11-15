@@ -231,10 +231,11 @@ function displayingMenuData(perDayMenu){
     document.getElementById("EggCount").innerHTML=eggQuantity;
 }
 
+
 function displayingExerciseData(){
-    document.getElementById("running").innerHTML = "3 Km " +" ";
-    document.getElementById("cycling").innerHTML = "5 Km " +" ";
-    document.getElementById("squats").innerHTML = " 15 X 3 " +" ";
+    document.getElementById("running").innerHTML = "3 Km " 
+    document.getElementById("cycling").innerHTML = "5 Km " 
+    document.getElementById("squats").innerHTML = " 15 X 3 Sets " 
 }
 
 
