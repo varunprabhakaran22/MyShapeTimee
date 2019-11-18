@@ -10,8 +10,9 @@ let desiredWeight;
 let perDayMenu
 let eggQuantity
 let numberOfTimeUserTookMenu = 0;
-let numOfDaysMenuSkipped =0
+let exerciseUserData = {}
 let we;
+
 
 
 // getting the profile data from user and storing those data in global variables
@@ -202,7 +203,7 @@ function display(){
 function skippingMenu(){
     $(".displaying-menu").hide();
     $(".exercise-task").show();
-    displayingExerciseData();
+    getExerciseData();
 }
 
 function displayingMenuData(perDayMenu){
@@ -232,18 +233,29 @@ function displayingMenuData(perDayMenu){
 }
 
 
-function displayingExerciseData(){
-    numOfDaysMenuSkipped++
+function getExerciseData(){
     $.ajax({
         // url: 'https://myshapetime.herokuapp.com/tookmenu',
         url: 'http://localhost:8000/skipping/menu',
         type: 'POST',
         dataType: 'json',
         data: {
-            'message' :'skipping',
-            'numOfDaysMenuSkipped' : numOfDaysMenuSkipped
+            'message' :'skipping'
         }
     })
+    .done(function(data){
+        exerciseUserData = data
+        displayingExerciseData(exerciseUserData)
+    })
+}
+
+function displayingExerciseData(){
+    console.log(exerciseUserData);
+    console.log(exerciseUserData.runningKm);
+    exerciseUserData.running =  exerciseUserData.runningKm;
+    exerciseUserData.cycling =  exerciseUserData.cyclingKm;
+    exerciseUserData.walking =  exerciseUserData.walkingKm;
+    exerciseUserData.swimming = exerciseUserData.swimmingMeter;
 }
 
 
