@@ -163,8 +163,11 @@ module.exports = (app, db) => {
         let running = userExercise.running()
         let cycling = userExercise.cycling()
         let walking = userExercise.walking()
-        let Swimming = userExercise.swimming()
+        let swimming = userExercise.swimming()
+        console.log(running + " cyc" + cycling + " wal " + walking + " swi" + swimming +"mt");
+        
         // console.log(" message skip ");
+
         //console.log(menuPerDay);
         
         // res.status(200).json({msg:"tookmenu", perDayMenu: menuPerDay,eggQuantity : eggCount});
