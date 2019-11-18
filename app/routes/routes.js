@@ -154,7 +154,6 @@ module.exports = (app, db) => {
 	});
 
     app.post("/skipping/menu", (req, res) => {
-        console.log("message from ajax call " + req.body.numOfDaysMenuSkipped);
         console.log(" message skipping the menu ");
         let userMenu = new Menu(userData, menu , menuPerDay);
         let bmi =userMenu.calculatingBmi();
@@ -165,12 +164,7 @@ module.exports = (app, db) => {
         let walking = userExercise.walking()
         let swimming = userExercise.swimming()
         console.log(running + " cyc" + cycling + " wal " + walking + " swi" + swimming +"mt");
-        
-        // console.log(" message skip ");
-
-        //console.log(menuPerDay);
-        
-        // res.status(200).json({msg:"tookmenu", perDayMenu: menuPerDay,eggQuantity : eggCount});
+        res.status(200).json({runningKm: running, cyclingKm: cycling, walkingKm : walking, swimmingMeter:swimming});
     });
 
 }
