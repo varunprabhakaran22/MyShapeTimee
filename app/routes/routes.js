@@ -68,7 +68,7 @@ module.exports = (app, db) => {
 				console.log("1 document updated");
             }
         });
-    });
+    }); 
 
 
     app.post("/", (req, res) => {
@@ -152,29 +152,19 @@ module.exports = (app, db) => {
         });
         res.status(200).json({msg:"tookmenu", perDayMenu: menuPerDay,eggQuantity : eggCount});
 	});
-    
-    
-	app.get("/data", (req, res) => {
-        db.collection('FoodData').find({}).toArray(function (err, result) {
-            if (err)
-                console.log(err + " this error has occured");
-            else {
-                res.status(200).send(result);
-                console.log(result)
-            }
-        });
-    });
-
 
     app.post("/skipping/menu", (req, res) => {
-        let numOfDaysMenuSkipped = 0;
-        console.log("message from ajax call " + req.body.message);
+        console.log("message from ajax call " + req.body.numOfDaysMenuSkipped);
         console.log(" message skipping the menu ");
-        let userExercise = new Exercise(numOfDaysMenuSkipped);
+        let userMenu = new Menu(userData, menu , menuPerDay);
+        let bmi =userMenu.calculatingBmi();
+        console.log(bmi);
+        let userExercise = new Exercise(bmi);
         let running = userExercise.running()
-        let Swimming = userExercise.swimming()
+        let cycling = userExercise.cycling()
         let walking = userExercise.walking()
-        console.log(" message skip ");
+        let Swimming = userExercise.swimming()
+        // console.log(" message skip ");
         //console.log(menuPerDay);
         
         // res.status(200).json({msg:"tookmenu", perDayMenu: menuPerDay,eggQuantity : eggCount});

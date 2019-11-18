@@ -30,6 +30,7 @@ class Menu{
         if((bmi > 19)&&( bmi < 25)){
             console.log("Normal weight ");   
         }
+        return bmi
     }
 
     //calculating the calories needed per day 
@@ -37,7 +38,7 @@ class Menu{
         //calories need for weight loss
         if(this.userData.weight > this.userData.desiredWeight ){
             let bmr = ( 655.1 + ( 9.563 * this.userData.weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
-            this.caloriesPerDay = ( bmr * 1.1 );
+            this.caloriesPerDay = Math.round( bmr * 1.1 );
             // console.log(" desired weight " + this.userData.desiredWeight +" weight :" + this.userData.Weight);
             console.log("Weight loss " + this.caloriesPerDay);
         }    
@@ -45,7 +46,7 @@ class Menu{
         else
         {
             let bmr = ( 655.1 + ( 9.563 * this.userData.weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
-            this.caloriesPerDay = ( bmr * 1.4 );
+            this.caloriesPerDay = Math.round( bmr * 1.4 );
             // console.log(" desired weight " +this.userData.desiredWeight +" weight :" + this.userData.Weight );
             console.log("Weight gain " + this.caloriesPerDay);     
         }
@@ -131,11 +132,16 @@ class Menu{
 }
 
 class Exercise {
-    constructor(numOfDaysMenuSkipped){
-        this.numOfDaysMenuSkipped = numOfDaysMenuSkipped
+    constructor(bmi){
+        this.bmi = bmi;
     }
+
     running(){
+        let runningKm = Math.round(this.bmi * 0.2)
+        return runningKm
     }
+
+
 }
 
 

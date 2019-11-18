@@ -1,7 +1,7 @@
 let menu = 
 {
 	"breakfast": [{
-			"Name": "Egg",
+			"Name": "Egg White",
 			"Protein": 5,
 			"Calorie": 78
 		},

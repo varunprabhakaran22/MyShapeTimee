@@ -10,6 +10,7 @@ let desiredWeight;
 let perDayMenu
 let eggQuantity
 let numberOfTimeUserTookMenu = 0;
+let numOfDaysMenuSkipped =0
 let we;
 
 
@@ -58,8 +59,8 @@ function uploadData(){
     else{   
         $.ajax({
 
-            url: 'https://myshapetime.herokuapp.com/add',
-            // url: 'http://localhost:8000/add',
+            // url: 'https://myshapetime.herokuapp.com/add',
+            url: 'http://localhost:8000/add',
 
             type: 'POST',
             dataType: 'json',
@@ -99,9 +100,9 @@ function checkLogin(){
     else
     {
         $.ajax({
-            url: 'https://myshapetime.herokuapp.com/',
+            // url: 'https://myshapetime.herokuapp.com/',
 
-            // url: 'http://localhost:8000/',
+            url: 'http://localhost:8000/',
             type: 'POST',
             dataType: 'json',
             data: { 
@@ -143,8 +144,8 @@ function display(){
     if( (numberOfTimeUserTookMenu % 7 ) === 0 ){
         console.log("me" + numberOfTimeUserTookMenu);
         $.ajax({
-            url: 'https://myshapetime.herokuapp.com/oneweek',
-            // url: 'http://localhost:8000/oneweek',
+            // url: 'https://myshapetime.herokuapp.com/oneweek',
+            url: 'http://localhost:8000/oneweek',
 
             type: 'POST',
             dataType: 'json',
@@ -161,8 +162,8 @@ function display(){
             console.log(we)
             displayingMenuData(perDayMenu);
             $.ajax({
-                url: 'https://myshapetime.herokuapp.com/updateWeight',
-                // url: 'http://localhost:8000/updateWeight',
+                // url: 'https://myshapetime.herokuapp.com/updateWeight',
+                url: 'http://localhost:8000/updateWeight',
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -175,8 +176,8 @@ function display(){
     else{
         console.log("else block");
         $.ajax({
-            url: 'https://myshapetime.herokuapp.com/tookmenu',
-            // url: 'http://localhost:8000/tookmenu',
+            // url: 'https://myshapetime.herokuapp.com/tookmenu',
+            url: 'http://localhost:8000/tookmenu',
             type: 'POST',
             dataType: 'json',
             data: {
@@ -232,13 +233,15 @@ function displayingMenuData(perDayMenu){
 
 
 function displayingExerciseData(){
+    numOfDaysMenuSkipped++
     $.ajax({
         // url: 'https://myshapetime.herokuapp.com/tookmenu',
         url: 'http://localhost:8000/skipping/menu',
         type: 'POST',
         dataType: 'json',
         data: {
-            'message' :'skipping'
+            'message' :'skipping',
+            'numOfDaysMenuSkipped' : numOfDaysMenuSkipped
         }
     })
 }
@@ -249,12 +252,3 @@ function logout(){
     localStorage.clear();
     sessionStorage.clear();
 }
-
-$.ajax({ 
-    //url:'https://quizappi.herokuapp.com'
-    url: 'http://localhost:8000/data',
-   }).done(function(dataNew) {
-    data=dataNew; 
-    console.log(dataNew[0])
-});
-
