@@ -2,9 +2,9 @@
 const express = require('express');
 const router = express.Router();
 const {Menu} = require("../../controller/controller");
+const {Exercise} = require("../../controller/controller");
 const menu = require('../../menudata.js')
-// const menu = require('...me')
-console.log(menu);
+
 // declaring the global variables
 let email;
 let userData;
@@ -23,7 +23,6 @@ let UserWeight = 0
 
 // getting user details and storing the details to mongodb
 module.exports = (app, db) => {   
-
     app.post("/add", (req, res) => {
 		console.log(req.body);
 		email= req.body.email;
@@ -55,7 +54,7 @@ module.exports = (app, db) => {
 
 
 	app.post("/updateWeight", (req, res) => {
-     console.log(req.body);
+     //console.log(req.body);
 		let  myquery = { email: req.body.email };
 		console.log(myquery);
 		let newvalues = { $set: { Weight: req.body.Weight } };
@@ -69,7 +68,7 @@ module.exports = (app, db) => {
 				console.log("1 document updated");
             }
         });
-    });
+    }); 
 
 
     app.post("/", (req, res) => {
@@ -92,9 +91,9 @@ module.exports = (app, db) => {
 						userMenu.calculatingCaloriesPerDay(); 
 						menuPerDay = userMenu.calculateMenuPerDay();
 						eggCount = userMenu.calculatingTheRequiredCalories();
-						console.log("printing from route");
-						console.log(menuPerDay);
-						console.log(eggCount);
+						//console.log("printing from route");
+						//console.log(menuPerDay);
+						//console.log(eggCount);
 						res.status(200).json({msg:"User Exist", perDayMenu: menuPerDay,eggQuantity : eggCount}); 
                     } 
 				});
@@ -118,7 +117,7 @@ module.exports = (app, db) => {
         menuPerDay =  userMenu.calculateMenuPerDay();
         eggCount = userMenu.calculatingTheRequiredCalories();
         console.log(" messages one week ");
-		console.log(menuPerDay);
+		//console.log(menuPerDay);
 		
 		res.status(200).json({msg:"one week", perDayMenu: menuPerDay, 
 		updatedWeight: updatedWeight,eggQuantity : eggCount});
@@ -128,7 +127,6 @@ module.exports = (app, db) => {
 
 	//if user take the menu then that menu is stored in mongodb and next day menu is show to user
     app.post("/tookmenu", (req, res) => {
-		
         console.log("message from ajax call " + req.body.message);
         console.log(" message tookmenu ");
         let userMenu = new Menu(userData, menu , menuPerDay);
@@ -137,12 +135,11 @@ module.exports = (app, db) => {
         menuPerDay =  userMenu.calculateMenuPerDay();
         eggCount = userMenu.calculatingTheRequiredCalories();
         console.log(" message tookmenu ");
-		console.log(menuPerDay);
+		//console.log(menuPerDay);
 
 		var myquery = { email: req.body.email };
-		console.log(myquery);
+		//console.log(myquery);
 		var newvalues = { $push: { menu : menuPerDay} };
-
 		console.log(newvalues);
         db.collection("PerDayMenuData").updateOne(myquery,newvalues,function(err,result){
             if(err){
@@ -151,9 +148,23 @@ module.exports = (app, db) => {
             else
             {
 				console.log("1 document updated");
-                
             }
         });
         res.status(200).json({msg:"tookmenu", perDayMenu: menuPerDay,eggQuantity : eggCount});
+	});
+
+    app.post("/skipping/menu", (req, res) => {
+        console.log(" message skipping the menu ");
+        let userMenu = new Menu(userData, menu , menuPerDay);
+        let bmi =userMenu.calculatingBmi();
+        console.log(bmi);
+        let userExercise = new Exercise(bmi);
+        let running = userExercise.running()
+        let cycling = userExercise.cycling()
+        let walking = userExercise.walking()
+        let swimming = userExercise.swimming()
+        console.log(running + " cyc" + cycling + " wal " + walking + " swi" + swimming +"mt");
+        res.status(200).json({runningKm: running, cyclingKm: cycling, walkingKm : walking, swimmingMeter:swimming});
     });
+
 }

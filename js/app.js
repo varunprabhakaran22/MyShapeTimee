@@ -10,7 +10,9 @@ let desiredWeight;
 let perDayMenu
 let eggQuantity
 let numberOfTimeUserTookMenu = 0;
+let exerciseUserData = {}
 let we;
+
 
 
 // getting the profile data from user and storing those data in global variables
@@ -57,8 +59,10 @@ function uploadData(){
     //Passing the user details to the server using the ajax call
     else{   
         $.ajax({
-             url: 'https://myshapetime.herokuapp.com/add',
-            //url: 'http://localhost:8000/add',
+
+            // url: 'https://myshapetime.herokuapp.com/add',
+            url: 'http://localhost:8000/add',
+
             type: 'POST',
             dataType: 'json',
             data: { 
@@ -97,8 +101,9 @@ function checkLogin(){
     else
     {
         $.ajax({
-            url: 'https://myshapetime.herokuapp.com/',
-            //url: 'http://localhost:8000/',
+            // url: 'https://myshapetime.herokuapp.com/',
+
+            url: 'http://localhost:8000/',
             type: 'POST',
             dataType: 'json',
             data: { 
@@ -140,8 +145,9 @@ function display(){
     if( (numberOfTimeUserTookMenu % 7 ) === 0 ){
         console.log("me" + numberOfTimeUserTookMenu);
         $.ajax({
-            url: 'https://myshapetime.herokuapp.com/oneweek',
-            //url: 'http://localhost:8000/oneweek',
+            // url: 'https://myshapetime.herokuapp.com/oneweek',
+            url: 'http://localhost:8000/oneweek',
+
             type: 'POST',
             dataType: 'json',
             data: {
@@ -157,8 +163,8 @@ function display(){
             console.log(we)
             displayingMenuData(perDayMenu);
             $.ajax({
-                url: 'https://myshapetime.herokuapp.com/updateWeight',
-                //url: 'http://localhost:8000/updateWeight',
+                // url: 'https://myshapetime.herokuapp.com/updateWeight',
+                url: 'http://localhost:8000/updateWeight',
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -171,8 +177,8 @@ function display(){
     else{
         console.log("else block");
         $.ajax({
-            url: 'https://myshapetime.herokuapp.com/tookmenu',
-            //url: 'http://localhost:8000/tookmenu',
+            // url: 'https://myshapetime.herokuapp.com/tookmenu',
+            url: 'http://localhost:8000/tookmenu',
             type: 'POST',
             dataType: 'json',
             data: {
@@ -197,7 +203,7 @@ function display(){
 function skippingMenu(){
     $(".displaying-menu").hide();
     $(".exercise-task").show();
-    displayingExerciseData();
+    getExerciseData();
 }
 
 function displayingMenuData(perDayMenu){
@@ -227,11 +233,31 @@ function displayingMenuData(perDayMenu){
 }
 
 
-function displayingExerciseData(){
-    document.getElementById("running").innerHTML = "3 Km " 
-    document.getElementById("cycling").innerHTML = "5 Km " 
-    document.getElementById("squats").innerHTML = " 15 X 3 Sets " 
+function getExerciseData(){
+    $.ajax({
+        // url: 'https://myshapetime.herokuapp.com/tookmenu',
+        url: 'http://localhost:8000/skipping/menu',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            'message' :'skipping'
+        }
+    })
+    .done(function(data){
+        exerciseUserData = data
+        displayingExerciseData(exerciseUserData)
+    })
 }
+
+function displayingExerciseData(){
+    console.log(exerciseUserData);
+    console.log(exerciseUserData.runningKm);
+    exerciseUserData.running =  exerciseUserData.runningKm;
+    exerciseUserData.cycling =  exerciseUserData.cyclingKm;
+    exerciseUserData.walking =  exerciseUserData.walkingKm;
+    exerciseUserData.swimming = exerciseUserData.swimmingMeter;
+}
+
 
 function logout(){
     location.replace("/index.html");
