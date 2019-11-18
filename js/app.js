@@ -253,10 +253,10 @@ function getExerciseData(){
 //Display the exercise data to the client 
 function displayingExerciseData(){
     console.log(exerciseUserData);
-    document.getElementsByClassName("running")[0].innerHTML = exerciseUserData.runningKm
-    document.getElementsByClassName("cycling")[0].innerHTML = exerciseUserData.cyclingKm;
-    document.getElementsByClassName("walking")[0].innerHTML = exerciseUserData.walkingKm
-    document.getElementsByClassName("swimming")[0].innerHTML = exerciseUserData.swimmingMeter
+    document.getElementsByClassName("running")[0].innerHTML = exerciseUserData.runningKm + " Km"
+    document.getElementsByClassName("cycling")[0].innerHTML = exerciseUserData.cyclingKm+ " Km"
+    document.getElementsByClassName("walking")[0].innerHTML = exerciseUserData.walkingKm + " Km"
+    document.getElementsByClassName("swimming")[0].innerHTML = exerciseUserData.swimmingMeter + "Mt"
 }
 
 //creating the ajax call to get the next day menu 
