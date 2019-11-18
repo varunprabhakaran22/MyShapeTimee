@@ -226,6 +226,13 @@ function displayingMenuData(perDayMenu){
 }
 
 
+function skippingMenu(){
+    $(".displaying-menu").hide();
+    $(".exercise-task").show();
+    getExerciseData();
+}
+
+
 function getExerciseData(){
     $.ajax({
         // url: 'https://myshapetime.herokuapp.com/tookmenu',
@@ -242,19 +249,20 @@ function getExerciseData(){
     })
 }
 
-function skippingMenu(){
-    $(".displaying-menu").hide();
-    $(".exercise-task").show();
-    getExerciseData();
-}
-
 function displayingExerciseData(){
     console.log(exerciseUserData);
     console.log(exerciseUserData.runningKm);
-    exerciseUserData.running =  exerciseUserData.runningKm;
-    exerciseUserData.cycling =  exerciseUserData.cyclingKm;
-    exerciseUserData.walking =  exerciseUserData.walkingKm;
-    exerciseUserData.swimming = exerciseUserData.swimmingMeter;
+    // exerciseUserData.running =  exerciseUserData.runningKm;
+    // exerciseUserData.cycling =  exerciseUserData.cyclingKm;
+    // exerciseUserData.walking =  exerciseUserData.walkingKm;
+    // exerciseUserData.swimming = exerciseUserData.swimmingMeter;
+    // console.log(exerciseUserData.running);
+    
+
+    document.getElementsByClassName("running")[0].innerHTML = exerciseUserData.runningKm
+    document.getElementsByClassName("cycling")[0].innerHTML = exerciseUserData.cyclingKm;
+    document.getElementsByClassName("walking")[0].innerHTML = exerciseUserData.walkingKm
+    document.getElementsByClassName("swimming")[0].innerHTML = exerciseUserData.swimmingMeter
 }
 
 
