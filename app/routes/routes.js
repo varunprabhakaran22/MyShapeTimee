@@ -160,7 +160,9 @@ module.exports = (app, db) => {
             if (err)
                 console.log(err + " this error has occured");
             else {
-			 res.status(200).send(result);
+                res.status(200).send(result);
+                console.log(result)
+                
             }
         });
     });

@@ -248,6 +248,6 @@ $.ajax({
     url: 'http://localhost:8000/data',
    }).done(function(dataNew) {
     data=dataNew; 
-    console.log(dataNew[0].breakfast[0])
+    console.log(dataNew[0])
 });
 
