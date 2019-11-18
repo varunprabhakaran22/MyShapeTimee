@@ -260,7 +260,24 @@ function displayingExerciseData(){
 function tookExercise(){
     $(".displaying-menu").show();
     $(".exercise-task").hide();
-    
+    $.ajax({
+        // url: 'https://myshapetime.herokuapp.com/tookmenu',
+        url: 'http://localhost:8000/tookmenu',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            'message' :'tookmenu'
+        }
+    })
+    .done(function(data){
+        perDayMenu = data.perDayMenu;                
+        eggQuantity = data.eggQuantity
+        let we = data.updatedWeight
+        console.log(perDayMenu);
+        console.log(eggQuantity);
+        displayingMenuData(perDayMenu)
+        // getting the details with the help of Api and sending those data to client side 
+    });
 }
 
 
