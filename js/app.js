@@ -57,8 +57,10 @@ function uploadData(){
     //Passing the user details to the server using the ajax call
     else{   
         $.ajax({
+
             url: 'https://myshapetime.herokuapp.com/add',
             // url: 'http://localhost:8000/add',
+
             type: 'POST',
             dataType: 'json',
             data: { 
@@ -98,6 +100,7 @@ function checkLogin(){
     {
         $.ajax({
             url: 'https://myshapetime.herokuapp.com/',
+
             // url: 'http://localhost:8000/',
             type: 'POST',
             dataType: 'json',
@@ -111,7 +114,7 @@ function checkLogin(){
             if(data.msg=="User Exist")
             {
                 sessionStorage.setItem("email",email[0].value);
-                // location.replace("/Frontend/Dashboard.html");
+                location.replace("/Frontend/Dashboard.html");
                 perDayMenu=data;
                 console.log(perDayMenu);
                 displayingMenuData(perDayMenu);
@@ -142,6 +145,7 @@ function display(){
         $.ajax({
             url: 'https://myshapetime.herokuapp.com/oneweek',
             // url: 'http://localhost:8000/oneweek',
+
             type: 'POST',
             dataType: 'json',
             data: {
@@ -238,10 +242,12 @@ function logout(){
     localStorage.clear();
     sessionStorage.clear();
 }
+
 $.ajax({ 
     //url:'https://quizappi.herokuapp.com'
     url: 'http://localhost:8000/data',
    }).done(function(dataNew) {
     data=dataNew; 
     console.log(dataNew[0].breakfast[0])
-});t
+});
+
