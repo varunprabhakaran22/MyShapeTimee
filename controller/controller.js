@@ -130,7 +130,16 @@ class Menu{
     }
 }
 
+class Exercise {
+    constructor(numOfDaysMenuSkipped){
+        this.numOfDaysMenuSkipped = numOfDaysMenuSkipped
+    }
+    running(){
+    }
+}
+
+
 
 //exporting the class Menu to route.js file
-const external = {Menu};
+const external = {Menu,Exercise};
 module.exports = external;
