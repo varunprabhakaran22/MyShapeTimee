@@ -30,6 +30,7 @@ class Menu{
         if((bmi > 19)&&( bmi < 25)){
             console.log("Normal weight ");   
         }
+        return bmi
     }
 
     //calculating the calories needed per day 
@@ -37,7 +38,7 @@ class Menu{
         //calories need for weight loss
         if(this.userData.weight > this.userData.desiredWeight ){
             let bmr = ( 655.1 + ( 9.563 * this.userData.weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
-            this.caloriesPerDay = ( bmr * 1.1 );
+            this.caloriesPerDay = Math.round( bmr * 1.1 );
             // console.log(" desired weight " + this.userData.desiredWeight +" weight :" + this.userData.Weight);
             console.log("Weight loss " + this.caloriesPerDay);
         }    
@@ -45,7 +46,7 @@ class Menu{
         else
         {
             let bmr = ( 655.1 + ( 9.563 * this.userData.weight ) + ( 1.85 * this.userData.height ) - ( 4.676 * this.userData.age ));
-            this.caloriesPerDay = ( bmr * 1.4 );
+            this.caloriesPerDay = Math.round( bmr * 1.4 );
             // console.log(" desired weight " +this.userData.desiredWeight +" weight :" + this.userData.Weight );
             console.log("Weight gain " + this.caloriesPerDay);     
         }
@@ -124,13 +125,41 @@ class Menu{
         this.numberOfDayMenuTook++;
         console.log("ifusertook");
         console.log(this.numberOfDayMenuTook);
-        this.userUpdatedWeight = this.userUpdatedWeight - 1.2;
+        this.userUpdatedWeight = Math.round(this.userUpdatedWeight - 1.2);
         console.log("updated user weight " + this.userUpdatedWeight);
         return this.userUpdatedWeight
     }
 }
 
+class Exercise {
+    constructor(bmi){
+        this.bmi = bmi;
+    }
+
+    running(){
+        let runningKm = Math.round(this.bmi * 0.2)
+        return runningKm
+    }
+
+    cycling(){
+        let cycling = Math.round(this.bmi * 0.3)
+        return cycling
+    }
+
+    walking(){
+        let walking = Math.round(this.bmi * 0.1)
+        return walking
+    }
+
+    swimming(){
+        let swimming = Math.round(this.bmi * 0.1)
+        let swimmingMeter = (swimming * 100)
+        return swimmingMeter
+    }
+}
+
+
 
 //exporting the class Menu to route.js file
-const external = {Menu};
+const external = {Menu,Exercise};
 module.exports = external;
