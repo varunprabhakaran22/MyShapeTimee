@@ -141,6 +141,10 @@ class Exercise {
         return runningKm
     }
 
+    cycling(){
+        let cycling = Math.round(this.bmi * 0.3)
+        return cycling
+    }
 
 }
 
