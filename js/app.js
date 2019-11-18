@@ -234,12 +234,11 @@ function displayingMenuData(perDayMenu){
 function displayingExerciseData(){
     $.ajax({
         // url: 'https://myshapetime.herokuapp.com/tookmenu',
-        url: 'http://localhost:8000/skippingMenu',
+        url: 'http://localhost:8000/skipping/menu',
         type: 'POST',
         dataType: 'json',
         data: {
-            'message' :'tookmenu',
-            'email': email
+            'message' :'skipping'
         }
     })
 }
