@@ -152,6 +152,12 @@ class Exercise {
         return walking
     }
 
+    swimming(){
+        let swimming = Math.round(this.bmi * 0.1)
+        let swimmingMeter = (swimming * 100)
+        return swimming
+    }
+
 }
 
 
