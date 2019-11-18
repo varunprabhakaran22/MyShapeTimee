@@ -232,10 +232,18 @@ function displayingMenuData(perDayMenu){
 
 
 function displayingExerciseData(){
-    document.getElementById("running").innerHTML = "3 Km " 
-    document.getElementById("cycling").innerHTML = "5 Km " 
-    document.getElementById("squats").innerHTML = " 15 X 3 Sets " 
+    $.ajax({
+        // url: 'https://myshapetime.herokuapp.com/tookmenu',
+        url: 'http://localhost:8000/skippingMenu',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            'message' :'tookmenu',
+            'email': email
+        }
+    })
 }
+
 
 function logout(){
     location.replace("/index.html");

@@ -28,9 +28,9 @@ let menu =
 	],
 	
 	"snacks" :[{
-			"Name": "Egg",
+			"Name": "Egg White",
 			"Protein": 5,
-			"Calorie": 78
+			"Calorie": 100
 		},
 		{
 			"Name": "Apple",
