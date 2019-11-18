@@ -125,7 +125,7 @@ class Menu{
         this.numberOfDayMenuTook++;
         console.log("ifusertook");
         console.log(this.numberOfDayMenuTook);
-        this.userUpdatedWeight = this.userUpdatedWeight - 1.2;
+        this.userUpdatedWeight = Math.round(this.userUpdatedWeight - 1.2);
         console.log("updated user weight " + this.userUpdatedWeight);
         return this.userUpdatedWeight
     }
@@ -146,7 +146,6 @@ class Exercise {
         return cycling
     }
 
-    
     walking(){
         let walking = Math.round(this.bmi * 0.1)
         return walking
@@ -155,9 +154,8 @@ class Exercise {
     swimming(){
         let swimming = Math.round(this.bmi * 0.1)
         let swimmingMeter = (swimming * 100)
-        return swimming
+        return swimmingMeter
     }
-
 }
 
 
