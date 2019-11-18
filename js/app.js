@@ -136,7 +136,7 @@ function checkLogin(){
 
 
 
-function display(){
+function tookMenu(){
     numberOfTimeUserTookMenu++;
     let email=sessionStorage.getItem("email");
     console.log(numberOfTimeUserTookMenu);
@@ -199,13 +199,6 @@ function display(){
     }
 }
 
-
-function skippingMenu(){
-    $(".displaying-menu").hide();
-    $(".exercise-task").show();
-    getExerciseData();
-}
-
 function displayingMenuData(perDayMenu){
     perDayMenu = perDayMenu
     document.getElementById("breakfastData").innerHTML=perDayMenu.breakfast[0].Name+" ";
@@ -247,6 +240,12 @@ function getExerciseData(){
         exerciseUserData = data
         displayingExerciseData(exerciseUserData)
     })
+}
+
+function skippingMenu(){
+    $(".displaying-menu").hide();
+    $(".exercise-task").show();
+    getExerciseData();
 }
 
 function displayingExerciseData(){
