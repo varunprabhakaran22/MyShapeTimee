@@ -2,9 +2,9 @@
 const express = require('express');
 const router = express.Router();
 const {Menu} = require("../../controller/controller");
+const {Exercise} = require("../../controller/controller");
 const menu = require('../../menudata.js')
-// const menu = require('...me')
-//console.log(menu);
+
 // declaring the global variables
 let email;
 let userData;
@@ -23,7 +23,6 @@ let UserWeight = 0
 
 // getting user details and storing the details to mongodb
 module.exports = (app, db) => {   
-
     app.post("/add", (req, res) => {
 		console.log(req.body);
 		email= req.body.email;
@@ -153,20 +152,32 @@ module.exports = (app, db) => {
         });
         res.status(200).json({msg:"tookmenu", perDayMenu: menuPerDay,eggQuantity : eggCount});
 	});
-	
+    
+    
 	app.get("/data", (req, res) => {
-
         db.collection('FoodData').find({}).toArray(function (err, result) {
             if (err)
                 console.log(err + " this error has occured");
             else {
                 res.status(200).send(result);
                 console.log(result)
-                
             }
         });
     });
 
 
+    app.post("/skipping/menu", (req, res) => {
+        let numOfDaysMenuSkipped = 0;
+        console.log("message from ajax call " + req.body.message);
+        console.log(" message skipping the menu ");
+        let userExercise = new Exercise(numOfDaysMenuSkipped);
+        let running = userExercise.running()
+        let Swimming = userExercise.swimming()
+        let walking = userExercise.walking()
+        console.log(" message skip ");
+        //console.log(menuPerDay);
+        
+        // res.status(200).json({msg:"tookmenu", perDayMenu: menuPerDay,eggQuantity : eggCount});
+    });
 
 }
