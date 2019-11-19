@@ -41,8 +41,8 @@ body, html {
     background-color: white;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('/images/Interior-Design-Eight-Inc-Keepland_fitess_experience_eight_inc_5.jpg');
-
+    /* background-image: url('/images/Interior-Design-Eight-Inc-Keepland_fitess_experience_eight_inc_5.jpg'); */
+    background-image: linear-gradient(rgb(119, 206, 233), rgb(70, 81, 233));
 }
 .mainFrame
 {
@@ -53,7 +53,7 @@ body, html {
     padding: 30px;
     border-style: solid;
     /* background-color: white; */
-    background-color: black;
+
 }
 .navbar {
     position: relative;
