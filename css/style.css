@@ -75,7 +75,7 @@ body, html {
    padding-top: 0.2%;
     padding-left: 10%;
 }
-.breakfastData,.lunchData,.dinnerData,.snacksData,.running,.cycling,.squats
+.breakfastData,.lunchData,.dinnerData,.snacksData,.running,.cycling,.Walking,.swimming 
 {
     display: grid;
 }
