@@ -158,7 +158,7 @@ function tookMenu(){
             displayingMenuData(perDayMenu);
             $.ajax({
                 url: 'https://myshapetime.herokuapp.com/updateWeight',
-                //url: 'http://localhost:8000/updateWeight',
+               //  url: 'http://localhost:8000/updateWeight',
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -171,9 +171,10 @@ function tookMenu(){
     
     // else then calling the diff route to get the next day menu
     else{
+        console.log("else block");
         $.ajax({
             url: 'https://myshapetime.herokuapp.com/tookmenu',
-            //url: 'http://localhost:8000/tookmenu',
+            //  url: 'http://localhost:8000/tookmenu',
             type: 'POST',
             dataType: 'json',
             data: {
@@ -197,25 +198,25 @@ function tookMenu(){
 // displaying the day menu to html page
 function displayingMenuData(perDayMenu){
     perDayMenu = perDayMenu
-    document.getElementById("breakfastData").innerHTML=perDayMenu.breakfast[0].Name+" ";
+    document.getElementById("breakfastData").innerHTML=perDayMenu.breakfast[0].Name+",";
     let para = document.createElement("breakfastData"); 
     let t = document.createTextNode(perDayMenu.breakfast[1].Name);
     para.appendChild(t);                                          
     // Append the text to <p>
     document.getElementById("breakfastData").appendChild(para);  
-    document.getElementById("lunchData").innerHTML=perDayMenu.lunch[0].Name+" ";
+    document.getElementById("lunchData").innerHTML=perDayMenu.lunch[0].Name+",";
     para = document.createElement("lunchData"); 
     t = document.createTextNode(perDayMenu.lunch[1].Name);
     para.appendChild(t);                                          
     // Append the text to <p>
     document.getElementById("lunchData").appendChild(para);  
-    document.getElementById("dinnerData").innerHTML=perDayMenu.dinner[0].Name+" ";
+    document.getElementById("dinnerData").innerHTML=perDayMenu.dinner[0].Name+",";
     para = document.createElement("dinnerData"); 
     t = document.createTextNode(perDayMenu.dinner[1].Name);
     para.appendChild(t);                                         
      // Append the text to <p>
     document.getElementById("dinnerData").appendChild(para);  
-    document.getElementById("snacksData").innerHTML=perDayMenu.snacks[0].Name+" ";
+    document.getElementById("snacksData").innerHTML=perDayMenu.snacks[0].Name+",";
     para = document.createElement("snacksData"); 
     t = document.createTextNode(perDayMenu.snacks[1].Name);
     para.appendChild(t);                                          
@@ -236,7 +237,7 @@ function skippingMenu(){
 function getExerciseData(){
     $.ajax({
         url: 'https://myshapetime.herokuapp.com/skipping/menu',
-        //url: 'http://localhost:8000/skipping/menu',
+        // url: 'http://localhost:8000/skipping/menu',
         type: 'POST',
         dataType: 'json',
         data: {

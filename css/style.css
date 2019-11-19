@@ -8,18 +8,17 @@ body, html {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    color: white;
 }
-.name,.password,.age,.height,.weight,.Re-password,.email,.desiredWeight
+/* .name,.password,.age,.height,.weight,.Re-password,.email,.desiredWeight
 {
     size: 40px;
     margin: 5px;
     height: 30px;
     border-radius: 10px;
-    border:none;
+
     outline: none;
     padding-inline-start: 5%;
-}
+} */
 .button
 {
     margin: 8px;
@@ -50,9 +49,8 @@ body, html {
 }
 .session
 {
-    padding: 30px;
-    border-style: solid;
-    /* background-color: white; */
+    padding: 60px;
+    background-color: white;
 
 }
 .navbar {
