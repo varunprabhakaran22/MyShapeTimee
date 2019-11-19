@@ -56,8 +56,8 @@ function uploadData(){
     //Passing the user details to the server using the ajax call with post method
     else{   
         $.ajax({
-            // url: 'https://myshapetime.herokuapp.com/add',
-            url: 'http://localhost:8000/add',
+            url: 'https://myshapetime.herokuapp.com/add',
+            //url: 'http://localhost:8000/add',
             type: 'POST',
             dataType: 'json',
             data: { 
@@ -97,8 +97,8 @@ function checkLogin(){
     else
     {
         $.ajax({
-            // url: 'https://myshapetime.herokuapp.com/',
-            url: 'http://localhost:8000/',
+            url: 'https://myshapetime.herokuapp.com/',
+            //url: 'http://localhost:8000/',
             type: 'POST',
             dataType: 'json',
             data: { 
@@ -140,8 +140,8 @@ function tookMenu(){
     if( (numberOfTimeUserTookMenu % 7 ) === 0 ){
         console.log("me" + numberOfTimeUserTookMenu);
         $.ajax({
-            // url: 'https://myshapetime.herokuapp.com/oneweek',
-            url: 'http://localhost:8000/oneweek',
+            url: 'https://myshapetime.herokuapp.com/oneweek',
+            //url: 'http://localhost:8000/oneweek',
             type: 'POST',
             dataType: 'json',
             data: {
@@ -157,8 +157,8 @@ function tookMenu(){
             console.log(we)
             displayingMenuData(perDayMenu);
             $.ajax({
-                // url: 'https://myshapetime.herokuapp.com/updateWeight',
-                url: 'http://localhost:8000/updateWeight',
+                url: 'https://myshapetime.herokuapp.com/updateWeight',
+               //  url: 'http://localhost:8000/updateWeight',
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -173,8 +173,8 @@ function tookMenu(){
     else{
         console.log("else block");
         $.ajax({
-            // url: 'https://myshapetime.herokuapp.com/tookmenu',
-            url: 'http://localhost:8000/tookmenu',
+            url: 'https://myshapetime.herokuapp.com/tookmenu',
+            //  url: 'http://localhost:8000/tookmenu',
             type: 'POST',
             dataType: 'json',
             data: {
@@ -198,25 +198,25 @@ function tookMenu(){
 // displaying the day menu to html page
 function displayingMenuData(perDayMenu){
     perDayMenu = perDayMenu
-    document.getElementById("breakfastData").innerHTML=perDayMenu.breakfast[0].Name+" ";
+    document.getElementById("breakfastData").innerHTML=perDayMenu.breakfast[0].Name+",";
     let para = document.createElement("breakfastData"); 
     let t = document.createTextNode(perDayMenu.breakfast[1].Name);
     para.appendChild(t);                                          
     // Append the text to <p>
     document.getElementById("breakfastData").appendChild(para);  
-    document.getElementById("lunchData").innerHTML=perDayMenu.lunch[0].Name+" ";
+    document.getElementById("lunchData").innerHTML=perDayMenu.lunch[0].Name+",";
     para = document.createElement("lunchData"); 
     t = document.createTextNode(perDayMenu.lunch[1].Name);
     para.appendChild(t);                                          
     // Append the text to <p>
     document.getElementById("lunchData").appendChild(para);  
-    document.getElementById("dinnerData").innerHTML=perDayMenu.dinner[0].Name+" ";
+    document.getElementById("dinnerData").innerHTML=perDayMenu.dinner[0].Name+",";
     para = document.createElement("dinnerData"); 
     t = document.createTextNode(perDayMenu.dinner[1].Name);
     para.appendChild(t);                                         
      // Append the text to <p>
     document.getElementById("dinnerData").appendChild(para);  
-    document.getElementById("snacksData").innerHTML=perDayMenu.snacks[0].Name+" ";
+    document.getElementById("snacksData").innerHTML=perDayMenu.snacks[0].Name+",";
     para = document.createElement("snacksData"); 
     t = document.createTextNode(perDayMenu.snacks[1].Name);
     para.appendChild(t);                                          
@@ -236,8 +236,8 @@ function skippingMenu(){
 //Getting the exercise data from the server based on the user bmi
 function getExerciseData(){
     $.ajax({
-        // url: 'https://myshapetime.herokuapp.com/tookmenu',
-        url: 'http://localhost:8000/skipping/menu',
+        url: 'https://myshapetime.herokuapp.com/skipping/menu',
+        // url: 'http://localhost:8000/skipping/menu',
         type: 'POST',
         dataType: 'json',
         data: {
@@ -264,8 +264,8 @@ function tookExercise(){
     $(".displaying-menu").show();
     $(".exercise-task").hide();
     $.ajax({
-        // url: 'https://myshapetime.herokuapp.com/tookmenu',
-        url: 'http://localhost:8000/tookmenu',
+        url: 'https://myshapetime.herokuapp.com/tookmenu',
+        //url: 'http://localhost:8000/tookmenu',
         type: 'POST',
         dataType: 'json',
         data: {
