@@ -31,7 +31,7 @@ body, html {
     border:none;
     outline: none;
 }
-.main
+.main,.mainFrame
 {
     justify-content: center;
     align-items: center;
@@ -46,16 +46,7 @@ body, html {
 }
 .mainFrame
 {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    /* background-color: aqua; */
     height: 100vh;
-    background-color: white;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background-image: url('/images/Interior-Design-Eight-Inc-Keepland_fitess_experience_eight_inc_5.jpg');
 }
 .session
 {
@@ -70,14 +61,10 @@ body, html {
     padding:0 !important;
     margin-bottom: 0 !important;
 }
-.Menu,.exercise-task
+ .Menu,.exercise-task
 {
    padding-top: 0.2%;
-    padding-left: 10%;
-}
-.breakfastData,.lunchData,.dinnerData,.snacksData,.running,.cycling,.Walking,.swimming 
-{
-    display: grid;
+    padding-left: 0;
 }
 .EggCount
 {
@@ -88,13 +75,24 @@ body, html {
     margin-right: 0%;
 }
 
-/* .dayOneMenu{
-    display: none;
-} */
-
 
 .exercise-task{
     display: none;
 }
 
 
+/* .DashboardMainFrame
+{
+
+} */
+.menu
+{
+    justify-content: center;
+    align-items: center;
+    display: grid;
+}
+.yes,.no{
+
+    padding: 5px;
+    margin: 5px;
+}
