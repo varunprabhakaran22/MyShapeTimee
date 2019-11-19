@@ -1,17 +1,24 @@
+body, html {
+    height: 100%;
+  }
 .profile
 {
     text-align-last: center;
     font-size: 50px;
-    /* background-image: url('car.jpg'); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+    color: white;
 }
 .name,.password,.age,.height,.weight,.Re-password,.email,.desiredWeight
 {
     size: 40px;
     margin: 5px;
     height: 30px;
+    border-radius: 10px;
+    border:none;
+    outline: none;
+    padding-inline-start: 5%;
 }
 .button
 {
@@ -21,6 +28,8 @@
     display: inline;
     font-size: 16px;
     border-radius: 10px;
+    border:none;
+    outline: none;
 }
 .main
 {
@@ -30,24 +39,36 @@
     /* background-color: aqua; */
     height: 86vh;
     background-color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('/images/Interior-Design-Eight-Inc-Keepland_fitess_experience_eight_inc_5.jpg');
 
+}
+.mainFrame
+{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    /* background-color: aqua; */
+    height: 100vh;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-image: url('/images/Interior-Design-Eight-Inc-Keepland_fitess_experience_eight_inc_5.jpg');
 }
 .session
 {
     padding: 30px;
     border-style: solid;
-    background-color: white;
-
+    /* background-color: white; */
+    background-color: black;
 }
 .navbar {
     position: relative;
     min-height: 7vh;
     padding:0 !important;
     margin-bottom: 0 !important;
-}
-.mainFrame
-{
-    height: 86vh;
 }
 .Menu,.exercise-task
 {
