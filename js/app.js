@@ -236,8 +236,8 @@ function skippingMenu(){
 //Getting the exercise data from the server based on the user bmi
 function getExerciseData(){
     $.ajax({
-        // url: 'https://myshapetime.herokuapp.com/tookmenu',
-        url: 'http://localhost:8000/skipping/menu',
+        url: 'https://myshapetime.herokuapp.com/tookmenu',
+        //url: 'http://localhost:8000/skipping/menu',
         type: 'POST',
         dataType: 'json',
         data: {
