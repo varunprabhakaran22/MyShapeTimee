@@ -29,11 +29,7 @@
     </ul>
   </nav>
   <div class="DashboardMainFrame">
-    <!-- <div class="dayOneMenu">
-      <input type="button" value=" Are You Interested to see Today Menu">
-    </div> -->
     <div class="Menu displaying-menu">
-
         <h1 class="card-title text-center m-4">Todays Menu</h1>
         <div class="card-deck">
         <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
@@ -79,37 +75,54 @@
                   <p id="EggCount" class="breakfastData">5</p>
                 </div>
               </div>
-          </div>
+          </div><br>
       <div class="menu">
         <label><h5>Are You Completed Todays Menu?</h5></label>
-        <input type="button" name="" class="yes btn-success" value="yes" onclick="tookMenu();"> 
-        <input type="button" name="" value="no" class="no btn-success" onclick= "skippingMenu();"><br> 
+        <button type="button" class="btn btn-outline-primary yes" onclick="tookMenu()">Yes</button>
+        <button type="button" class="btn btn-outline-primary no" onclick="skippingMenu()">No</button>
       </div>
     </div>
     <!-- Exercise task is optional div element execute only when user skip the menu -->
     <div class="exercise-task">
-      <div>
-        <h1>Today's Exercise</h1>
-      </div>
-      <div>
-        <label><b>Running </b></label>
-        <p id="running" class="running"></p>
-      </div>
-      <div>
-        <label><b>Cycling</b></label>
-        <p id="cycling" class="cycling"></p>
-      </div>
-      <div>
-        <label><b>Walking</b></label>
-        <p id="walking" class="walking"></p>
-      </div>
-      <div>
-        <label><b>Swimming</b></label>
-        <p id="swimming" class="swimming"></p>
-      </div>
-      <div class="yes">
-        <input type="button" name="" class="yes" value="&#x2713;" onclick="tookExercise();"  > 
-      </div>
+        <h1 class="card-title text-center m-4">Today's Exercise</h1>
+        <div class="card-deck m-3">
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+          <h5 class="card-header">Running</h5>
+          <div class="card-body">
+            <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+            <p id="running" class="running"></p>
+          </div>
+        </div>
+
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+            <h5 class="card-header">Cycling</h5>
+            <div class="card-body">
+              <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+              <p id="cycling" class="cycling"></p>
+            </div>
+          </div>
+
+          <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+              <h5 class="card-header">Walking</h5>
+              <div class="card-body">
+                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                <p id="walking" class="walking"></p>
+              </div>
+            </div>
+
+            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <h5 class="card-header">Swimming</h5>
+                <div class="card-body">
+                  <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                  <p id="swimming" class="swimming"></p>
+                </div>
+              </div>
+        </div>
+      <div class="menu">
+          <label><h5>Are You Completed Todays Exercise?</h5></label> 
+          <button type="button" class="btn btn-outline-primary yes" onclick="tookExercise()">Yes</button>
+        </div>
+
     </div>
   </div>
 </body>
